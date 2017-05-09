@@ -1,0 +1,7 @@
+<form #myform="ngForm" (ngSubmit)="submitForm(myform.value)">
+  <input type="text" name="username" placeholder="username" required ngModel>
+  <input type="password" name="password" placeholder="password" required ngModel>
+  <button type="submit" class="custom-button">Log in</button>
+  <p>Output: {{formValue}}</p>
+</form>
+
