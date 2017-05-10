@@ -2,7 +2,7 @@
  * Created by Andra on 5/7/2017.
  */
 import { Component, OnInit } from '@angular/core';
-import {FormService} from './form.service'
+import {FormService} from './form.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,8 +11,9 @@ import {FormService} from './form.service'
 })
 export class FormComponent {
   getData: string;
-  postData: string;
+  isLoggedIn: boolean;
   formValue: string;
+
 
   constructor(private _httpService: FormService) {
   }
@@ -22,16 +23,16 @@ export class FormComponent {
       .subscribe(
         data => this.getData = JSON.stringify(data),
         error => alert(error),
-        () => console.log("Finished")
+        () => console.log('Finished')
       );
   }
 
   submitForm(myform: any) {
     this._httpService.postJSON(myform)
       .subscribe(
-        data => this.formValue = JSON.stringify(data),
-        error => alert(error),
-        () => console.log("Finished")
+        data => {this.formValue = JSON.stringify(data);  this.isLoggedIn = true; },
+        error => {alert(error); this.isLoggedIn = false; },
+        () => console.log('Finished')
       );
   }
 
