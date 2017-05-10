@@ -1,0 +1,15 @@
+<form #register="ngForm" (ngSubmit)="registerFunction(register.value)" class="form-group">
+
+    <input class="form-control" type="text" placeholder="Name" name="name" class="large-input" required ngModel>
+    <input type="text" name="username" placeholder="username" class="form-control" required ngModel>
+    <input type="password" name="password" placeholder="password" class="form-control" required ngModel>
+    <input type="text" name="email" placeholder="email" class="form-control" required ngModel>
+    <input type="text" name="city" placeholder="city" class="form-control" required ngModel>
+    <input type="text" name="country" placeholder="country" class="form-control" required ngModel>
+    <input type="date" name="birth" placeholder="date of birth" class="form-control" required ngModel>
+    <input type="text" name="sex" placeholder="sex" class="form-control" required ngModel>
+
+
+    <button type="submit" class="custom-button">Log in</button>
+  <p>Output {{register.value}}</p>
+</form>
