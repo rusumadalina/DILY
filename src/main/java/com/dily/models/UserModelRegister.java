@@ -11,29 +11,29 @@ import java.sql.Date;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement
-public class UserModelRegiter {
+public class UserModelRegister {
 
     private String name;
     private String username;
     private String password;
     private String email;
-    private java.sql.Date dateOfBirth;
+    private java.sql.Date birth;
     private String country;
     private String city;
-    private String gender;
+    private String sex;
 
-    public UserModelRegiter() {
+    public UserModelRegister() {
     }
 
-    public UserModelRegiter(String name, String username, String password, String email, Date dateOfBirth, String country, String city, String gender) {
+    public UserModelRegister(String name, String username, String password, String email, Date dateOfBirth, String country, String city, String gender) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
+        this.birth = dateOfBirth;
         this.country = country;
         this.city = city;
-        this.gender = gender;
+        this.sex = gender;
     }
 
     public String getName() {
@@ -71,14 +71,7 @@ public class UserModelRegiter {
         this.email = email;
     }
 
-    @XmlElement
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
     @XmlElement
     public String getCountry() {
@@ -99,11 +92,20 @@ public class UserModelRegiter {
     }
 
     @XmlElement
-    public String getGender() {
-        return gender;
+    public Date getBirth() {
+        return birth;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    @XmlElement
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

@@ -39,7 +39,7 @@ public class Database {
             connection.close();
     }
     //Implement the method commit()
-    static void commit() {
+    public static void commit() {
         try {
             connection.commit();
         }catch (SQLException e) {

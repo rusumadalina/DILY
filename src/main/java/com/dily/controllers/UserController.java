@@ -1,19 +1,24 @@
 package com.dily.controllers;
 
 
-import com.dily.entities.User;
+import com.dily.Database;
 import com.dily.models.UserModel;
 
 
-import com.dily.models.UserModelRegiter;
+import com.dily.models.UserModelRegister;
 import com.dily.services.AuthenticationService;
+import com.dily.services.RegistrationService;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
@@ -26,46 +31,52 @@ import java.sql.SQLException;
 public class UserController {
 
     @RequestMapping(value="/login" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
-    public ResponseEntity<UserModel> login( @RequestBody UserModel userModel) throws SQLException {
+    public ResponseEntity<Integer> login(@RequestBody UserModel userModel) throws SQLException {
 
 
         String username =userModel.getUsername();
         String password =userModel.getPassword();
         AuthenticationService authentication = new AuthenticationService();
 
-        UserModel user;
-        user = authentication.findByUsernameAndPassword(username,password);
+        int id;
+        id = authentication.findByUsernameAndPassword(username,password);
 
-        if (user.getUsername() != null && user.getPassword()!= null) {
-            return new ResponseEntity<UserModel>(user, HttpStatus.OK);
+
+        //JSONObject jsonId = new JSONObject();
+
+        //jsonId.put("id",id);
+
+        if (id != 0) {
+            return new ResponseEntity<Integer>(id, HttpStatus.OK);
         } else {
-            return new ResponseEntity<UserModel>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
         }
 
     }
 
     @RequestMapping(value="/register" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
-    public void signup( @RequestBody UserModelRegiter user) throws SQLException {
+    public ResponseEntity<Integer> signup(@RequestBody UserModelRegister usermodel) throws SQLException {
 
+        RegistrationService registrationService = new RegistrationService();
+        JSONObject jsonMessage = new JSONObject();
 
-        String name = user.getName();
-        String username =user.getUsername();
-        String password =user.getPassword();
-        String email = user.getEmail();
-        String city = user.getCity();
-        String country = user.getCountry();
-        Date date = user.getDateOfBirth();
-        String gender = user.getGender();
+        String email = usermodel.getEmail();
+        String username = usermodel.getUsername();
 
-        System.out.println(name);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(email);
-        System.out.println(city);
-        System.out.println(country);
-        System.out.println(date);
-        System.out.println(gender);
+        if (registrationService.findByEmail(email) == true ) {
+            //jsonMessage.put("reason","email");
+            return new ResponseEntity<Integer>(-1, HttpStatus.NOT_FOUND);
+        }
 
+        if(registrationService.findByUsername(username) == true ){
+            //jsonMessage.put("reason","username");
+            return new ResponseEntity<Integer>(0, HttpStatus.NOT_FOUND);
+        }
+
+        registrationService.addNewUser(usermodel);
+        int id = registrationService.findIdByEmail(email);
+        //jsonMessage.put("id_nou",id);
+        return new ResponseEntity<Integer>(id, HttpStatus.OK);
 
     }
 }

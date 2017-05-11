@@ -1,6 +1,5 @@
 package com.dily.services;
 
-import com.dily.models.UserModel;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -11,5 +10,5 @@ import java.sql.SQLException;
 @Service
 public interface IAuthenticationService {
 
-    public UserModel findByUsernameAndPassword (String username, String password) throws SQLException;
+    public int findByUsernameAndPassword (String username, String password) throws SQLException;
 }

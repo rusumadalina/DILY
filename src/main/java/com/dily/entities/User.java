@@ -21,6 +21,7 @@ public class User {
     private String country;
     private String city;
     private String profilePicture;
+    private String gender;
 
     public User(){
 
@@ -108,5 +109,13 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

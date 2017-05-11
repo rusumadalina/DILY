@@ -13,21 +13,20 @@ import java.sql.Statement;
  */
 public class AuthenticationService implements IAuthenticationService {
     @Override
-    public UserModel findByUsernameAndPassword(String username, String password) throws SQLException {
+    public int findByUsernameAndPassword(String username, String password) throws SQLException {
 
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from user_table where username ='" + username + "' and password = '" + password + "'");
+        ResultSet rs = stmt.executeQuery("select user_id from user_table where username ='" + username + "' and password = '" + password + "'");
 
-        UserModel userModel = new UserModel();
+        int id = 0;
         while (rs.next()) {
-            userModel.setUsername(rs.getString(3));
-            userModel.setPassword(rs.getString(4));
+            id = rs.getInt(1);
         }
 
         rs.close();
 
-        return userModel;
+        return id;
     }
 }

@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
   registerFunction(register: any) {
     this._httpService.registerJSON(register)
       .subscribe(
-        data => {this.registerValue = JSON.stringify(data); },
-        error => {alert(error); },
+        data => {this.registerValue = JSON.stringify(data) },
+        error => {alert(error) },
         () => console.log('Finished')
       );
   }
