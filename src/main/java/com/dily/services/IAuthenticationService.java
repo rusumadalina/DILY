@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * Created by rusum on 09.05.2017.
  */
 @Service
-public interface AuthenticationService {
+public interface IAuthenticationService {
 
     public UserModel findByUsernameAndPassword (String username, String password) throws SQLException;
 }

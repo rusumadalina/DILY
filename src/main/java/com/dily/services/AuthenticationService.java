@@ -11,7 +11,7 @@ import java.sql.Statement;
 /**
  * Created by rusum on 09.05.2017.
  */
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthenticationService implements IAuthenticationService {
     @Override
     public UserModel findByUsernameAndPassword(String username, String password) throws SQLException {
 
