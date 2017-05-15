@@ -1,0 +1,58 @@
+<div class="main-container">
+  <app-left-menu></app-left-menu>
+  <div class="right-container">
+    <app-header></app-header>
+    <div class="right-inside-container">
+      <form #settingsForm="ngForm" (ngSumbit)="submitSettings(settingsForm.value)">
+        <div class="change-profile-picture">
+         <input type="file"  name="profile" class="large-input" ngModel>
+        </div>
+        <div class="input-pair">
+          <div class="custom-input">
+            <label>Name</label>
+            <input type="text" value="Spiridon Andra" name="name" class="large-input" ngModel>
+          </div>
+          <div class="custom-input">
+            <label>Username</label>
+            <input type="text" name="username" value="andra.spiridon" ngModel>
+          </div>
+        </div>
+
+        <div class="input-pair">
+          <div class="custom-input">
+            <label>New password</label>
+            <input type="password" name="password" value="new password"  ngModel>
+          </div>
+          <div class="custom-input">
+            <label>Confirm password</label>
+            <input type="password" name="confirm-password" value="confirm password" ngModel>
+          </div>
+        </div>
+        <div class="input-pair">
+          <div class="custom-input">
+            <label>Email</label>
+            <input type="text" name="email" value="spiridonandra01@yahoo.com" ngModel>
+          </div>
+          <div class="custom-input">
+            <label>Date of birth</label>
+            <input type="text" name="birth" value="18 Iunie 1996" ngModel>
+          </div>
+        </div>
+        <div class="input-pair">
+          <div class="custom-input">
+            <label>Country</label>
+            <input type="text" name="country" value="Romania" ngModel>
+          </div>
+          <div class="custom-input">
+            <label>City</label>
+            <input type="text" name="city" value="Iasi" ngModel>
+          </div>
+        </div>
+        <input type="text"  name="sex" class="large-input" ngModel>
+        <button type="submit" class="save-button">Save changes</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+

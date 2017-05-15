@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  width:100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.custom-button {
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.custom-button:hover {
+                  cursor: pointer;
+                }
+
+app-left-menu{
+  width:25%;
+}
+app-left-menu.shrink {
+  width: 5%;
+  transition: width .3s;
+  -webkit-transition: width .3s;
+}
+
+.main-container{
+  width: 100%;
+  height:100%;
+  display: flex;
+
+}
+
+.right-container{
+  width:100%;
+}
+
