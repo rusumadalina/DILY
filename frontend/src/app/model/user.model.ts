@@ -2,7 +2,7 @@
  * Created by Andra on 5/15/2017.
  */
 export class User {
-  private _id: number;
+  private _user_id: number;
   private _username: string;
   private _name : string;
   private _password: string;
@@ -14,7 +14,7 @@ export class User {
   private _gender: string;
 
   constructor(id, username, name, password, email, dateOfBirth, country, city, profilePicture, gender) {
-    this._id = id;
+    this._user_id = id;
     this._username = username;
     this._name = name;
     this._password=password;
@@ -27,12 +27,12 @@ export class User {
   }
 
 
-  get id(): number {
-    return this._id;
+  get user_id(): number {
+    return this._user_id;
   }
 
-  set id(value: number) {
-    this._id = value;
+  set user_id(value: number) {
+    this._user_id = value;
   }
 
   get username(): string {

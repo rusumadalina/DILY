@@ -86,9 +86,6 @@ public class UserController {
     @RequestMapping(value="/settings" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     public void settings(@RequestBody User user) throws SQLException {
 
-        RegistrationService registrationService = new RegistrationService();
-        JSONObject jsonMessage = new JSONObject();
-
         int id = user.getUser_id();
         String name = user.getName();
         String username = user.getUsername();

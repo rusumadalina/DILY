@@ -34,7 +34,7 @@ export class FormComponent {
             this.isLoggedIn = false;
           }else {
             this.isLoggedIn = true;
-            this.user = new User(data['id'], data['username'], data['name'], data['password'],
+            this.user = new User(data['user_id'], data['username'], data['name'], data['password'],
                           data['email'], data['dateOfBirth'], data['country'], data['city'], data['profilePicture'], data['gender']);
             localStorage.setItem('user', this.formValue);
           }

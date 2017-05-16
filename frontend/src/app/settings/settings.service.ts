@@ -13,7 +13,7 @@ export class SettingsService {
   postJSON(settingsForm) {
     const json = JSON.stringify(
       {
-        id: localStorage.getItem('user')['id'],
+        user_id: localStorage.getItem('user')['user_id'],
         name: settingsForm.name,
         username: settingsForm.username,
         password: settingsForm.password,
@@ -21,8 +21,8 @@ export class SettingsService {
         dateOfBirth: settingsForm.dateOfBirth,
         country: settingsForm.country,
         city: settingsForm.city,
-        gender: settingsForm.gender,
         profilePicture : localStorage.getItem('user')['profilePicture'],
+        gender: settingsForm.gender,
         });
     console.log(json);
     const header =  new Headers();
