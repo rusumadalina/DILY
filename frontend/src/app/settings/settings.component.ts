@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
   }
   submitSettings(settingsForm: any) {
-    console.log(settingsForm.value);
+    console.log(settingsForm);
     this._httpService.postJSON(settingsForm)
       .subscribe(
         data => {

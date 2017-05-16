@@ -9,6 +9,7 @@ import com.dily.models.UserModel;
 import com.dily.models.UserModelRegister;
 import com.dily.services.AuthenticationService;
 import com.dily.services.RegistrationService;
+import com.dily.services.SettingsService;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -84,30 +85,14 @@ public class UserController {
     }
 
     @RequestMapping(value="/settings" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
-    public void settings(@RequestBody User user) throws SQLException {
+    public ResponseEntity<Integer> settings(@RequestBody User user) throws SQLException {
 
-        int id = user.getUser_id();
-        String name = user.getName();
-        String username = user.getUsername();
-        String password = user.getPassword();
-        String email = user.getEmail();
-        Date dateOfBirth = user.getDateOfBirth();
-        String country = user.getCountry();
-        String city = user.getCity();
-        String profilePicture = user.getProfilePicture();
-        String gender = user.getGender();
+        SettingsService settingsService = new SettingsService();
+
+        settingsService.update(user);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
 
 
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(email);
-        System.out.println(dateOfBirth);
-        System.out.println(country);
-        System.out.println(city);
-        System.out.println(profilePicture);
-        System.out.println(gender);
 
     }
 }

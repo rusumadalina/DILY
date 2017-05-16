@@ -13,7 +13,7 @@ export class SettingsService {
   postJSON(settingsForm) {
     const json = JSON.stringify(
       {
-        user_id: localStorage.getItem('user')['user_id'],
+        user_id: JSON.parse(localStorage.getItem('user'))['user_id'],
         name: settingsForm.name,
         username: settingsForm.username,
         password: settingsForm.password,
@@ -21,7 +21,7 @@ export class SettingsService {
         dateOfBirth: settingsForm.dateOfBirth,
         country: settingsForm.country,
         city: settingsForm.city,
-        profilePicture : localStorage.getItem('user')['profilePicture'],
+        profilePicture : JSON.parse(localStorage.getItem('user'))['profilePicture'],
         gender: settingsForm.gender,
         });
     console.log(json);
