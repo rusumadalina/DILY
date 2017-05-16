@@ -49,8 +49,10 @@ public class UserController {
         //jsonId.put("id",id);
 
         if (user != null ) {
+            System.out.println("sllslslslslssl");
             return new ResponseEntity<User>(user, HttpStatus.OK);
         } else {
+            System.out.println("maimutica");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
 

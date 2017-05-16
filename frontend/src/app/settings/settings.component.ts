@@ -27,4 +27,4 @@ export class SettingsComponent implements OnInit {
       );
   }
 }
-//care e
+
