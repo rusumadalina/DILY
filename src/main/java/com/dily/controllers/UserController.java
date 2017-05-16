@@ -81,4 +81,35 @@ public class UserController {
         return new ResponseEntity<Integer>(id, HttpStatus.OK);
 
     }
+
+    @RequestMapping(value="/settings" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    public void settings(@RequestBody User user) throws SQLException {
+
+        RegistrationService registrationService = new RegistrationService();
+        JSONObject jsonMessage = new JSONObject();
+
+        int id = user.getUser_id();
+        String name = user.getName();
+        String username = user.getUsername();
+        String password = user.getPassword();
+        String email = user.getEmail();
+        Date dateOfBirth = user.getDateOfBirth();
+        String country = user.getCountry();
+        String city = user.getCity();
+        String profilePicture = user.getProfilePicture();
+        String gender = user.getGender();
+
+
+        System.out.println(id);
+        System.out.println(name);
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(email);
+        System.out.println(dateOfBirth);
+        System.out.println(country);
+        System.out.println(city);
+        System.out.println(profilePicture);
+        System.out.println(gender);
+
+    }
 }

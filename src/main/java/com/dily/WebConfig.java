@@ -14,7 +14,8 @@ public class WebConfig {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/login").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/");
+                registry.addMapping("/login").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
+                registry.addMapping("/settings").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
             }
         };
     }

@@ -32,15 +32,16 @@ export class FormComponent {
         data => {
 
                  this.formValue = JSON.stringify(data);
-                 console.log(data['email']);
                  this.isLoggedIn = true;
                  this.user=new User(data['id'],data['username'],data['name'],data['password'],data['email'],data['dateOfBirth'], data['country'], data['city'],data['profilePicture'], data['gender']);
+                localStorage.setItem('user',this.formValue);
 
                  },
         error => {alert(error); this.isLoggedIn = false; },
-        () => console.log('fsfdsf')
+        () => console.log('finish')
       );
   }
 
 }
-//fa push la asta si fa tu serviciul pt schimbarea la settings. si iau eu si fac la mine asta. ca e cam complicat. dar mi-ai trimis ce e in settigs? da
+//ca pt teste se pun parole usoaren unu..nu.n unununu stai
+//de ceee formValue are si id si tot? ca nu inteleg /. ca il trimiti cu totul?eh in fine..

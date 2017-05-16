@@ -20,7 +20,7 @@ public class UserModelRegister {
     private java.sql.Date birth;
     private String country;
     private String city;
-    private String sex;
+    private String sex; //nu are id. fa unul cu id:))) omg.ideea e ca acolo nu e profile picture..deaia nu poate fi User in rest e la fel
 
     public UserModelRegister() {
     }

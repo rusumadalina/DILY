@@ -13,21 +13,22 @@ export class SettingsService {
   postJSON(settingsForm) {
     const json = JSON.stringify(
       {
-        
+        id: localStorage.getItem('user')['id'],
         name: settingsForm.name,
         username: settingsForm.username,
         password: settingsForm.password,
         email: settingsForm.email,
-        birth: settingsForm.birth,
+        dateOfBirth: settingsForm.dateOfBirth,
         country: settingsForm.country,
         city: settingsForm.city,
-        profile: settingsForm.profile,
-        sex: settingsForm.sex
+        gender: settingsForm.gender,
+        profilePicture : localStorage.getItem('user')['profilePicture'],
         });
+    console.log(json);
     const header =  new Headers();
     header.append('Content-Type', 'application/json');
     return this._http.post('http://localhost:8072/api/settings',  json, { headers: header }).map(res => res.json());
   }
 
-}
+}//
 

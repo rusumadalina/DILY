@@ -17,5 +17,3 @@ export class RegisterService{
 
 }
 
-
-//cred ca da asa pt ca tu din back nu ii trimiti raspuns, si el asta asteapta, si pt ca nuu ii dai nimic stai ca ii dau imediat

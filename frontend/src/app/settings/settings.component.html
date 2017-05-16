@@ -1,20 +1,20 @@
-<div class="main-container">
-  <app-left-menu></app-left-menu>
-  <div class="right-container">
-    <app-header></app-header>
-    <div class="right-inside-container">
-      <form #settingsForm="ngForm" (ngSumbit)="submitSettings(settingsForm.value)">
+<!--<div class="main-container">-->
+  <!--<app-left-menu></app-left-menu>-->
+  <!--<div class="right-container">-->
+    <!--<app-header></app-header>-->
+    <!--<div class="right-inside-container">-->
+      <form #settingsForm="ngForm"  class="form-group">
         <div class="change-profile-picture">
          <input type="file"  name="profile" class="large-input" ngModel>
         </div>
         <div class="input-pair">
           <div class="custom-input">
             <label>Name</label>
-            <input type="text"  name="name" class="large-input"  [(ngModel)]="user.name"l>
+            <input type="text"  name="name" class="large-input"  ngModel>
           </div>
           <div class="custom-input">
             <label>Username</label>
-            <input type="text" name="username"  [(ngModel)]="user.username" >
+            <input type="text" name="username"  ngModel >
           </div>
         </div>
 
@@ -35,7 +35,7 @@
           </div>
           <div class="custom-input">
             <label>Date of birth</label>
-            <input type="text" name="birth" value="18 Iunie 1996" ngModel>
+            <input type="text" name="dateOfBirth" value="18 Iunie 1996" ngModel>
           </div>
         </div>
         <div class="input-pair">
@@ -48,12 +48,12 @@
             <input type="text" name="city" value="Iasi" ngModel>
           </div>
         </div>
-        <input type="text"  name="sex" class="large-input" ngModel>
-        <button type="submit" class="save-button">Save changes</button>
+        <input type="text"  name="gender" class="large-input" ngModel>
+        <button class="save-button" (click)="submitSettings(settingsForm.value)">Save changes</button>
       </form>
 
-    </div>
-  </div>
-</div>
-
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+te prinzi?
 
