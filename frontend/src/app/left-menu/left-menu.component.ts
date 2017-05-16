@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-left-menu',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    localStorage.removeItem('user');
+    console.log('afaraaaaaaaaaaaaaaaaaaaaa');
+    this._router.navigate(['']);
+  }
 }

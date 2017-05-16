@@ -12,6 +12,9 @@ import { ParalaxComponent } from './paralax/paralax.component';
 import { HeaderComponent } from './header/header.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthGuard} from './guards/auth.guard';
+import { AuthenticationComponent } from './authentication/authentication.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ParalaxComponent,
     HeaderComponent,
     SettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpModule,
     routing,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,108 +2,31 @@
  * Created by Andra on 5/15/2017.
  */
 export class User {
-  private _user_id: number;
-  private _username: string;
-  private _name : string;
-  private _password: string;
-  private _email: string;
+  public _user_id: number;
+  public _username: string;
+  public _name: string;
+  public _password: string;
+  public _email: string;
   private _dateOfBirth: string;
   private _country: string;
   private _city: string;
   private _profilePicture: string;
   private _gender: string;
 
-  constructor(id, username, name, password, email, dateOfBirth, country, city, profilePicture, gender) {
-    this._user_id = id;
-    this._username = username;
-    this._name = name;
-    this._password=password;
-    this._email=email;
-    this._dateOfBirth=dateOfBirth;
-    this._country=country;
-    this._city=city;
-    this._profilePicture=profilePicture;
-    this._gender=gender;
+  constructor() {
+    this._user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
+    this._username =  JSON.parse(localStorage.getItem('user'))['username'];
+    this._name =  JSON.parse(localStorage.getItem('user'))['name'];
+    this._password =  JSON.parse(localStorage.getItem('user'))['password'];
+    this._email = JSON.parse(localStorage.getItem('user'))['email'];
+    this._dateOfBirth = JSON.parse(localStorage.getItem('user'))['dateOfBirth'];
+    this._country = JSON.parse(localStorage.getItem('user'))['country'];
+    this._city =  JSON.parse(localStorage.getItem('user'))['city'];
+    this._profilePicture =  JSON.parse(localStorage.getItem('user'))['profilePicture'];
+    this._gender =  JSON.parse(localStorage.getItem('user'))['gender'];
   }
 
-
-  get user_id(): number {
-    return this._user_id;
-  }
-
-  set user_id(value: number) {
-    this._user_id = value;
-  }
-
-  get username(): string {
+  getUsername() {
     return this._username;
-  }
-
-  set username(value: string) {
-    this._username = value;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
-  get password(): string {
-    return this._password;
-  }
-
-  set password(value: string) {
-    this._password = value;
-  }
-
-  get email(): string {
-    return this._email;
-  }
-
-  set email(value: string) {
-    this._email = value;
-  }
-
-  get dateOfBirth(): string {
-    return this._dateOfBirth;
-  }
-
-  set dateOfBirth(value: string) {
-    this._dateOfBirth = value;
-  }
-
-  get country(): string {
-    return this._country;
-  }
-
-  set country(value: string) {
-    this._country = value;
-  }
-
-  get city(): string {
-    return this._city;
-  }
-
-  set city(value: string) {
-    this._city = value;
-  }
-
-  get profilePicture(): string {
-    return this._profilePicture;
-  }
-
-  set profilePicture(value: string) {
-    this._profilePicture = value;
-  }
-
-  get gender(): string {
-    return this._gender;
-  }
-
-  set gender(value: string) {
-    this._gender = value;
   }
 }

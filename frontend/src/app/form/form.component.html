@@ -1,5 +1,5 @@
 <form #myform="ngForm" (ngSubmit)="submitForm(myform.value)">
-
+  <div *ngIf="isLoggedIn==false && submited==true" class="alert alert-danger">Incorect username or password. Please try again</div>
     <label for="username">Username</label>
     <input type="text" placeholder="username" class="custom-input" id="username" required="required" name="username" #username="ngModel" ngModel maxlength="30" minlength="5">
     <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
@@ -15,6 +15,6 @@
   </div>
 
   <button type="submit" class="custom-button" [disabled]='!myform.form.valid' id="button">Log in</button>
-  <div *ngIf="isLoggedIn==false && submitted" class="alert alert-danger">Incorect username or password. Please try again</div>
+
 </form>
 

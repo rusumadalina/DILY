@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormService} from './form.service';
 import {User} from '../model/user.model';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -10,9 +11,11 @@ import {User} from '../model/user.model';
 export class FormComponent {
   isLoggedIn: boolean;
   formValue: string;
-  user: User;
-  constructor(private _httpService: FormService) {
+  submited: boolean;
+  username: string;
+  constructor(private _httpService: FormService , private _router: Router) {
     this.isLoggedIn = false;
+    this.submited = false;
   }
 
   // onTestGet() {
@@ -25,25 +28,19 @@ export class FormComponent {
   // }
 
   submitForm(myform: any) {
+    this.submited = true;
     this._httpService.postJSON(myform)
       .subscribe(
         data => {
           console.log(data);
           this.formValue = JSON.stringify(data);
-          if ( data['id'] === 0 ){
-            this.isLoggedIn = false;
-          }else {
-            this.isLoggedIn = true;
-            this.user = new User(data['user_id'], data['username'], data['name'], data['password'],
-                          data['email'], data['dateOfBirth'], data['country'], data['city'], data['profilePicture'], data['gender']);
-            localStorage.setItem('user', this.formValue);
-          }
-          console.log(this.isLoggedIn);
-
-
-        },
+          this.isLoggedIn = true;
+          localStorage.setItem('user', this.formValue);
+          this._router.navigate(['dashboard']);
+          },
         error => {
-          alert(error); },
+          this.isLoggedIn = false;
+        },
         () => console.log('finish')
       );
   }
