@@ -1,44 +1,14 @@
-.form-control {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  background-color: #EEEEEE;
-  height: 50px;
-  margin-bottom: 30px;
-  width: 98%;
-}
-
-.form-control:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.form-control option {
-  color: #00897B;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-}
-
-select option {
-  line-height: 30px;
-}
-.large-input {
-  width: 98% !important;
-  height: 50px;
-  padding: 15px;
-}
-
 input:focus {
-  background: #CFD8DC;
+  background: #eeeeee;
 }
-
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
 input:hover {
-  background: #CFD8DC;
+  background: #eeeeee;
 }
 
 .checkbox {
@@ -47,18 +17,22 @@ input:hover {
 label {
   padding-right: 15px;
   color: #34495e;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #EEEEEE;
+  background: #fafafa;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 4px;
 }
 
 form {
@@ -66,12 +40,27 @@ form {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 80%;
+  width: 100%;
 }
 
 .custom-input {
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
+  width: 100%;
+}
+.custom-button{
+  width:50%;
+  background-color: #00897B;
+  color: #FFFFFF;
+}
+.custom-button[disabled]{
+  background-color: #fafafa;
+  color: #eeeeee;
+}
+.custom-button[disabled]:hover{
+  cursor:default;
+}
+.alert-danger{
   width: 100%;
 }

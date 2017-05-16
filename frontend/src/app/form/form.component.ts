@@ -3,7 +3,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import {FormService} from './form.service';
-import {User} from "../model/user.model";
+import {User} from '../model/user.model';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,9 +11,11 @@ import {User} from "../model/user.model";
   providers: [FormService]
 })
 export class FormComponent {
+  username: string;
   isLoggedIn: boolean;
   formValue: string;
-  user: User;
+
+
   constructor(private _httpService: FormService) {
   }
 
@@ -32,16 +34,16 @@ export class FormComponent {
         data => {
 
                  this.formValue = JSON.stringify(data);
+                 console.log(data);
                  this.isLoggedIn = true;
-                 this.user=new User(data['id'],data['username'],data['name'],data['password'],data['email'],data['dateOfBirth'], data['country'], data['city'],data['profilePicture'], data['gender']);
-                localStorage.setItem('user',this.formValue);
-
+                 this.username = myform.username;
+                 User.constructor(this.formValue , this.username);
                  },
-        error => {alert(error); this.isLoggedIn = false; },
-        () => console.log('finish')
+        error => {
+          // alert(error);
+          this.isLoggedIn = false; },
+        () => console.log('Finished')
       );
   }
 
 }
-//ca pt teste se pun parole usoaren unu..nu.n unununu stai
-//de ceee formValue are si id si tot? ca nu inteleg /. ca il trimiti cu totul?eh in fine..

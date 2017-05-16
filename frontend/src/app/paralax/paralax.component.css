@@ -299,7 +299,7 @@ footer h2 {
 
 .tabs > li.active {
   color: #34495e;
-  background-color: #fafafa;
+  background-color: #FFFFFF;
   border-radius: 5px;
 }
 
@@ -311,7 +311,7 @@ footer h2 {
 }
 
 .tab__content {
-  background-color: #fafafa;
+  background-color: #FFFFFF;;
   position: relative;
   width: 100%;
   border-radius: 5px;
@@ -334,7 +334,7 @@ footer h2 {
   border-radius: 5px;
   width: 100%;
   padding: 20px 40px 40px 20px;
-  background-color: #fafafa;
+  background-color: #FFFFFF;
 }
 
 .tab__content .content-wrapper-signup {
@@ -345,7 +345,7 @@ footer h2 {
   border-radius: 5px;
   width: 100%;
   padding: 20px;
-  background-color: #fafafa;
+  background-color: #FFFFFF;
 }
 
 .tab__content .content-wrapper-signup .input-pair {

@@ -1,10 +1,20 @@
 <form #myform="ngForm" (ngSubmit)="submitForm(myform.value)">
-  <label for="username">Username</label>
-  <input class="large-input" type="text" ngDefaultControl="username" name="username" id="username" placeholder="username" minlength="6" maxlength="30" required="required" ngModel>
 
+    <label for="username">Username</label>
+    <input type="text" placeholder="username" class="custom-input" id="username" required="required" name="username" #username="ngModel" ngModel maxlength="30" minlength="5">
+    <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+      <div [hidden]="!username.errors.required">Username is required</div>
+      <div [hidden]="!username.errors.minlength">Username must be 5 characters long</div>
+    </div>
   <label for="password">Password</label>
-  <input class="form-control" type="password" name="password" id="password" placeholder="password" required ngModel>
-  <button type="submit" class="custom-button" >Log in</button>
-  <button routerLink="dashboard">Dashboard</button>
+  <input type="password" placeholder="password" class="custom-input" id="password" required="required" name="password" #password="ngModel" ngModel maxlength="30" minlength="5">
+
+  <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+    <div [hidden]="!password.errors.required">Password is required</div>
+    <div [hidden]="!password.errors.minlength">Password must be 5 characters long</div>
+  </div>
+
+  <button type="submit" class="custom-button" [disabled]='!myform.form.valid' id="button">Log in</button>
+  <div *ngIf="isLoggedIn==false"></div>
 </form>
 
