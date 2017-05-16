@@ -2,6 +2,7 @@ package com.dily.controllers;
 
 
 import com.dily.Database;
+import com.dily.entities.User;
 import com.dily.models.UserModel;
 
 
@@ -32,25 +33,25 @@ import java.sql.SQLException;
 public class UserController {
 
     @RequestMapping(value="/login" , method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
-    public ResponseEntity<Integer> login(@RequestBody UserModel userModel) throws SQLException {
+    public ResponseEntity<User> login(@RequestBody UserModel userModel) throws SQLException {
 
 
         String username =userModel.getUsername();
         String password =userModel.getPassword();
         AuthenticationService authentication = new AuthenticationService();
 
-        int id;
-        id = authentication.findByUsernameAndPassword(username,password);
+        User user;
+        user = authentication.findByUsernameAndPassword(username,password);
 
 
         //JSONObject jsonId = new JSONObject();
 
         //jsonId.put("id",id);
 
-        if (id != 0) {
-            return new ResponseEntity<Integer>(id, HttpStatus.OK);
+        if (user != null ) {
+            return new ResponseEntity<User>(user, HttpStatus.OK);
         } else {
-            return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
 
     }

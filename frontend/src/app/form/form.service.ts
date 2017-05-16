@@ -21,3 +21,4 @@ export class FormService{
   }
 
 }
+///nu e posibil sa trebuiasca sa ajung in settings tes ceva..nu stiu

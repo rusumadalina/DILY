@@ -11,11 +11,9 @@ import {User} from "../model/user.model";
   providers: [FormService]
 })
 export class FormComponent {
-  username: string;
   isLoggedIn: boolean;
   formValue: string;
-
-
+  user: User;
   constructor(private _httpService: FormService) {
   }
 
@@ -34,14 +32,15 @@ export class FormComponent {
         data => {
 
                  this.formValue = JSON.stringify(data);
-                 console.log(data);
+                 console.log(data['email']);
                  this.isLoggedIn = true;
-                 this.username = myform.username;
-                 User.constructor(this.formValue , this.username);
+                 this.user=new User(data['id'],data['username'],data['name'],data['password'],data['email'],data['dateOfBirth'], data['country'], data['city'],data['profilePicture'], data['gender']);
+
                  },
         error => {alert(error); this.isLoggedIn = false; },
-        () => console.log('Finished')
+        () => console.log('fsfdsf')
       );
   }
 
 }
+//fa push la asta si fa tu serviciul pt schimbarea la settings. si iau eu si fac la mine asta. ca e cam complicat. dar mi-ai trimis ce e in settigs? da

@@ -13,8 +13,7 @@ export class SettingsService {
   postJSON(settingsForm) {
     const json = JSON.stringify(
       {
-        // poza de profi;
-        profile: settingsForm.profile,
+        
         name: settingsForm.name,
         username: settingsForm.username,
         password: settingsForm.password,
@@ -22,6 +21,7 @@ export class SettingsService {
         birth: settingsForm.birth,
         country: settingsForm.country,
         city: settingsForm.city,
+        profile: settingsForm.profile,
         sex: settingsForm.sex
         });
     const header =  new Headers();
@@ -30,3 +30,4 @@ export class SettingsService {
   }
 
 }
+
