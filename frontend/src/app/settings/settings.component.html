@@ -49,7 +49,10 @@
             <input type="text" name="city" value="Iasi" [(ngModel)]="_city">
           </div>
         </div>
-        <input type="text"  name="gender" class="large-input" [(ngModel)]="_gender">
+        <div class="large-input">
+          <label>Gender</label>
+        <input type="text"  name="gender" [(ngModel)]="_gender">
+        </div>
         <button class="save-button" (click)="submitSettings(settingsForm.value)">Save changes</button>
       </form>
 
