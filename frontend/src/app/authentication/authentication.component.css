@@ -1,10 +1,39 @@
 
+.main-container{
+  width: 100%;
+  height: 100%;
+
+  /*background-image: url('../../assets/images/photography.png');
+  background-repeat: repeat;*/
+  background: linear-gradient(to right, #43cea2, #185a9d);
+}
+.icon-container{
+  width:100%;
+  height:100%;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../assets/images/ixons-01.png');
+  background-repeat: repeat;
+}
+
 .wrapper {
   min-width: 600px;
   max-width: 900px;
   margin: 0;
+  /*box-shadow: 1px 10px 30px -10px rgba(0,0,0,0.5);*/
+  box-shadow: 0 0 20px rgba(0,0,0,.15);
+  padding: 40px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
 }
 
+tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
 .tabs {
   display: table;
   table-layout: fixed;
@@ -49,7 +78,7 @@
   transform: translateY(70%);
 }
 
-.tabs > li.active {
+ li.active {
   color: #34495e;
   background-color: #FFFFFF;
   border-radius: 5px;
@@ -387,16 +416,6 @@ footer h2 {
   }
 }
 
-@media screen and (max-width: 491px) {
-  header .banner-content h1 {
-    font-size: 2.5rem;
-  }
-
-  header .banner-content h3 {
-    font-size: 1.5rem;
-  }
-}
-
 .custom-button {
   border-radius: 4px;
   width: 90px;
@@ -431,78 +450,3 @@ footer h2 {
 
 
 
-.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
-  position: absolute;
-  margin-left: -75px;
-}
-
-.forgot-pass {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: "Roboto", sans-serif;
-}
-
-.profile-picture1 {
-  min-width: 300px;
-  min-height: 300px;
-  border-radius: 100%;
-  background: url("../../assets/images/profile.jpg");
-  background-position: center;
-  background-size: 300px auto;
-  background-repeat: no-repeat;
-}
-
-.profile-picture2 {
-  min-width: 300px;
-  min-height: 300px;
-  border-radius: 100%;
-  background: url("../../assets/images/profile/profile1.jpg");
-  background-position: center;
-  background-size: 300px auto;
-  background-repeat: no-repeat;
-}
-
-.pictures {
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.about-dily {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.timeline-img {
-  vertical-align: middle;
-  padding-right: 20px;
-  height: 500px;
-}
-
-.about-text-white {
-  font-size: 2rem;
-  line-height: 2;
-  margin: 5% 0 7%;
-  color: white;
-}
-
-.memory-img {
-  vertical-align: middle;
-  padding: 20px;
-  height: 70%;
-  width: 50%;
-}
-
-
-@media (max-width: 1024px) {
-  .about-dily {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
