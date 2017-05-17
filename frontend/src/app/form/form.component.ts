@@ -12,10 +12,19 @@ export class FormComponent {
   isLoggedIn: boolean;
   formValue: string;
   submited: boolean;
+  d_username: string;
+  d_password: string;
 
   constructor(private _httpService: FormService , private _router: Router) {
     this.isLoggedIn = true;
     this.submited = true;
+    if (localStorage.getItem('loggedIn').toString() === 'true' ) {
+        this.d_username = JSON.parse(localStorage.getItem('user'))('username');
+        this.d_password = JSON.parse(localStorage.getItem('user'))('password');
+    }else {
+      this.d_username = '';
+      this.d_password = '';
+    }
   }
   submitForm(myform: any) {
     this.submited = true;
@@ -26,10 +35,12 @@ export class FormComponent {
           this.formValue = JSON.stringify(data);
           this.isLoggedIn = true;
           localStorage.setItem('user', this.formValue);
+          localStorage.setItem('loggedIn', 'true');
           this._router.navigate(['dashboard']);
           },
         error => {
           this.isLoggedIn = false;
+          localStorage.setItem('loggedIn', 'false');
         },
         () => console.log('finish')
       );

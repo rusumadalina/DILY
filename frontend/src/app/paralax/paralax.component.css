@@ -82,11 +82,11 @@ h2 {
 /*banner*/
 header .banner {
   margin-top: 60px;
-  background: url("../../assets/images/dily.png") calc(100vh - 60px) no-repeat;
-  background-position: center;
+  background: #00897B url("../../assets/images/dily.png") no-repeat center;
   background-size: 100vw auto;
   height: calc(100vh - 60px);
   position: relative;
+
   z-index: -10;
 }
 
