@@ -24,7 +24,7 @@ export class SettingsService {
         profilePicture : JSON.parse(localStorage.getItem('user'))['profilePicture'],
         gender: settingsForm.gender,
         });
-    console.log(json);
+    localStorage.setItem('user', json );
     const header =  new Headers();
     header.append('Content-Type', 'application/json');
     return this._http.post('http://localhost:8072/api/settings',  json, { headers: header }).map(res => res.json());

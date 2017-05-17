@@ -11,47 +11,47 @@
         <div class="input-pair">
           <div class="custom-input">
             <label>Name</label>
-            <input type="text"  name="name" class="large-input"  [(ngModel)]="_name">
+            <input type="text"  name="name" class="large-input"  [(ngModel)]="curent_user.name">
           </div>
           <div class="custom-input">
             <label>Username</label>
-            <input type="text" name="username"  [(ngModel)]="_username">
+            <input type="text" name="username"  [(ngModel)]="curent_user.username">
           </div>
         </div>
 
         <div class="input-pair">
           <div class="custom-input">
             <label>New password</label>
-            <input type="password" name="password" [(ngModel)]="_password">
+            <input type="password" name="password" [(ngModel)]="curent_user.password">
           </div>
-          <div class="custom-input">
+          <div  class="custom-input">
             <label>Confirm password</label>
-            <input type="password" name="confirm-password"  [(ngModel)]="_password">
+            <input type="password" name="confirm-password"  [(ngModel)]="curent_user.password">
           </div>
         </div>
         <div class="input-pair">
           <div class="custom-input">
             <label>Email</label>
-            <input type="text" name="email"  [(ngModel)]="_email">
+            <input type="text" name="email"  [(ngModel)]="curent_user.email">
           </div>
           <div class="custom-input">
             <label>Date of birth</label>
-            <input type="date" name="dateOfBirth" value="18 Iunie 1996" [(ngModel)]="_dateOfBirth">
+            <input type="date" name="dateOfBirth" value="18 Iunie 1996" [(ngModel)]="curent_user.dateOfBirth">
           </div>
         </div>
         <div class="input-pair">
           <div class="custom-input">
             <label>Country</label>
-            <input type="text" name="country" value="Romania" [(ngModel)]="_country">
+            <input type="text" name="country" value="Romania" [(ngModel)]="curent_user.country">
           </div>
           <div class="custom-input">
             <label>City</label>
-            <input type="text" name="city" value="Iasi" [(ngModel)]="_city">
+            <input type="text" name="city" value="Iasi" [(ngModel)]="curent_user.city">
           </div>
         </div>
         <div class="large-input">
           <label>Gender</label>
-        <input type="text"  name="gender" [(ngModel)]="_gender">
+        <input type="text"  name="gender" [(ngModel)]="curent_user.gender">
         </div>
         <button class="save-button" (click)="submitSettings(settingsForm.value)">Save changes</button>
       </form>

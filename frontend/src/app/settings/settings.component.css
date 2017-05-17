@@ -109,7 +109,10 @@ input:hover {
 }
 
 label {
-  padding: 5px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .form-control {

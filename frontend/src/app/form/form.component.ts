@@ -12,21 +12,11 @@ export class FormComponent {
   isLoggedIn: boolean;
   formValue: string;
   submited: boolean;
-  username: string;
+
   constructor(private _httpService: FormService , private _router: Router) {
-    this.isLoggedIn = false;
-    this.submited = false;
+    this.isLoggedIn = true;
+    this.submited = true;
   }
-
-  // onTestGet() {
-  //   this._httpService.getCurrentTime()
-  //     .subscribe(
-  //       data => this.getData = JSON.stringify(data),
-  //       error => alert(error),
-  //       () => console.log('Finished')
-  //     );
-  // }
-
   submitForm(myform: any) {
     this.submited = true;
     this._httpService.postJSON(myform)
@@ -46,3 +36,12 @@ export class FormComponent {
   }
 
 }
+
+// onTestGet() {
+//   this._httpService.getCurrentTime()
+//     .subscribe(
+//       data => this.getData = JSON.stringify(data),
+//       error => alert(error),
+//       () => console.log('Finished')
+//     );
+// }
