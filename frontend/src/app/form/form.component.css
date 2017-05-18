@@ -22,6 +22,7 @@ label {
   justify-content: flex-start;
 }
 
+
 input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -54,7 +55,8 @@ form {
 .custom-button{
   width:50%;
   background-color: #00897B;
-  color: #FFFFFF;
+  color: #FFFFFF; 
+  margin: 15px 0;
 }
 .custom-button[disabled]{
   background-color: #fafafa;
@@ -65,4 +67,13 @@ form {
 }
 .alert-danger{
   width: 100%;
+}
+@media (max-width: 900px){
+ label{
+      color: #FFFFFF;
+ }
+ .custom-button{
+   background-color: transparent ; 
+   border: 2px solid #FFFFFF;
+ }
 }

@@ -1,0 +1,96 @@
+input:focus {
+    background: #eeeeee;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #00897B;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.custom-input:hover {
+    background: #eeeeee;
+}
+
+label {
+    padding-right: 15px;
+    color: #34495e;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.custom-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #fafafa;
+
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.custom-button {
+    width: 50%;
+    background-color: #00897B;
+    color: #FFFFFF;
+}
+
+.custom-button[disabled] {
+    background-color: #fafafa;
+    color: #e9e9e9;
+    border: 1px solid #e9e9e9;
+}
+
+.custom-button[disabled]:hover {
+    cursor: default;
+}
+
+.alert-danger {
+    width: 100%;
+}
+.input-row{
+    display: flex;
+    width: 100%;
+}
+.input-pair{
+    width:100%;
+}
+.input-pair:not(:last-of-type){
+    width: 100%;
+    margin-right: 15px;
+}
+option{
+    padding: 15px;
+    background-color: #fafafa;
+}
+
+@media (max-width: 900px){
+ label{
+      color: #FFFFFF;
+ }
+ .custom-button{
+   background-color: transparent ; 
+   border: 2px solid #FFFFFF;
+ }
+}

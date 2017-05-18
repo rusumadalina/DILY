@@ -1,15 +1,104 @@
-<form #register="ngForm" (ngSubmit)="registerFunction(register.value)" class="form-group">
-
-    <input class="form-control" type="text" placeholder="Name" name="name" class="large-input" required ngModel>
-    <input type="text" name="username" placeholder="username" class="form-control" required ngModel>
-    <input type="password" name="password" placeholder="password" class="form-control" required ngModel>
-    <input type="text" name="email" placeholder="email" class="form-control" required ngModel>
-    <input type="text" name="city" placeholder="city" class="form-control" required ngModel>
-    <input type="text" name="country" placeholder="country" class="form-control" required ngModel>
-    <input type="date" name="birth" placeholder="date of birth" class="form-control" required ngModel>
-    <input type="text" name="sex" placeholder="sex" class="form-control" required ngModel>
-
-
-    <button type="submit" class="custom-button">Log in</button>
-  <p>Output {{register.value}}</p>
+<form #register="ngForm" (ngSubmit)="registerFunction(register.value)" class="form-group" novalidate >
+  <div class="input-row">
+    <div class="input-pair">
+      <label for="name">Name</label>
+      <input type="text" placeholder="name" class="custom-input" id="name" required="required" name="name" #name="ngModel" ngModel  minlength="4" pattern="[A-Za-z]*">
+      <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+        <div [hidden]="!name.errors.required">Name is required</div>
+        <div [hidden]="!name.errors.minlength">Name must be 4 characters long</div>
+        <div [hidden]="!name.errors.pattern">Name can have only letters</div>
+      </div>
+    </div>
+    <div class="input-pair">
+      <label for="username">Username</label>
+      <input type="text" placeholder="username" class="custom-input" id="username" required="required" name="username" #username="ngModel"
+        ngModel maxlength="20" minlength="5" pattern="[A-Za-z0-9]+{{._-}[A-Za-z0-9]}*" >
+      <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+        <div [hidden]="!username.errors.required">Username is required</div>
+        <div [hidden]="!username.errors.minlength">Username must be at least 5 characters long</div>
+        <div [hidden]="!username.errors.maxlength">Username can't be longer than 20 characters</div>
+        <div [hidden]="!username.errors.pattern">Username can have only letters, numbers and - . _</div>
+      </div>
+    </div>
+  </div>
+  <div class="input-row">
+    <div class="input-pair">
+      <label for="password"> Password </label>
+      <input type="password" placeholder="password" class="custom-input" id="password" required="required" name="password" #password="ngModel"
+        ngModel maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" >
+        <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+          <div [hidden]="!password.errors.required">Password is required</div>
+          <div [hidden]="!password.errors.minlength">Password must be at least 5 characters long</div>
+          <div [hidden]="!password.errors.maxlength">Password can't be longer than 20 characters</div>
+          <div [hidden]="!password.errors.pattern">Password must contain 5 at least one number,  one uppercase and one lowercase letter</div>
+        </div>
+    </div>
+    <div class="input-pair">
+      <label for="confpassword">Confirm Password</label>
+      <input type="password" placeholder="confirm password" class="custom-input" id="confpassword" required="required" name="confpassword"
+        #confpassword="ngModel" ngModel (change)="confirmPassword(register.value)">
+        <div *ngIf="confpassword.errors && (confpassword.dirty || confpassword.touched)" class="alert alert-danger">
+          <div [hidden]="!confpassword.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="isEqual==false">Passwords don't match</div>
+  </div>
+  <div class="input-row">
+    <div class="input-pair">
+      <label for="email">Email</label>
+      <input type="text" placeholder="email" class="custom-input" id="email" required="required" name="email" #email="ngModel"
+        ngModel maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"> 
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+          <div [hidden]="!email.errors.required">Email is required</div>
+          <div [hidden]="!email.errors.maxlength">Email can't be longer than 40 characters</div>
+          <div [hidden]="!email.errors.pattern">Email must have @ and must end with .com </div>
+        </div>
+    </div>
+    <div class="input-pair">
+      <label for="country">Country</label>
+      <input type="text" placeholder="country" class="custom-input" id="country" required="required" name="country" #country="ngModel"
+        ngModel  minlength="5" pattern="[A-Za-z]*">
+         <div *ngIf="country.errors && (country.dirty || country.touched)" class="alert alert-danger">
+          <div [hidden]="!country.errors.required">Country is required</div>
+          <div [hidden]="!country.errors.minlength">Country must have at least 5 characters</div>
+          <div [hidden]="!country.errors.pattern">Country must have only leters</div>
+        </div>
+    </div>
+  </div>
+  <div class="input-row">
+    <div class="input-pair">
+      <label for="city">City </label>
+      <input type="text" placeholder="city" class="custom-input" id="city" required="required" name="city" #city="ngModel" ngModel
+         minlength="5" pattern="[A-Za-z]*">
+          <div *ngIf="city.errors && (city.dirty || city.touched)" class="alert alert-danger">
+            <div [hidden]="!city.errors.required">City is required</div>
+            <div [hidden]="!city.errors.minlength">City must have at least 5 characters</div>
+            <div [hidden]="!city.errors.pattern">City must have only leters</div>
+          </div>
+    </div>
+    <div class="input-pair">
+      <label for="birth">Date of birth</label>
+      <input type="date" placeholder="Date of birth" class="custom-input" id="birth" required="required" name="birth" #birth="ngModel"
+        ngModel min="1935-01-01" max="2017-01-01">
+          <div *ngIf="birth.errors && (birth.dirty || birth.touched)" class="alert alert-danger">
+            <div [hidden]="!birth.errors.required">Date of birth is required</div>
+            <div [hidden]="!birth.errors.min">The date must be greater than 01.01.1935</div>
+            <div [hidden]="!city.errors.max">The date must be lower than the curent date</div>
+          </div>
+    </div>
+  </div>
+  <div class="input-row">
+    <div class="input-pair">
+      <label for="gender">Gender</label>
+          <select form="register"  id="gender" required="required" name="gender" #gender="ngModel" ngModel class="custom-input"> 
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+           <div *ngIf="gender.errors && (gender.dirty || gender.touched)" class="alert alert-danger">
+            <div [hidden]="!gender.errors.required">Gender is required</div>
+          </div>
+    </div>
+  </div>
+  <button type="submit" class="custom-button" [disabled]='!register.form.valid'>Log in</button>
 </form>

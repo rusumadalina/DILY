@@ -1,8 +1,14 @@
 <div class="main-container">
   <div class="icon-container">
     <div class="wrapper">
-      <h1>Login</h1>
-      <app-form></app-form>
+      <ul class="buttons-menu">
+         <button  (click)="toggleForm(1)" [ngClass]="{'my-class': toggledForm === 1 }">Log in</button>
+         <button (click)="toggleForm(2)" [ngClass]="{'my-class': toggledForm === 2 }">Sign up</button>
+      </ul>
+      <div class="forms-container">
+          <app-form *ngIf="toggledForm===1"></app-form>
+          <app-register *ngIf="toggledForm===2"></app-register>
+      </div>
     </div>  
   </div>
 </div>
