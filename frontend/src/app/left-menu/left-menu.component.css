@@ -2,7 +2,6 @@
   width: 150px;
   height: 150px;
   border-radius: 100%;
-  background: url("../../assets/images/profile.jpg");
   background-position: center;
   background-size: 150px auto;
   background-repeat: no-repeat; }
@@ -105,7 +104,6 @@ app-left-menu.shrink .left-container .icon-container {
   width: 150px;
   height: 150px;
   border-radius: 100%;
-  background: url("../../assets/images/profile.jpg");
   background-position: center;
   background-size: 150px auto;
   background-repeat: no-repeat; }

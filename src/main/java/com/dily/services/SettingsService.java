@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * Created by rusum on 16.05.2017.
  */
 public class SettingsService implements ISettingsService {
+
     @Override
     public void update(User user) throws SQLException {
         int id = user.getUser_id();
@@ -47,4 +48,5 @@ public class SettingsService implements ISettingsService {
 
         }
     }
+
 }

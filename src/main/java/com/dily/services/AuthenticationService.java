@@ -31,7 +31,7 @@ public class AuthenticationService implements IAuthenticationService {
             user.setDateOfBirth(rs.getDate(6));
             user.setCountry(rs.getString(7));
             user.setCity(rs.getString(8));
-            user.setProfilePicture(rs.getString(9));
+            //user.setProfilePicture(rs.getString(9));
             user.setGender(rs.getString(10));
 
         }

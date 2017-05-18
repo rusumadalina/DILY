@@ -1,5 +1,7 @@
 package com.dily.entities;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -27,7 +29,7 @@ public class User {
 
     }
 
-    public User(int user_id, String name, String username, String password, String email, Date dateOfBirth, String country, String city, String profilePicture) {
+    public User(int user_id, String name, String username, String password, String email, Date dateOfBirth, String country, String city, String profilePicture, String gender) {
         this.user_id = user_id;
         this.name = name;
         this.username = username;
@@ -37,6 +39,7 @@ public class User {
         this.country = country;
         this.city = city;
         this.profilePicture = profilePicture;
+        this.gender = gender;
     }
 
     public int getUser_id() {

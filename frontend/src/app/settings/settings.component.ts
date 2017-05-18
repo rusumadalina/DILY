@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SettingsService} from 'app/settings/settings.service';
 import {User} from '../model/user.model';
+import {Http, Headers} from "@angular/http";
 
 @Component({
   selector: 'app-settings',
@@ -23,7 +24,7 @@ export class SettingsComponent implements OnInit {
   // public _profilePicture: string;
   // public _gender: string;
 
-  constructor(private _httpService: SettingsService ) {
+  constructor(private _httpService: SettingsService, private _http: Http ) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
     // this._user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
     // this._username =  JSON.parse(localStorage.getItem('user'))['username'];
@@ -52,6 +53,14 @@ export class SettingsComponent implements OnInit {
         error => {alert(error); },
         () => console.log('Settings changed')
       );
+  }
+  onChange(event) {
+    console.log('onChange');
+    var files = event.srcElement.files;
+    console.log(files);
+    this._httpService.makeFileRequest('http://localhost:8072/api/upload', [], files).subscribe(() => {
+      console.log('sent');
+    });
   }
 }
 

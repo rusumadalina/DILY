@@ -9,6 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Andra on 5/1/2017.
  */
+
 public  final class UserMapper implements RowMapper<User> {
 
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
