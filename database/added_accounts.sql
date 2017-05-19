@@ -21,7 +21,7 @@ values
  TO_DATE('18/06/1996', 'dd/mm/yyyy'),
  'Romania',
  'Iasi',
- 'https://www.dropbox.com/s/j7s5af7vij3fbje/profile.jpg?dl=0',
+ '../../../../src/main/webapp/uploads/profilePictures/profile.jpg',
  'female'
 );
 
@@ -48,6 +48,6 @@ values
  TO_DATE('21/03/1996', 'dd/mm/yyyy'),
  'Romania',
  'Iasi',
- 'https://www.dropbox.com/s/jkfjhgyzhm4xc0q/profile1.jpg?dl=0',
+ '../../../../src/main/webapp/uploads/profilePictures/profile.jpg',
  'female'
 );

@@ -11,6 +11,7 @@ import com.dily.models.UserModelRegister;
 import com.dily.services.AuthenticationService;
 import com.dily.services.RegistrationService;
 import com.dily.services.SettingsService;
+import com.dily.services.UploadService;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,11 +55,6 @@ public class UserController {
 
         User user;
         user = authentication.findByUsernameAndPassword(username, password);
-
-
-        //JSONObject jsonId = new JSONObject();
-
-        //jsonId.put("id",id);
 
         if (user.getUsername() != null && user.getName() != null && user.getEmail() != null && user.getDateOfBirth() != null) {
 
@@ -108,92 +104,8 @@ public class UserController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = "multipart/form-data")
     public ResponseEntity<Integer> upload( MultipartHttpServletRequest request) throws Exception {
 
-        System.out.println("maimuutica");
-        System.out.println(request.getContentLength());
-
-        Iterator<String> itrator = request.getFileNames();
-        MultipartFile multiFile = request.getFile(itrator.next());
-        try {
-            // just to show that we have actually received the file
-            System.out.println("File Length:" + multiFile.getBytes().length);
-            System.out.println("File Type:" + multiFile.getContentType());
-            String fileName=multiFile.getOriginalFilename();
-            System.out.println("File Name:" +fileName);
-            String path=request.getServletContext().getRealPath("/");
-
-            //making directories for our required path.
-            byte[] bytes = multiFile.getBytes();
-            File directory=    new File(path+ "/uploads");
-            directory.mkdirs();
-            // saving the file
-            File file=new File(directory.getAbsolutePath()+System.getProperty("file.separator")+fileName);
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(file));
-            stream.write(bytes);
-            stream.close();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            throw new Exception("Error while loading the file");
-        }
-
-
-
-//        System.out.println(file);
-//
-//        if (!file.isEmpty()) {
-//            try {
-//                String uploadsDir = "/uploads/";
-//                String realPathtoUploads = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/uploads");
-//
-//                if (!new File(realPathtoUploads).exists()) {
-//                    new File(realPathtoUploads).mkdir();
-//                }
-//
-//                String orgName = file.getOriginalFilename();
-//                String filePath = realPathtoUploads + orgName;
-//                File dest = new File(filePath);
-//                file.transferTo(dest);
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-
-//        if (!file.isEmpty()) {
-//            try {
-//                byte[] bytes = file.getBytes();
-//
-//                // Creating the directory to store file
-//                String rootPath = System.getProperty("catalina.home");
-//                File dir = new File(rootPath + File.separator + "tmpFiles");
-//                if (!dir.exists())
-//                    dir.mkdirs();
-//
-//                // Create the file on server
-//                File serverFile = new File(dir.getAbsolutePath()
-//                        + File.separator + name);
-//                BufferedOutputStream stream = new BufferedOutputStream(
-//                        new FileOutputStream(serverFile));
-//                stream.write(bytes);
-//                stream.close();
-//
-//                System.out.println("You successfully uploaded file=" + name);
-//                return new ResponseEntity<Integer>(1, HttpStatus.OK);
-//            } catch (Exception e) {
-//                System.out.println("You failed to upload " + name + " => " + e.getMessage());
-//                return new ResponseEntity<Integer>(0, HttpStatus.NOT_FOUND);
-//            }
-//        } else {
-//            System.out.println( "You failed to upload " + name
-//                    + " because the file was empty.");
-//            return new ResponseEntity<Integer>(2, HttpStatus.NOT_FOUND);
-//        }
-
-                //   }
-
-
-       // }
+        UploadService uploadService = new UploadService();
+        uploadService.upload(request, "/profilePictures");
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 }
