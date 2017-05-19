@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
-  toggledForm: number =1;
-  constructor() { }
+  toggledForm: number;
+  constructor() {
+    this.toggledForm = 1;
+  }
 
   ngOnInit() {
   }
@@ -16,8 +18,7 @@ export class AuthenticationComponent implements OnInit {
   toggleForm(newValue: number) {
     if (this.toggledForm === newValue) {
       this.toggledForm = 0;
-    }
-    else {
+    }else {
       this.toggledForm = newValue;
     }
   }

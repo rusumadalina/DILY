@@ -5,12 +5,15 @@ import {User} from '../model/user.model';
 @Component({
   selector: 'app-left-menu',
   templateUrl: './left-menu.component.html',
-  styleUrls: ['./left-menu.component.css']
+  styleUrls: ['./left-menu.component.scss']
 })
 export class LeftMenuComponent implements OnInit {
   curent_user: User;
+  openMenu: string;
   constructor(private _router: Router) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
+    localStorage.setItem('openMenu', 'true' );
+    this.openMenu = 'true';
   }
 
   ngOnInit() {
@@ -19,5 +22,13 @@ export class LeftMenuComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
     this._router.navigate(['']);
+  }
+  setOpenMenu() {
+    if (this.openMenu === 'true'){
+      this.openMenu = 'false';
+    }else {
+      this.openMenu = 'true';
+    }
+    localStorage.setItem('openMenu', this.openMenu);
   }
 }

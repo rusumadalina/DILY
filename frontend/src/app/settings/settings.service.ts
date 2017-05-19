@@ -11,6 +11,7 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SettingsService {
+  name: string;
   constructor (private _http: Http) {
 
   }
@@ -25,12 +26,12 @@ export class SettingsService {
         dateOfBirth: settingsForm.dateOfBirth,
         country: settingsForm.country,
         city: settingsForm.city,
-        profilePicture : settingsForm.profile,
+        profilePicture : this.name,
         gender: settingsForm.gender,
         });
 
 
-
+  console.log(json);
     localStorage.setItem('user', json );
     const header =  new Headers();
     header.append('Content-Type', 'application/json');
@@ -39,13 +40,14 @@ export class SettingsService {
 
   public makeFileRequest (url: string, params: string[], files: File[]){
     return Observable.create(observer => {
-      let formData: FormData = new FormData(),
+      const formData: FormData = new FormData(),
         xhr: XMLHttpRequest = new XMLHttpRequest();
 
       for (let i = 0; i < files.length; i++) {
-        formData.append("uploads[]", files[i], files[i].name);
+        formData.append('uploads[]', files[i], files[i].name);
       }
-
+      this.name = files[0].name;
+      console.log(files[0].name);
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {

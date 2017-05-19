@@ -1,9 +1,10 @@
 <div class="main-container">
-  <app-left-menu></app-left-menu>
+  <app-left-menu [ngClass]="{'toggle': openMenu === 'false'}"></app-left-menu>
   <div class="right-container">
     <app-header></app-header>
     <div class="right-inside-container">
-
+      <img [src]="'assets/images//DSC01743.JPG'" class="profile-picture" >
+      <img src="././assets/images/dily.png">
     </div>
   </div>
 </div>

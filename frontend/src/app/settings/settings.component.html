@@ -3,14 +3,10 @@
   <div class="right-container">
     <app-header></app-header>
     <div class="right-inside-container">
-      <form #uploadForm="ngForm"  class="form-group"  enctype="multipart/form-data">
-        <div class="change-profile-picture">
-          <input  type="file"  name="profile" class="large-input" (change)="onChange($event)" ngModel>
-        </div>
-      </form>
+
 
       <form #settingsForm="ngForm"  class="form-group" >
-
+        <input  type="file"  name="profile" class="large-input" enctype="multipart/form-data" (change)="onChange($event)" ngModel>
         <div class="input-pair">
           <div class="custom-input">
             <label>Name</label>
