@@ -31,6 +31,7 @@ export class SettingsService {
         profilePicture : this.name,
         gender: settingsForm.gender,
         });
+    console.log(json);
     localStorage.setItem('user', json );
     const header =  new Headers();
     header.append('Content-Type', 'application/json');

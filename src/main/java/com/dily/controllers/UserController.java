@@ -96,6 +96,7 @@ public class UserController {
 
         SettingsService settingsService = new SettingsService();
         settingsService.update(user);
+        System.out.println("salut");
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
 
 

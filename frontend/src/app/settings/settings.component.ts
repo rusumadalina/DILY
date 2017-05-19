@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SettingsService} from 'app/settings/settings.service';
 import {User} from '../model/user.model';
-import {Http, Headers} from "@angular/http";
-import {Router} from "@angular/router";
+import {Http, Headers} from '@angular/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -23,8 +23,11 @@ export class SettingsComponent implements OnInit {
 
   }
   submitSettings(settingsForm: any) {
-    this._httpService.postJSON(settingsForm);
-    this._router.navigate(['dashboard']);
+    this._httpService.postJSON(settingsForm).subscribe(
+      data => {console.log('ai postat'); },
+      error => {console.log('nu ai postat'); }
+    );
+
   }
   onChange(event) {
     const files = event.srcElement.files;

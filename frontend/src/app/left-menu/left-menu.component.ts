@@ -12,7 +12,11 @@ export class LeftMenuComponent implements OnInit {
   profile: string;
   constructor(private _router: Router) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
-    this.profile = localStorage.getItem('name');
+    if (localStorage.getItem('name') === null){
+      this.profile = JSON.parse(localStorage.getItem('user'))['profilePicture'];
+    }else {
+      this.profile = localStorage.getItem('name');
+    }
     console.log(this.curent_user);
   }
 
@@ -21,6 +25,7 @@ export class LeftMenuComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('name');
     this._router.navigate(['']);
   }
 }
