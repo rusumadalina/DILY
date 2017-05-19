@@ -26,8 +26,10 @@ public class SettingsService implements ISettingsService {
         String profilePicture = user.getProfilePicture();
         String gender = user.getGender();
 
-
         Connection con = Database.getConnection();
+
+        System.out.println(profilePicture);
+        String path = profilePicture;
 
         try (PreparedStatement pstmt = con.prepareStatement( "UPDATE user_table SET  name = ?, username = ?, password = ?, email = ?, date_of_birth = ?, country = ?, city = ?, profile_picture = ?, gender = ? where user_id = ?")){
 
@@ -39,7 +41,7 @@ public class SettingsService implements ISettingsService {
             pstmt.setDate(5,dateOfBirth);
             pstmt.setString(6,country);
             pstmt.setString(7,city);
-            pstmt.setString(8,profilePicture);
+            pstmt.setString(8,path);
             pstmt.setString(9,gender);
             pstmt.setInt(10,id);
 

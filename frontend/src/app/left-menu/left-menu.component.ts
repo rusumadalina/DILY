@@ -9,11 +9,11 @@ import {User} from '../model/user.model';
 })
 export class LeftMenuComponent implements OnInit {
   curent_user: User;
-  openMenu: string;
+  profile: string;
   constructor(private _router: Router) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
-    localStorage.setItem('openMenu', 'true' );
-    this.openMenu = 'true';
+    this.profile = localStorage.getItem('name');
+    console.log(this.curent_user);
   }
 
   ngOnInit() {
@@ -22,13 +22,5 @@ export class LeftMenuComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
     this._router.navigate(['']);
-  }
-  setOpenMenu() {
-    if (this.openMenu === 'true'){
-      this.openMenu = 'false';
-    }else {
-      this.openMenu = 'true';
-    }
-    localStorage.setItem('openMenu', this.openMenu);
   }
 }

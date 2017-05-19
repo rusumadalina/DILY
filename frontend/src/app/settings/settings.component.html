@@ -3,8 +3,6 @@
   <div class="right-container">
     <app-header></app-header>
     <div class="right-inside-container">
-
-
       <form #settingsForm="ngForm"  class="form-group" >
         <input  type="file"  name="profile" class="large-input" enctype="multipart/form-data" (change)="onChange($event)" ngModel>
         <div class="input-pair">
@@ -52,7 +50,7 @@
           <label>Gender</label>
         <input type="text"  name="gender" [(ngModel)]="curent_user.gender">
         </div>
-        <button class="save-button" (click)="submitSettings(settingsForm.value)">Save changes</button>
+        <button class="save-button" (click)="submitSettings(settingsForm.value)" >Save changes</button>
       </form>
 
     </div>

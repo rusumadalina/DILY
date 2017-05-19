@@ -2,7 +2,7 @@
   <div class="input-row">
     <div class="input-pair">
       <label for="name">Name</label>
-      <input type="text" placeholder="name" class="custom-input" id="name" required="required" name="name" #name="ngModel" ngModel  minlength="4" pattern="[A-Za-z]*">
+      <input type="text" placeholder="name" class="custom-input" id="name" required="required" name="name" #name="ngModel" ngModel  minlength="4" pattern="[A-Za-z ]*">
       <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
         <div [hidden]="!name.errors.required">Name is required</div>
         <div [hidden]="!name.errors.minlength">Name must be 4 characters long</div>
@@ -12,12 +12,11 @@
     <div class="input-pair">
       <label for="username">Username</label>
       <input type="text" placeholder="username" class="custom-input" id="username" required="required" name="username" #username="ngModel"
-        ngModel maxlength="20" minlength="5" pattern="[A-Za-z0-9]+{{._-}[A-Za-z0-9]}*" >
+        ngModel maxlength="20" minlength="5" >
       <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
         <div [hidden]="!username.errors.required">Username is required</div>
         <div [hidden]="!username.errors.minlength">Username must be at least 5 characters long</div>
         <div [hidden]="!username.errors.maxlength">Username can't be longer than 20 characters</div>
-        <div [hidden]="!username.errors.pattern">Username can have only letters, numbers and - . _</div>
       </div>
     </div>
   </div>
@@ -47,7 +46,7 @@
     <div class="input-pair">
       <label for="email">Email</label>
       <input type="text" placeholder="email" class="custom-input" id="email" required="required" name="email" #email="ngModel"
-        ngModel maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"> 
+        ngModel maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
           <div [hidden]="!email.errors.required">Email is required</div>
           <div [hidden]="!email.errors.maxlength">Email can't be longer than 40 characters</div>
@@ -69,10 +68,10 @@
     <div class="input-pair">
       <label for="city">City </label>
       <input type="text" placeholder="city" class="custom-input" id="city" required="required" name="city" #city="ngModel" ngModel
-         minlength="5" pattern="[A-Za-z]*">
+         minlength="3" pattern="[A-Za-z]*">
           <div *ngIf="city.errors && (city.dirty || city.touched)" class="alert alert-danger">
             <div [hidden]="!city.errors.required">City is required</div>
-            <div [hidden]="!city.errors.minlength">City must have at least 5 characters</div>
+            <div [hidden]="!city.errors.minlength">City must have at least 3 characters</div>
             <div [hidden]="!city.errors.pattern">City must have only leters</div>
           </div>
     </div>
@@ -82,15 +81,15 @@
         ngModel min="1935-01-01" max="2017-01-01">
           <div *ngIf="birth.errors && (birth.dirty || birth.touched)" class="alert alert-danger">
             <div [hidden]="!birth.errors.required">Date of birth is required</div>
-            <div [hidden]="!birth.errors.min">The date must be greater than 01.01.1935</div>
-            <div [hidden]="!city.errors.max">The date must be lower than the curent date</div>
+            <div [hidden]="!birth.errors.minlength">The date must be greater than 01.01.1935</div>
+            <div [hidden]="!city.errors.maxlength">The date must be lower than the curent date</div>
           </div>
     </div>
   </div>
   <div class="input-row">
     <div class="input-pair">
       <label for="gender">Gender</label>
-          <select form="register"  id="gender" required="required" name="gender" #gender="ngModel" ngModel class="custom-input"> 
+          <select  id="gender" required="required" name="gender" #gender="ngModel" ngModel class="custom-input">
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>

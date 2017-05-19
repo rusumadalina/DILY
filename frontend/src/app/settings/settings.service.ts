@@ -12,10 +12,12 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class SettingsService {
   name: string;
+  path: string;
   constructor (private _http: Http) {
-
+      this.name = localStorage.getItem('name');
   }
   postJSON(settingsForm) {
+
     const json = JSON.stringify(
       {
         user_id: JSON.parse(localStorage.getItem('user'))['user_id'],
@@ -29,9 +31,6 @@ export class SettingsService {
         profilePicture : this.name,
         gender: settingsForm.gender,
         });
-
-
-  console.log(json);
     localStorage.setItem('user', json );
     const header =  new Headers();
     header.append('Content-Type', 'application/json');
@@ -46,8 +45,7 @@ export class SettingsService {
       for (let i = 0; i < files.length; i++) {
         formData.append('uploads[]', files[i], files[i].name);
       }
-      this.name = files[0].name;
-      console.log(files[0].name);
+      localStorage.setItem('name', 'assets/images/profilePictures/' + files[0].name);
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {

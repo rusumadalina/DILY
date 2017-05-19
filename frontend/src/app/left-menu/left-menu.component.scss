@@ -2,9 +2,8 @@
   width: 150px;
   height: 150px;
   border-radius: 100%;
-  background-position: center;
-  background-size: 150px auto;
-  background-repeat: no-repeat; }
+  object-fit: cover;
+}
 
 .left-container {
   width: 100%;
