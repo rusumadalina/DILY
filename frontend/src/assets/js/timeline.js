@@ -1,20 +1,4 @@
-﻿var _this = this;
-var link = $('#navbar a.dot');
-function scrNav() {
-    var sTop = $('.right-main').scrollTop();
-    $('.slider-inside').each(function () {
-        var id = $(this).attr('id'),
-            offset = $(this).offset().top - 1,
-            height = $(this).height();
-        console.log($(this).index());
-        if (sTop >= offset && sTop < (offset + height)) {
-            link.removeClass('active');
-            $('#navbar').find('[data-scroll="' + id+ '"]').toggleClass('active');
-        }
-    });
-
-}
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('.icon-container i').click(function(){
         $(this).parents('app-left-menu').find('.left-inside').toggleClass("hide");
         $(this).parents('app-left-menu').find('.hided-inside').toggleClass("show");
@@ -31,17 +15,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-    link.on('click', function (e) {
-        var target = $($(this).attr('href'));
-        $('.right-main').animate({
-            scrollTop: target.offset().top
-        }, 732);
-        $(this).addClass('active');
-        e.preventDefault();
-    });
 
 });
 

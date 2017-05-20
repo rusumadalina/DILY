@@ -21,6 +21,7 @@
   }
   .left-inside{
     min-height: 420px;
+    animation: show .9s;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -39,6 +40,7 @@
   }
   .hided-inside{
     display: none;
+    animation: show .9s;
     .profile-picture {
       width: 35px;
       height: 35px;
@@ -48,7 +50,7 @@
     }
     li i{
       margin-bottom: 10px;
-      font-size: 20px;
+      font-size: 1em;
     }
     li:first-child i {
       color: #fff;
@@ -127,3 +129,22 @@
 }
 
 
+@keyframes show {
+  0%{
+    opacity: 0;
+  }
+  30%{opacity: 0.3}
+  100%{
+    opacity:1;}
+}
+@media (max-width: 800px){
+  .left-inside{
+    display: none !important;
+  }
+  .hided-inside{
+    display: block !important;
+  }
+  i.fa-angle-left{
+    transform: rotate(180deg);
+  }
+}

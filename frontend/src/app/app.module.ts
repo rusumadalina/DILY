@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthGuard} from './guards/auth.guard';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { MemoryComponent } from './memory/memory.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     HeaderComponent,
     SettingsComponent,
     DashboardComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    MemoryComponent
   ],
   imports: [
     BrowserModule,
