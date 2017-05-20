@@ -7,13 +7,14 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css'],
+  styleUrls: ['./settings.component.scss'],
   providers: [SettingsService]
 })
 
 export class SettingsComponent implements OnInit {
   curent_user: User;
   settingValue: string;
+  isEqual: boolean;
   constructor(private _httpService: SettingsService, private _http: Http,  private _router: Router ) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
 
@@ -22,11 +23,19 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
 
   }
+  confirmPassword(settingsForm:any){
+    if(settingsForm.password != settingsForm.confpassword){
+      this.isEqual = false;
+    }else{
+      this.isEqual = true;
+    }
+  }
   submitSettings(settingsForm: any) {
     this._httpService.postJSON(settingsForm).subscribe(
       data => {console.log('ai postat'); },
       error => {console.log('nu ai postat'); }
     );
+    this._router.navigate(['dashboard']);
 
   }
   onChange(event) {

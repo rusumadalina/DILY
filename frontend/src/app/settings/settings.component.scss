@@ -1,0 +1,201 @@
+.main-container{
+  width: 100%;
+  height:100%;
+  display: flex;
+  app-left-menu{
+    width:25%;
+    transition-property: top,bottom, width;
+    transition-duration: .2s,.2s, .35s;
+    -webkit-transition-timing-function: linear,linear,ease;
+    transition-timing-function: linear,linear,ease;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+    //background: linear-gradient(135deg, #43cea2, #185a9d)
+  }
+  .right-container {
+    width: 95%;
+    background-color: #fafafa;
+    .right-inside-container{
+      padding:30px;
+      height: calc(100% - 60px);
+      overflow-y: auto;
+    }
+  }
+}
+.custom-button[disabled] {
+  background-color: #fafafa;
+  color: #e9e9e9;
+  border: 1px solid #e9e9e9;
+}
+
+.custom-button[disabled]:hover {
+  cursor: default;
+}
+app-left-menu.shrink{
+  width:5% !important;
+  .left-container .profile-picture{
+    width:50px !important;
+    height: 50px !important;
+  }
+}
+.right-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.large-input{
+  width: 100%;
+}
+.large-input label {
+  width: 100%;
+}
+
+app-header{
+  width: 100%;
+}
+
+.right-inside-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-container {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.save-button {
+  width: 50%;
+  height: 50px;
+  color: white;
+  font-size: 15px;
+  margin-top: 20px;
+  background-color: #00897B;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.change-profile-picture {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.change-profile-picture i {
+  color: #00897B;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.change-profile-picture i:hover {
+  cursor: pointer;
+}
+
+
+input:focus {
+  background: #eeeeee;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #00897B;
+  /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+  /* red */
+}
+
+.custom-input:hover {
+  background: #eeeeee;
+}
+
+label {
+  padding-right: 15px;
+  color: #34495e;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.custom-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.custom-button {
+  width: 50%;
+  background-color: #00897B;
+  color: #FFFFFF;
+}
+
+.custom-button[disabled] {
+  background-color: #fafafa;
+  color: #e9e9e9;
+  border: 1px solid #e9e9e9;
+}
+
+.custom-button[disabled]:hover {
+  cursor: default;
+}
+
+.alert-danger {
+  width: 100%;
+}
+.input-row{
+  display: flex;
+  width: 100%;
+}
+.input-pair{
+  width:100%;
+}
+.input-pair:not(:last-of-type){
+  width: 100%;
+  margin-right: 15px;
+}
+option{
+  padding: 15px;
+  background-color: #fafafa;
+}
+
+
+@media (max-width: 900px){
+  label{
+    color: #FFFFFF;
+  }
+  .custom-button{
+    background-color: transparent ;
+    border: 2px solid #FFFFFF;
+  }
+}

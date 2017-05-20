@@ -41,8 +41,7 @@ form {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #fafafa;
-
-    border: 0;
+  border: 1px solid #eeeeee;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
@@ -90,7 +89,7 @@ option{
       color: #FFFFFF;
  }
  .custom-button{
-   background-color: transparent ; 
+   background-color: transparent ;
    border: 2px solid #FFFFFF;
  }
 }

@@ -1,11 +1,11 @@
 <section class="left-container" >
   <div class="icon-container">
-    <i class="fa fa-angle-left" aria-hidden="true" ></i>
+    <i class="fa fa-angle-left" aria-hidden="true"></i>
   </div>
+
   <div class="left-inside">
 
-    <img [src]="profile" class="profile-picture">
-
+      <img [src]="profile" class="profile-picture">
     <h2>{{curent_user.name}}</h2>
     <a class="custom-button" href="add-memory.html">Add Memory</a>
 
@@ -34,7 +34,7 @@
     </ul>
   </div>
   <div class="hided-inside">
-    <div class="profile-picture"></div>
+    <img [src]="profile" class="profile-picture">
     <ul class="action-list">
       <li>
         <a href="add-memory.html">
@@ -42,7 +42,7 @@
         </a>
       </li>
       <li class="active">
-        <a href="timeline.html">
+        <a routerLink="../">
           <i class="fa fa-home" aria-hidden="true"></i>
         </a>
       </li>
@@ -57,12 +57,12 @@
         </a>
       </li>
       <li>
-        <a href="settings.html">
+        <a routerLink="settings" routerLinkActive="true">
           <i class="fa fa-cog" aria-hidden="true"></i>
         </a>
       </li>
       <li>
-        <a href="index.html">
+        <a (click)="logout()">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
       </li>
