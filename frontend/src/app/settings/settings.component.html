@@ -68,13 +68,13 @@
            </div>
          </div>
          <div class="input-pair">
-           <label for="birth">Date of birth</label>
-           <input type="date" placeholder="Date of birth" class="custom-input" id="birth" required="required" name="birth" #birth="ngModel"
+           <label for="dateOfBirth">Date of birth</label>
+           <input type="date" placeholder="Date of birth" class="custom-input" id="dateOfBirth" required="required" name="dateOfBirth" #dateOfBirth="ngModel"
                   [(ngModel)]="curent_user.dateOfBirth" min="1935-01-01" max="2017-01-01">
-           <div *ngIf="birth.errors && (birth.dirty || birth.touched)" class="alert alert-danger">
-             <div [hidden]="!birth.errors.required">Date of birth is required</div>
-             <div [hidden]="!birth.errors.minlength">The date must be greater than 01.01.1935</div>
-             <div [hidden]="!city.errors.maxlength">The date must be lower than the curent date</div>
+           <div *ngIf="dateOfBirth.errors && (dateOfBirth.dirty || dateOfBirth.touched)" class="alert alert-danger">
+             <div [hidden]="!dateOfBirth.errors.required">Date of birth is required</div>
+             <div [hidden]="!dateOfBirth.errors.minlength">The date must be greater than 01.01.1935</div>
+             <div [hidden]="!dateOfBirth.errors.maxlength">The date must be lower than the curent date</div>
            </div>
          </div>
        </div>
