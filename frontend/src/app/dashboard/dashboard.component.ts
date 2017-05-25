@@ -5,7 +5,8 @@ import {Memory} from "../model/memory.model";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [DashboardService]
 })
 export class DashboardComponent implements OnInit {
   memories = [];
@@ -15,9 +16,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dashboardService.getAllMemories()
-      .subscribe(
-        (data) => this.retrieveData(data),
+    this.dashboardService.getAllMemories().subscribe(
+
+        (data) => {this.retrieveData(data); console.log(data) },
         (err) => alert(err));
   }
 

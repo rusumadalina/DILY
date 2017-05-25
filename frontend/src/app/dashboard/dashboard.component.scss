@@ -50,8 +50,9 @@ app-left-menu.shrink{
     margin-right: 15px;
   }
   .memory-header{
-    background-image: url('../../assets/images/photo2.jpg');
-    background-position: center center;
+    //background-image: url('../../assets/images/photo2.jpg');
+    //background-position: center center;
+    object-fit: cover;
     background-size: cover;
     height: 60%;
     position: relative;

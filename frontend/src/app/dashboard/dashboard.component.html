@@ -2,11 +2,9 @@
   <app-left-menu></app-left-menu>
   <div class="right-container">
     <app-header></app-header>
-    <div *ngFor="let memory of memories" class="right-inside-container">
-          <div class="memory">
-            <div class="memory-header">
-
-            </div>
+    <div    class="right-inside-container">
+          <div class="memory" *ngFor="let memory of memories">
+            <img [src]="memory.mainPicture" class="memory-header">
             <div class="memory-body">
                 <ul class="action-list">
                   <li class="action-edit">
@@ -23,6 +21,12 @@
                   </li>
                 </ul>
                 <h3>{{memory.title}}</h3>
+                <div class="memory-text">
+                  <p>{{memory.description}}</p>
+                  <h5>{{memory.memoryLocation}}</h5>
+                  <h6>{{memory.date}}</h6>
+                </div>
+
             </div>
           </div>
     </div>

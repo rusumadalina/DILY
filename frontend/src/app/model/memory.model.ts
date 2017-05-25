@@ -2,21 +2,21 @@
  * Created by Andra on 5/25/2017.
  */
 export class Memory {
-  public memoryid: number;
+  public memoryId: number;
   public title: string;
   public description: string;
-  public memorylocation: string;
-  public datem: string;
+  public memoryLocation: string;
+  public date: string;
   public privacy: string;
-  public mainpicture: string;
+  public mainPicture: string;
 
   constructor(object: any) {
-    this.memoryid = object.memoryid;
+    this.memoryId = object.memoryId;
     this.title = object.title;
     this.description = object.description;
-    this.memorylocation = object.memorylocation;
-    this.datem = object.datem;
+    this.memoryLocation = object.memoryLocation;
+    this.date = object.date;
     this.privacy = object.privacy;
-    this.mainpicture = object.mainpicture
+    this.mainPicture = object.mainPicture
   }
 }
