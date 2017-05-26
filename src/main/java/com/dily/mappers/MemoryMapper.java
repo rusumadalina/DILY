@@ -1,4 +1,4 @@
-/*package com.dily.Mappers;
+package com.dily.mappers;
 
 import com.dily.entities.Memory;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Andra on 5/1/2017.
  */
-/*
+
 public final class MemoryMapper implements RowMapper<Memory> {
     public Memory mapRow(ResultSet rs, int rowNum) throws SQLException {
         Memory memory = new Memory();
@@ -23,4 +23,3 @@ public final class MemoryMapper implements RowMapper<Memory> {
         return memory;
     }
 }
-*/
