@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthGuard} from './guards/auth.guard';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { MemoryComponent } from './memory/memory.component';
+import {FriendComponent} from './friend/friend.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MemoryComponent } from './memory/memory.component';
     SettingsComponent,
     DashboardComponent,
     AuthenticationComponent,
-    MemoryComponent
+    MemoryComponent,
+    FriendComponent
   ],
   imports: [
     BrowserModule,

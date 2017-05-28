@@ -1,0 +1,11 @@
+@import "../app.component.scss";
+
+@media (max-width: 900px){
+ label{
+      color: #FFFFFF;
+ }
+ .custom-button{
+   background-color: transparent ;
+   border: 2px solid #FFFFFF;
+ }
+}

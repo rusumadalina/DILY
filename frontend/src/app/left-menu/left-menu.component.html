@@ -7,28 +7,28 @@
 
       <img [src]="profile" class="profile-picture">
     <h2>{{curent_user.name}}</h2>
-    <a class="custom-button" href="add-memory.html">Add Memory</a>
+    <!--<a class="custom-button" href="add-memory.html">Add Memory</a>-->
 
     <ul class="action-list">
-      <li class="active">
+      <li routerLink="../dashboard" routerLinkActive="active">
         <i class="fa fa-home" aria-hidden="true"></i>
-        <a routerLink="../">Home</a>
+        <a>Dashboard</a>
       </li>
       <li>
         <i class="fa fa-tag" aria-hidden="true"></i>
-        <a href="tagged.html">Tagged</a>
+        <a>Tagged</a>
       </li>
-      <li>
+      <li routerLink="../friends" routerLinkActive="active">
         <i class="fa fa-users" aria-hidden="true"></i>
-        <a href="friends.html">Friends</a>
+        <a >Friends</a>
       </li>
-      <li>
+      <li routerLink="../settings" routerLinkActive="active">
         <i class="fa fa-cog" aria-hidden="true"></i>
-        <a routerLink="settings" routerLinkActive="true">Settings</a>
+        <a >Settings</a>
       </li>
-      <li>
+      <li (click)="logout()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
-        <a (click)="logout()">Log out</a>
+        <a>Log out</a>
       </li>
 
     </ul>
@@ -36,38 +36,23 @@
   <div class="hided-inside">
     <img [src]="profile" class="profile-picture">
     <ul class="action-list">
-      <li>
-        <a href="add-memory.html">
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li class="active">
-        <a routerLink="../">
+      <li  routerLink="../dashboard" routerLinkActive="active">
           <i class="fa fa-home" aria-hidden="true"></i>
-        </a>
       </li>
       <li>
-        <a href="tagged.html">
           <i class="fa fa-tag" aria-hidden="true"></i>
-        </a>
       </li>
-      <li>
-        <a href="friends.html">
+      <li routerLink="../friends" routerLinkActive="active">
           <i class="fa fa-users" aria-hidden="true"></i>
-        </a>
       </li>
-      <li>
-        <a routerLink="settings" routerLinkActive="true">
+      <li routerLink="../settings" routerLinkActive="active">
           <i class="fa fa-cog" aria-hidden="true"></i>
-        </a>
       </li>
-      <li>
-        <a (click)="logout()">
+      <li (click)="logout()">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
-        </a>
       </li>
     </ul>
   </div>
 
 </section>
-<script src="../../assets/js/timeline.js"></script>
+

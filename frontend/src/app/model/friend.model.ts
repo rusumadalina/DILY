@@ -3,7 +3,7 @@ export class Friend {
   public name: string;
   public city: string;
   public country: string;
-  public datefriends: string;
+  public dateFriends: string;
 
 
   constructor(object: any) {
@@ -11,6 +11,6 @@ export class Friend {
     this.name = object.name;
     this.city = object.city;
     this.country = object.country;
-    this.datefriends = object.datefriends;
+    this.dateFriends = object.dateFriends;
   }
 }
