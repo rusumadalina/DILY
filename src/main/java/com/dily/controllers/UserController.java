@@ -8,10 +8,7 @@ import com.dily.models.UserModel;
 
 
 import com.dily.models.UserModelRegister;
-import com.dily.services.AuthenticationService;
-import com.dily.services.RegistrationService;
-import com.dily.services.SettingsService;
-import com.dily.services.UploadService;
+import com.dily.services.*;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -107,6 +104,14 @@ public class UserController {
 
         UploadService uploadService = new UploadService();
         uploadService.upload(request, "/profilePictures");
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "user/delete/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> delete(@PathVariable int id) throws SQLException {
+
+        SettingsService settingsService = new SettingsService();
+        settingsService.delete(id);
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 }

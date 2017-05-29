@@ -9,7 +9,7 @@ export class Memory {
   public date: string;
   public privacy: string;
   public mainPicture: string;
-
+  public tags: [string];
   constructor(object: any) {
     this.memoryId = object.memoryId;
     this.title = object.title;
@@ -17,6 +17,7 @@ export class Memory {
     this.memoryLocation = object.memoryLocation;
     this.date = object.date;
     this.privacy = object.privacy;
-    this.mainPicture = object.mainPicture
+    this.mainPicture = object.mainPicture;
+    this.tags= object.tags;
   }
 }

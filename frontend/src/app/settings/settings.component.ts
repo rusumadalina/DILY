@@ -44,5 +44,12 @@ export class SettingsComponent implements OnInit {
       console.log('sent');
     });
   }
+  deleteAccount(){
+    this._httpService.delete().subscribe(
+      data => {console.log("user deleted");
+      this._router.navigate(['../'])},
+      error => {alert(error)}
+    );
+  }
 }
 

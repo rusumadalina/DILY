@@ -1,19 +1,15 @@
-package com.dily.entities;
+package com.dily.models;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 import java.sql.Date;
 import java.util.List;
 
 /**
- * Created by Andra on 5/1/2017.
+ * Created by rusum on 29.05.2017.
  */
+public class MemoryModel {
 
-@Entity
-@Table(name = "memory")
-public class Memory {
-    @Id
     private int memoryId;
     private String title;
     private String description;
@@ -21,20 +17,23 @@ public class Memory {
     private java.sql.Date date;
     private String privacy;
     private String mainPicture;
+    private List<String> tags;
 
-    public Memory(int memoryId, String title, String description, String memory_location, Date date, String privacy, String mainPicture) {
+    public MemoryModel() {
+    }
+
+    public MemoryModel(int memoryId, String title, String description, String memoryLocation, Date date, String privacy, String mainPicture, List<String> tags) {
         this.memoryId = memoryId;
         this.title = title;
         this.description = description;
-        this.memoryLocation = memory_location;
+        this.memoryLocation = memoryLocation;
         this.date = date;
         this.privacy = privacy;
         this.mainPicture = mainPicture;
-    }
-    public Memory(){
-
+        this.tags = tags;
     }
 
+    @XmlElement
     public int getMemoryId() {
         return memoryId;
     }
@@ -43,6 +42,7 @@ public class Memory {
         this.memoryId = memoryId;
     }
 
+    @XmlElement
     public String getTitle() {
         return title;
     }
@@ -51,6 +51,7 @@ public class Memory {
         this.title = title;
     }
 
+    @XmlElement
     public String getDescription() {
         return description;
     }
@@ -59,6 +60,7 @@ public class Memory {
         this.description = description;
     }
 
+    @XmlElement
     public String getMemoryLocation() {
         return memoryLocation;
     }
@@ -67,6 +69,7 @@ public class Memory {
         this.memoryLocation = memoryLocation;
     }
 
+    @XmlElement
     public Date getDate() {
         return date;
     }
@@ -75,6 +78,7 @@ public class Memory {
         this.date = date;
     }
 
+    @XmlElement
     public String getPrivacy() {
         return privacy;
     }
@@ -83,11 +87,21 @@ public class Memory {
         this.privacy = privacy;
     }
 
+    @XmlElement
     public String getMainPicture() {
         return mainPicture;
     }
 
     public void setMainPicture(String mainPicture) {
         this.mainPicture = mainPicture;
+    }
+
+    @XmlElement
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }

@@ -25,6 +25,9 @@
                   <h5>{{memory.memoryLocation}}</h5>
                   <h6>{{memory.date}}</h6>
                 </div>
+              <div  *ngFor="let tag of memory.tags">
+                <h4>{{tag}}</h4>
+              </div>
                 <div class="memory-text">
                   <span>{{memory.description}}</span>
                 </div>

@@ -11,6 +11,7 @@ import {Memory} from "../model/memory.model";
 export class DashboardComponent implements OnInit {
   memories = [];
 
+
   constructor(private dashboardService: DashboardService) {
 
   }
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
         (data) => {this.retrieveData(data); console.log(data) },
         (err) => alert(err));
+
   }
 
   retrieveData(responseData: any) {

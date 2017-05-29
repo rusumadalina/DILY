@@ -14,9 +14,11 @@ export class SettingsService {
   name: string;
   path: string;
   curent_user: string;
+  user_id: number;
   constructor (private _http: Http) {
       this.name = localStorage.getItem('name');
       this.curent_user = JSON.parse(localStorage.getItem('user'))['profilePicture'];
+      this.user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
   }
   postJSON(settingsForm) {
     if ( this.name === null ) {
@@ -65,6 +67,14 @@ export class SettingsService {
       xhr.send(formData);
     });
   }
+  delete() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
-}//
+    return this._http.get(
+      'http://localhost:8072/api/user/delete/' + this.user_id ,
+      {headers: headers})
+      .map(res => res.json());
+  }
+}
 

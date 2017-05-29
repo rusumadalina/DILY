@@ -40,6 +40,9 @@ public class SearchController {
         SearchService searchService = new SearchService();
 
         List<FriendModel> all =searchService.findFriends(word,id);
+        for (int i=0; i<all.size(); i++){
+            System.out.println(all.get(i).getDateFriends());
+        }
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 

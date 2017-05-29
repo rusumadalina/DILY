@@ -1,6 +1,7 @@
 package com.dily.controllers;
 
 import com.dily.entities.Memory;
+import com.dily.models.MemoryModel;
 import com.dily.repositories.IMemoryRepository;
 import com.dily.services.MemoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ import java.util.List;
 public class MemoryController {
 
     @RequestMapping(value = "/memories/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<Memory>> getAllMemories(@PathVariable int id) throws SQLException {
+    public ResponseEntity<List<MemoryModel>> getAllMemories(@PathVariable int id) throws SQLException {
         MemoryService memoryService = new MemoryService();
 
-        List<Memory> all =  memoryService.findMemoriesInTimeline(id);
-        return new ResponseEntity<List<Memory>>(all, HttpStatus.OK);
+        List<MemoryModel> all =  memoryService.findMemoriesInTimeline(id);
+        return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/memories/delete/{id}", method = RequestMethod.GET)

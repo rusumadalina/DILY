@@ -52,4 +52,12 @@ public class SettingsService implements ISettingsService {
         }
     }
 
+    public void delete(int id) throws SQLException {
+        Connection con = Database.getConnection();
+
+        try (PreparedStatement pstmt = con.prepareStatement("delete from user_table where user_id = " + id)) {
+            pstmt.executeUpdate();
+            Database.commit();
+        }
+    }
 }
