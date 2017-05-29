@@ -1,7 +1,8 @@
+@import "../app.component.scss";
 .main-container{
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #43cea2, #185a9d);
+  background: linear-gradient(to right, $main-green, $main-blue);
   .icon-container{
     width:100%;
     height:100%;
@@ -17,7 +18,7 @@
     margin: 0;
     box-shadow: 0 0 20px rgba(0,0,0,.15);
     padding: 40px;
-    background-color: #FFFFFF;
+    background-color: $white;
     border-radius: 5px;
     .forms-container{
       max-height: 80vh;

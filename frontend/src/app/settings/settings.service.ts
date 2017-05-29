@@ -13,11 +13,15 @@ import {Observable} from "rxjs/Observable";
 export class SettingsService {
   name: string;
   path: string;
+  curent_user: string;
   constructor (private _http: Http) {
       this.name = localStorage.getItem('name');
+      this.curent_user = JSON.parse(localStorage.getItem('user'))['profilePicture'];
   }
   postJSON(settingsForm) {
-
+    if ( this.name === null ) {
+      this.name = this.curent_user;
+    }
     const json = JSON.stringify(
       {
         user_id: JSON.parse(localStorage.getItem('user'))['user_id'],
