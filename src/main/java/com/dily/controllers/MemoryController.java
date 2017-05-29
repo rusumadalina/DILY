@@ -26,4 +26,12 @@ public class MemoryController {
         List<Memory> all =  memoryService.findMemoriesInTimeline(id);
         return new ResponseEntity<List<Memory>>(all, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/memories/delete/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> delete(@PathVariable int id) throws SQLException {
+        MemoryService memoryService = new MemoryService();
+        memoryService.delete(id);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
 }

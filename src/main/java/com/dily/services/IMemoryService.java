@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface IMemoryService {
     List<Memory> findMemoriesInTimeline (int Id) throws SQLException;
+    void delete (int id ) throws SQLException;
 }

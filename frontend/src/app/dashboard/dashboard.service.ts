@@ -19,4 +19,14 @@ export class DashboardService {
       {headers: headers})
       .map(res => res.json());
   }
+
+  deleteMemory(id: number){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/memories/delete/' + id,
+      {headers: headers})
+      .map(res => res.json());
+  }
 }

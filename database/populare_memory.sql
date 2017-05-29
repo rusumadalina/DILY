@@ -1,21 +1,21 @@
 insert into memory 
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(1, 'Prima data la paris!', 'A fost foarte frumos, minunat, mirobolant! Orasul luminilor!', 'Paris, Franta', TO_DATE('18/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory1.jpg');
+(1, 'Prima data la paris!', 'A fost foarte frumos, minunat, mirobolant! Orasul luminilor!', 'Paris, Franta', TO_DATE('18/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory1.JPG');
 
 insert into memory
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(2, 'Budapest!!!', 'A inceput vacanta!!! Yeeeey! Revenim cu poze!!','Budapest', TO_DATE('10/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory2.jpg');
+(2, 'Budapest!!!', 'A inceput vacanta!!! Yeeeey! Revenim cu poze!!','Budapest', TO_DATE('10/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory2.JPG');
 
 insert into memory
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(3, 'Zapadaaaa!!!', 'Trecem prin maramures si a nins! Poate ne oprim sa facem un om de zapada!', 'Maramures', TO_DATE('06/02/2015', 'dd/mm/yyyy'),'public','assets/images/memory/memory3.jpg');
+(3, 'Zapadaaaa!!!', 'Trecem prin maramures si a nins! Poate ne oprim sa facem un om de zapada!', 'Maramures', TO_DATE('06/02/2015', 'dd/mm/yyyy'),'public','assets/images/memory/memory3.JPG');
 
 insert into memory (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(4, 'Cu totii pe barca', 'A fost frig dar frumos! o experienta minunata!', 'Paris, Franta', TO_DATE('10/06/2010', 'dd/mm/yyyy'),'public','assets/images/memory/memory4.jpg');
+(4, 'Cu totii pe barca', 'A fost frig dar frumos! o experienta minunata!', 'Paris, Franta', TO_DATE('10/06/2010', 'dd/mm/yyyy'),'public','assets/images/memory/memory4.JPG');
 
 insert into memory
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
@@ -25,12 +25,12 @@ values
 insert into memory
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(6, 'Praga', 'Astazi am ajuns si in Praga. Speram sa revenim!', 'Paga', TO_DATE('12/05/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory6.jpg');
+(6, 'Praga', 'Astazi am ajuns si in Praga. Speram sa revenim!', 'Paga', TO_DATE('12/05/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory6.JPG');
 
 insert into memory 
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)
 values
-(7, 'Lebede', 'Inplimbarea noastra de astazi am intalnit niste lebede tare simpatice!!', 'Starsbourg', TO_DATE('15/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory7.jpg');
+(7, 'Lebede', 'Inplimbarea noastra de astazi am intalnit niste lebede tare simpatice!!', 'Starsbourg', TO_DATE('15/06/2016', 'dd/mm/yyyy'),'public','assets/images/memory/memory7.JPG');
 
 insert into memory 
 (MEMORYID, TITLE, DESCRIPTION,MEMORYLOCATION,DATEM, PRIVACY, MAINPICTURE)

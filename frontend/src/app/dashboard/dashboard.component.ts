@@ -28,4 +28,12 @@ export class DashboardComponent implements OnInit {
       this.memories.push(memory);
     }
   }
+
+  deleteMemory(idMem : number){
+    this.dashboardService.deleteMemory(idMem).subscribe(
+
+      (data) => {console.log(data) },
+      (err) => alert(err));
+  }
 }
+

@@ -4,10 +4,7 @@ import com.dily.Database;
 import com.dily.entities.Memory;
 import com.dily.entities.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +37,16 @@ public class MemoryService implements IMemoryService {
         }
         rs.close();
         return memories;
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        Connection con = Database.getConnection();
+
+        try (PreparedStatement pstmt = con.prepareStatement("delete from memory where memoryid = " + id)) {
+            pstmt.executeUpdate();
+            Database.commit();
+        }
     }
 }
 
