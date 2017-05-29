@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RegisterService} from './register.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerValue : string;
   isEqual: boolean = true;
 
-  constructor(private _httpService: RegisterService) { }
+  constructor(private _httpService: RegisterService, private _router: Router) { }
 
   ngOnInit() {
   }
@@ -20,7 +21,10 @@ export class RegisterComponent implements OnInit {
     console.log(register.gender);
     this._httpService.registerJSON(register)
       .subscribe(
-        data => {this.registerValue = JSON.stringify(data) },
+        data => {
+          this.registerValue = JSON.stringify(data);
+          this._router.navigate(['../']);
+          },
         error => {alert(error) },
         () => console.log('Finished')
       );

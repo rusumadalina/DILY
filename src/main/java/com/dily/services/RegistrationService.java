@@ -78,11 +78,13 @@ public class RegistrationService implements IRegistrationService {
         String city = usermodel.getCity();
         String country = usermodel.getCountry();
         Date date = usermodel.getBirth();
-        String gender = usermodel.getSex();
+        String gender = usermodel.getGender();
+
+        System.out.println(gender);
 
         Connection con = Database.getConnection();
 
-        try (PreparedStatement pstmt = con.prepareStatement("insert into user_table ( name,username,password,email,date_of_birth,country,city,gender) values ( ?,?,?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = con.prepareStatement("insert into user_table ( name,username,password,email,date_of_birth,country,city,profile_picture,gender) values ( ?,?,?,?,?,?,?,?,?)")) {
 
             pstmt.setString(1, name);
             pstmt.setString(2,username);
@@ -91,7 +93,8 @@ public class RegistrationService implements IRegistrationService {
             pstmt.setDate(5,date);
             pstmt.setString(6,country);
             pstmt.setString(7,city);
-            pstmt.setString(8,gender);
+            pstmt.setString(8,"assets/images/default.jpg");
+            pstmt.setString(9,gender);
 
             pstmt.executeUpdate();
             Database.commit();

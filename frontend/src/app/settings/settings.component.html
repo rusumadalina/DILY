@@ -47,7 +47,7 @@
           </div>
           <div class="input-pair">
             <label for="confpassword">Confirm Password</label>
-            <input type="password" placeholder="confirm password" class="custom-input" id="confpassword" required="required" name="confpassword"
+            <input type="password" placeholder="confirm password" class="custom-input" id="confpassword" required="required"  name="confpassword"
                    #confpassword="ngModel" (change)="confirmPassword(settingsForm.value)" ngModel required="required">
             <div *ngIf="confpassword.errors && (confpassword.dirty || confpassword.touched)" class="alert alert-danger">
               <div [hidden]="!confpassword.errors.required">Password is required</div>

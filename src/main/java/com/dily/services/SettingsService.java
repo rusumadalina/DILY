@@ -24,11 +24,12 @@ public class SettingsService implements ISettingsService {
         String country = user.getCountry();
         String city = user.getCity();
         String profilePicture = user.getProfilePicture();
+        System.out.println(profilePicture
+        );
         String gender = user.getGender();
 
         Connection con = Database.getConnection();
 
-        System.out.println(profilePicture);
         String path = profilePicture;
 
         try (PreparedStatement pstmt = con.prepareStatement( "UPDATE user_table SET  name = ?, username = ?, password = ?, email = ?, date_of_birth = ?, country = ?, city = ?, profile_picture = ?, gender = ? where user_id = ?")){

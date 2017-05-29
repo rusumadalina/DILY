@@ -1,4 +1,4 @@
-/*package com.dily.Entities;
+package com.dily.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -6,7 +6,7 @@ import java.sql.Date;
 
 /**
  * Created by Andra on 5/1/2017.
- *//*
+ */
 @Entity
 @Table(name = "relationship")
 public class Relationship {
@@ -48,4 +48,3 @@ public class Relationship {
         this.dateFriends = dateFriends;
     }
 }
-*/

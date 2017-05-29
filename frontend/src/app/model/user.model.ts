@@ -12,5 +12,4 @@ export class User {
   public city: string;
   public profilePicture: string;
   public gender: string;
-
 }

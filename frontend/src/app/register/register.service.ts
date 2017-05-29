@@ -9,11 +9,10 @@ export class RegisterService{
   constructor (private _http: Http){    }
 
   registerJSON(register){
-    const json = JSON.stringify({name: register.name , username: register.username, password: register.password, email: register.email,  city: register.city, country: register.country,  birth: register.birth, sex: register.sex});
+    const json = JSON.stringify({name: register.name , username: register.username, password: register.password, email: register.email,  city: register.city, country: register.country,  birth: register.birth, gender: register.gender});
     const header =  new Headers();
     header.append('Content-Type', 'application/json');
     return this._http.post('http://localhost:8072/api/register',  json, { headers: header }).map(res => res.json());
   }
 
 }
-

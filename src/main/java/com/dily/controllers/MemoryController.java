@@ -20,18 +20,10 @@ import java.util.List;
 public class MemoryController {
 
     @RequestMapping(value = "/memories/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<Memory>> getAllEarthquakes(@PathVariable int id) throws SQLException {
+    public ResponseEntity<List<Memory>> getAllMemories(@PathVariable int id) throws SQLException {
         MemoryService memoryService = new MemoryService();
 
         List<Memory> all =  memoryService.findMemoriesInTimeline(id);
-
-        /*
-
-        for (int i=0; i< all.size(); i++)
-        {
-            System.out.println(all.get(i).getTitle());
-        }*/
-
         return new ResponseEntity<List<Memory>>(all, HttpStatus.OK);
     }
 }

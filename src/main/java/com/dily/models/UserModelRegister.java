@@ -20,20 +20,20 @@ public class UserModelRegister {
     private java.sql.Date birth;
     private String country;
     private String city;
-    private String sex; //nu are id. fa unul cu id:))) omg.ideea e ca acolo nu e profile picture..deaia nu poate fi User in rest e la fel
+    private String gender;
 
     public UserModelRegister() {
     }
 
-    public UserModelRegister(String name, String username, String password, String email, Date dateOfBirth, String country, String city, String gender) {
+    public UserModelRegister(String name, String username, String password, String email, Date birth, String country, String city, String gender) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.birth = dateOfBirth;
+        this.birth = birth;
         this.country = country;
         this.city = city;
-        this.sex = gender;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -101,11 +101,11 @@ public class UserModelRegister {
     }
 
     @XmlElement
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

@@ -1,4 +1,4 @@
-/*package com.dily.mappers;
+package com.dily.mappers;
 
 import com.dily.entities.Relationship;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Andra on 5/1/2017.
  */
-/*
+
 public final class RelationshipMapper implements RowMapper<Relationship> {
     public Relationship mapRow(ResultSet rs, int rowNum) throws SQLException {
         Relationship relationship=new Relationship();
@@ -19,4 +19,3 @@ public final class RelationshipMapper implements RowMapper<Relationship> {
         return relationship;
     }
 }
-*/
