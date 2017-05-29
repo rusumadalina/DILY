@@ -22,18 +22,19 @@ public class FriendService implements IFriendService {
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select u.profile_picture, u.name, u.city, u.country, f.datefriends from user_table u join relationship f on u.user_id = f.USER2 where f.user1= " + id);
+        ResultSet rs = stmt.executeQuery("(select datefriends, name, profile_picture, city, country from (select r.user2, datefriends from user_table u join relationship r on u.user_id = r.user1 where user_id = " + id + ") join user_table t on user_id=user2) UNION (select datefriends, name, profile_picture, city, country from (select r.user1, datefriends from user_table u join relationship r on u.user_id = r.user2 where user_id = " + id + ") join user_table t on user_id=user1)");
 
         FriendModel friend ;
         List<FriendModel> friends = new LinkedList<>();
 
         while (rs.next()) {
             friend = new FriendModel();
-            friend.setProfilePicture(rs.getString(1));
+            friend.setDateFriends(rs.getDate(1));
             friend.setName(rs.getString(2));
-            friend.setCity(rs.getString(3));
-            friend.setCountry(rs.getString(4));
-            friend.setDateFriends(rs.getDate(5));
+            friend.setProfilePicture(rs.getString(3));
+            friend.setCity(rs.getString(4));
+            friend.setCountry(rs.getString(5));
+
             friends.add(friend);
         }
         rs.close();

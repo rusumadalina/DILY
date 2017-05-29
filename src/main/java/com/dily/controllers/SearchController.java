@@ -1,7 +1,8 @@
 package com.dily.controllers;
 
 import com.dily.entities.Memory;
-import com.dily.services.SearchMemByTag;
+import com.dily.models.FriendModel;
+import com.dily.services.SearchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class SearchController {
 
     @RequestMapping(value = "search/tag/{word}", method = RequestMethod.GET)
     public ResponseEntity<List<Memory>> getAllMemories(@PathVariable String word) throws SQLException {
-        SearchMemByTag searchMemByTag = new SearchMemByTag();
+        SearchService searchMemByTag = new SearchService();
 
         List<Memory> all = searchMemByTag.findByTag(word);
         /*
@@ -34,5 +35,20 @@ public class SearchController {
         return new ResponseEntity<List<Memory>>(all, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "search/friends/{word}/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<FriendModel>> getFriends(@PathVariable String word,@PathVariable int id) throws SQLException {
+        SearchService searchService = new SearchService();
+
+        List<FriendModel> all =searchService.findFriends(word,id);
+        return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "search/newFriends/{word}/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<FriendModel>> getNewFriends(@PathVariable String word,@PathVariable int id) throws SQLException {
+        SearchService searchService = new SearchService();
+
+        List<FriendModel> all =searchService.findNewFriends(word,id);
+        return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
+    }
 
 }

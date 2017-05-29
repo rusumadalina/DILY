@@ -26,4 +26,6 @@ public class FriendController {
 
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
+
+
 }

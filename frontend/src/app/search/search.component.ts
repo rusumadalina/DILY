@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from "./search.service";
 import {Memory} from "../model/memory.model";
+import {Friend} from "../model/friend.model";
 
 @Component({
   selector: 'app-search',
@@ -24,14 +25,20 @@ export class SearchComponent implements OnInit {
   searchW(search:any){
     this.searchService.search(this.searchType, search.searchWord ).subscribe(
 
-      (data) => {this.retrieveData(data);  },
+      (data) => {this.retrieveData(data); console.log(data)  },
       (err) => alert(err));
   }
   retrieveData(responseData: any) {
+    this.array = [];
     if(this.searchType==='tag'){
       for (let index in responseData) {
         let memory= new Memory(responseData[index]);
         this.array.push(memory);
+      }
+    }else{
+      for (let index in responseData) {
+        let friend= new Friend(responseData[index]);
+        this.array.push(friend);
       }
     }
 
