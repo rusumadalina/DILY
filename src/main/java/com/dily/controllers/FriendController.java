@@ -2,6 +2,7 @@ package com.dily.controllers;
 
 import com.dily.entities.Memory;
 import com.dily.models.FriendModel;
+import com.dily.models.MemoryModel;
 import com.dily.services.FriendService;
 import com.dily.services.MemoryService;
 import org.springframework.http.HttpStatus;
@@ -34,4 +35,13 @@ public class FriendController {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/friends/view/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<MemoryModel>> viewAllMemoriers (@PathVariable int id) throws SQLException {
+
+
+        FriendService friendService = new FriendService();
+
+        List<MemoryModel> all =  friendService.findMemoriesInTimeline(id);
+        return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
+    }
 }
