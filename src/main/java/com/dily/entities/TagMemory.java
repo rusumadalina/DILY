@@ -1,4 +1,4 @@
-/*package com.dily.Entities;
+package com.dily.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -6,7 +6,7 @@ import javax.persistence.Table;
 /**
  * Created by rusum on 01.05.2017.
  */
-/*
+
 @Entity
 @Table(name = "tag_memory")
 public class TagMemory {
@@ -37,4 +37,3 @@ public class TagMemory {
         this.memoryId = memoryId;
     }
 }
-*/

@@ -20,7 +20,7 @@ export class LeftMenuComponent implements OnInit {
       this.profile = localStorage.getItem('name');
     }
 
-    this.toggle=false;
+    this.toggle = false;
 
   }
 
@@ -33,15 +33,15 @@ export class LeftMenuComponent implements OnInit {
     this._router.navigate(['']);
   }
 
-  toggleMenu(){
-
-    this.toggle=!this.toggle;
+  toggleMenu() {
+    this.toggle = !this.toggle;
     let aux;
-    if(this.toggle===true){
+    if (this.toggle === true){
       aux = 'true';
-    }else{
-      aux='false';
+    }else {
+      aux = 'false' ;
     }
-    localStorage.setItem('toggle',aux);
+    localStorage.setItem('toggle', aux );
+
   }
 }

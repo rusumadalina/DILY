@@ -1,8 +1,8 @@
 <div class="icon-container"  (click)="toggleMenu()">
-  <i class="fa fa-angle-left" aria-hidden="true" [ngClass]="{'rotate': toggle===false}"></i>
+  <i class="fa fa-angle-left" aria-hidden="true" [ngClass]="{'rotate': toggle===true}"></i>
 </div>
 
-<div class="left-inside" *ngIf="toggle===true" >
+<div class="left-inside" *ngIf="toggle===false" >
 
     <img [src]="profile" class="profile-picture">
   <h2>{{curent_user.name}}</h2>
@@ -33,7 +33,7 @@
   </ul>
 </div>
 
-<div class="hided-inside" *ngIf="toggle===false">
+<div class="hided-inside" *ngIf="toggle===true">
   <img [src]="profile" class="profile-picture">
   <ul class="action-list">
     <li  routerLink="../dashboard" routerLinkActive="active">

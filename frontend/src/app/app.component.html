@@ -1,6 +1,6 @@
 <div class="main-container"  [ngClass]="{'resize': width<1000}">
-  <app-left-menu  *ngIf="_router.url != '/' "  [ngClass]="{'toggle': toggle===false}" (click)="checkToggle()"></app-left-menu>
-  <div class="right-container" [ngClass]="{'first': element===true, 'expand': toggle===false }"  >
+  <app-left-menu  *ngIf="_router.url != '/' "  [ngClass]="{'toggle': toggle===true}" (click)="checkToggle()"></app-left-menu>
+  <div class="right-container" [ngClass]="{'first': element===true, 'expand': toggle===true }"  >
     <app-header  *ngIf="_router.url != '/' "></app-header>
     <div class="right-inside-container">
       <router-outlet></router-outlet>
