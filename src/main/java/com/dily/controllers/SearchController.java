@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -54,10 +55,14 @@ public class SearchController {
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "friends/add/{id}/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "friends/add/{id}/{username}", method = RequestMethod.POST)
     public ResponseEntity<Integer> addNewFriends(@PathVariable int id, @PathVariable String username) throws SQLException {
-        System.out.println(id);
-        System.out.println(username);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(username);
+        String decodedString = new String(decodedBytes);
+        SearchService searchService = new SearchService();
+        searchService.addFriendPair(decodedString,id);
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 

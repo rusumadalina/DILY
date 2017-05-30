@@ -1,6 +1,8 @@
 @import "../app.component.scss";
 
-
+:host{
+  width:100%;
+}
 .right-container{
   display: flex;
   flex-direction: column;
@@ -17,6 +19,7 @@
 app-header{
   width: 100%;
 }
+
 
 .right-inside-container{
   width: 100%;

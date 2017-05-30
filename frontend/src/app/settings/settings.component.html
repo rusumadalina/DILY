@@ -112,6 +112,7 @@
 
   <button class="custom-button" (click)="submitSettings(settingsForm.value)" [disabled]='!settingsForm.form.valid'>Save changes</button>
 </form>
-  <button class="custom-button btn-danger"(click)="deleteAccount()">Delete account</button>
+
+  <a (click)="deleteAccount()">Delete account</a>
 
 

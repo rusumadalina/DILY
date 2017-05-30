@@ -1,58 +1,56 @@
-<section class="left-container">
-  <div class="icon-container">
-    <i class="fa fa-angle-left" aria-hidden="true" (click)="toggleMenu()"></i>
-  </div>
+<div class="icon-container"  (click)="toggleMenu()">
+  <i class="fa fa-angle-left" aria-hidden="true" [ngClass]="{'rotate': toggle===false}"></i>
+</div>
 
-  <div class="left-inside">
+<div class="left-inside" *ngIf="toggle===true" >
 
-      <img [src]="profile" class="profile-picture">
-    <h2>{{curent_user.name}}</h2>
-    <!--<a class="custom-button" href="add-memory.html">Add Memory</a>-->
-
-    <ul class="action-list">
-      <li routerLink="../dashboard" routerLinkActive="active">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <a>Dashboard</a>
-      </li>
-      <li>
-        <i class="fa fa-tag" aria-hidden="true"></i>
-        <a>Tagged</a>
-      </li>
-      <li routerLink="../friends" routerLinkActive="active">
-        <i class="fa fa-users" aria-hidden="true"></i>
-        <a >Friends</a>
-      </li>
-      <li routerLink="../settings" routerLinkActive="active">
-        <i class="fa fa-cog" aria-hidden="true"></i>
-        <a >Settings</a>
-      </li>
-      <li (click)="logout()">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-        <a>Log out</a>
-      </li>
-
-    </ul>
-  </div>
-  <div class="hided-inside">
     <img [src]="profile" class="profile-picture">
-    <ul class="action-list">
-      <li  routerLink="../dashboard" routerLinkActive="active">
-          <i class="fa fa-home" aria-hidden="true"></i>
-      </li>
-      <li>
-          <i class="fa fa-tag" aria-hidden="true"></i>
-      </li>
-      <li routerLink="../friends" routerLinkActive="active">
-          <i class="fa fa-users" aria-hidden="true"></i>
-      </li>
-      <li routerLink="../settings" routerLinkActive="active">
-          <i class="fa fa-cog" aria-hidden="true"></i>
-      </li>
-      <li (click)="logout()">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </li>
-    </ul>
-  </div>
+  <h2>{{curent_user.name}}</h2>
+  <!--<a class="custom-button" href="add-memory.html">Add Memory</a>-->
 
-</section>
+  <ul class="action-list">
+    <li routerLink="../dashboard" routerLinkActive="active">
+      <i class="fa fa-home" aria-hidden="true"></i>
+      <a>Dashboard</a>
+    </li>
+    <li>
+      <i class="fa fa-tag" aria-hidden="true"></i>
+      <a>Tagged</a>
+    </li>
+    <li routerLink="../friends" routerLinkActive="active">
+      <i class="fa fa-users" aria-hidden="true"></i>
+      <a >Friends</a>
+    </li>
+    <li routerLink="../settings" routerLinkActive="active">
+      <i class="fa fa-cog" aria-hidden="true"></i>
+      <a >Settings</a>
+    </li>
+    <li (click)="logout()">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      <a>Log out</a>
+    </li>
+
+  </ul>
+</div>
+
+<div class="hided-inside" *ngIf="toggle===false">
+  <img [src]="profile" class="profile-picture">
+  <ul class="action-list">
+    <li  routerLink="../dashboard" routerLinkActive="active">
+        <i class="fa fa-home" aria-hidden="true"></i>
+    </li>
+    <li>
+        <i class="fa fa-tag" aria-hidden="true"></i>
+    </li>
+    <li routerLink="../friends" routerLinkActive="active">
+        <i class="fa fa-users" aria-hidden="true"></i>
+    </li>
+    <li routerLink="../settings" routerLinkActive="active">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </li>
+    <li (click)="logout()">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </li>
+  </ul>
+</div>
 

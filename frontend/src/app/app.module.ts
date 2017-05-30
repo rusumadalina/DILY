@@ -29,7 +29,7 @@ import { SearchComponent } from './search/search.component';
     AuthenticationComponent,
     MemoryComponent,
     FriendComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

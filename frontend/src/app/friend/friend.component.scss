@@ -1,5 +1,9 @@
 @import "../app.component.scss";
-
+:host{
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 .tile{
   width: 31.3%;
   height: 300px;

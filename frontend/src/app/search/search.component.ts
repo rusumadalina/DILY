@@ -14,9 +14,14 @@ import {dashCaseToCamelCase} from "@angular/compiler/src/util";
 export class SearchComponent implements OnInit {
   searchType: string;
   array=[];
+  alert:boolean;
   curent_user_id: number;
   constructor(private searchService: SearchService,private _router:Router) {
     this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
+    this.alert=false;
+
+
+
   }
 
   ngOnInit() {
@@ -24,15 +29,20 @@ export class SearchComponent implements OnInit {
 
   setSearch(name: string){
     this.searchType = name;
+    this.array=[];
     console.log(this.searchType);
   }
 
   searchW(search:any){
+    this.array=[];
     this.searchService.search(this.searchType, search.searchWord ).subscribe(
 
-      (data) => {this.retrieveData(data); console.log(data)  },
+      (data) => {
+        this.retrieveData(data);
+        console.log(data)  },
       (err) => alert(err));
   }
+
   retrieveData(responseData: any) {
     this.array = [];
     if(this.searchType==='tag'){
@@ -51,8 +61,13 @@ export class SearchComponent implements OnInit {
 
   addFriend(user: string){
     this.searchService.addFriend(this.curent_user_id, user ).subscribe(
-      (data) => {console.log("friend added") },
+      (data) => {
+        this.alert=true;
+        let timeoutId = setTimeout(() => {
+          this.alert=false;
+        }, 3000);
+        },
       (err) => alert(err));
-      this._router.navigate(['friends']);
+
   }
 }

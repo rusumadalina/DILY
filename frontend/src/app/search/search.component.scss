@@ -8,3 +8,49 @@
   display: flex;
   flex-wrap: wrap;
 }
+:host{
+  width: 100%;
+}
+.action-add{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.alert-friends{
+  width:400px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $main-blue;
+  color: $white;
+  position: absolute;
+  bottom: 0;
+  right:0;
+  animation: animate-alert 3s ease-in;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+  i{
+    margin-right: 30px;
+  }
+}
+
+
+@keyframes animate-alert {
+  0%{
+    bottom:0;
+    opacity:1;
+
+  }
+  30%{
+    bottom:100px;
+  }
+  50%{
+    bottom: 200px;
+    opacity: 0.6;
+  }
+  100%{
+    bottom: 500px;
+    opacity: 0;
+  }
+}

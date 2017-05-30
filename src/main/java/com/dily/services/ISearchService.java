@@ -14,4 +14,5 @@ public interface ISearchService {
     public List<Memory> findByTag (String tag) throws SQLException;
     public List<FriendModel> findFriends (String word, int id) throws SQLException;
     public List<FriendModel> findNewFriends (String word, int id) throws SQLException;
+    public void addFriendPair (String username, int id) throws SQLException;
 }

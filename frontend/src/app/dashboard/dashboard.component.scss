@@ -1,5 +1,9 @@
 @import "../app.component.scss";
-
+:host{
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 .results{
   height:60%;
   width:100%;

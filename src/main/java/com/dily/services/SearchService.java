@@ -4,10 +4,7 @@ import com.dily.Database;
 import com.dily.entities.Memory;
 import com.dily.models.FriendModel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -86,6 +83,32 @@ public class SearchService implements ISearchService {
         }
         rs.close();
         return friends;
+    }
+
+    @Override
+    public void addFriendPair(String username, int id) throws SQLException {
+
+
+        Connection con = Database.getConnection();
+
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select user_id from user_table where username ='" + username + "'");
+
+        int friendId = 0;
+
+        while (rs.next()) {
+            friendId = rs.getInt(1);
+        }
+        rs.close();
+
+
+        try (PreparedStatement pstmt = con.prepareStatement("insert into relationship ( user1,user2,datefriends) values ( ?,?,SYSDATE)")) {
+
+            pstmt.setInt(1, id);
+            pstmt.setInt(2,friendId);
+            pstmt.executeUpdate();
+            Database.commit();
+        }
     }
 }
 
