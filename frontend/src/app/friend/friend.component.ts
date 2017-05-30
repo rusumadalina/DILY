@@ -10,7 +10,8 @@ import {Friend} from '../model/friend.model';
 })
 export class FriendComponent implements OnInit {
   friends = [];
-  curent_user_id:number;
+  curent_user_id: number;
+  friend: Friend;
   constructor(private friendService: FriendService) {
     this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
   }
@@ -29,11 +30,20 @@ export class FriendComponent implements OnInit {
       console.log(friend);
     }
   }
+
   deleteFriend(friend: number){
-    this.friendService.deleteFriend(this.curent_user_id,friend).subscribe(
-      (data) => {console.log("ti-ai sters prietenul hahahahha") },
+    this.friendService.deleteFriend(this.curent_user_id, friend ).subscribe(
+      (data) => {console.log('ti-ai sters prietenul hahahahha') },
       (err) => alert(err));
     window.location.reload();
+  }
+
+  viewMore(friend: number) {
+    this.friendService.viewFriend(friend).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => alert(err));
   }
 
 }

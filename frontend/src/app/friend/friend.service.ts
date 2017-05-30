@@ -20,12 +20,22 @@ export class FriendService {
       .map(res => res.json());
   }
 
-  deleteFriend(user1Id:number, user2Id:number){
+  deleteFriend(user1Id: number , user2Id: number ){
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
       'http://localhost:8072/api/friends/delete/' + user1Id + '/' + user2Id,
+      {headers: headers})
+      .map(res => res.json());
+  }
+
+  viewFriend(user1Id: number) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/friends/view/' + user1Id ,
       {headers: headers})
       .map(res => res.json());
   }
