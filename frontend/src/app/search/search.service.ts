@@ -30,12 +30,22 @@ export class SearchService{
 
   }
 
-  addFriend(userId:number, username:string){
+  addFriend(userId: number, username: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     console.log(btoa(username));
     return this.http.post(
-      'http://localhost:8072/api/friends/add/' + userId + '/' +btoa(username),
+      'http://localhost:8072/api/friends/add/' + userId + '/' + btoa(username),
+      {headers: headers})
+      .map(res => res.json());
+  }
+
+  viewFriend(username: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/search/newFriends/view/' + btoa(username) ,
       {headers: headers})
       .map(res => res.json());
   }

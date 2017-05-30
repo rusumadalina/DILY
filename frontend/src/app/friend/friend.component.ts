@@ -31,7 +31,7 @@ export class FriendComponent implements OnInit {
     }
   }
 
-  deleteFriend(friend: number){
+  deleteFriend(friend: number) {
     this.friendService.deleteFriend(this.curent_user_id, friend ).subscribe(
       (data) => {console.log('ti-ai sters prietenul hahahahha') },
       (err) => alert(err));
@@ -45,5 +45,4 @@ export class FriendComponent implements OnInit {
       },
       (err) => alert(err));
   }
-
 }

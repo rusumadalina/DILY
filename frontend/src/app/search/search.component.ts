@@ -13,12 +13,12 @@ import {dashCaseToCamelCase} from "@angular/compiler/src/util";
 })
 export class SearchComponent implements OnInit {
   searchType: string;
-  array=[];
-  alert:boolean;
+  array = [];
+  alert: boolean;
   curent_user_id: number;
-  constructor(private searchService: SearchService,private _router:Router) {
-    this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
-    this.alert=false;
+  constructor(private searchService: SearchService, private _router: Router ) {
+    this.curent_user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
+    this.alert = false;
 
 
 
@@ -27,30 +27,30 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  setSearch(name: string){
+  setSearch(name: string) {
     this.searchType = name;
-    this.array=[];
+    this.array = [];
     console.log(this.searchType);
   }
 
-  searchW(search:any){
-    this.array=[];
+  searchW( search: any ) {
+    this.array = [];
     this.searchService.search(this.searchType, search.searchWord ).subscribe(
 
       (data) => {
         this.retrieveData(data);
-        console.log(data)  },
+        console.log(data) },
       (err) => alert(err));
   }
 
-  retrieveData(responseData: any) {
+  retrieveData( responseData: any ) {
     this.array = [];
-    if(this.searchType==='tag'){
+    if( this.searchType === 'tag' ) {
       for (let index in responseData) {
         let memory= new Memory(responseData[index]);
         this.array.push(memory);
       }
-    }else{
+    }else {
       for (let index in responseData) {
         let friend= new Friend(responseData[index]);
         this.array.push(friend);
@@ -59,15 +59,22 @@ export class SearchComponent implements OnInit {
 
   }
 
-  addFriend(user: string){
+  addFriend(user: string) {
     this.searchService.addFriend(this.curent_user_id, user ).subscribe(
       (data) => {
-        this.alert=true;
+        this.alert = true;
         let timeoutId = setTimeout(() => {
-          this.alert=false;
+          this.alert = false;
         }, 3000);
         },
       (err) => alert(err));
+  }
 
+  viewMore(friend: string) {
+    this.searchService.viewFriend(friend).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => alert(err));
   }
 }
