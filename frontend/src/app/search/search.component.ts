@@ -16,11 +16,14 @@ export class SearchComponent implements OnInit {
   array = [];
   alert: boolean;
   curent_user_id: number;
+  friendMemories = [];
+  notEmpty :boolean;
+  alertMem: boolean;
   constructor(private searchService: SearchService, private _router: Router ) {
     this.curent_user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
     this.alert = false;
-
-
+    this.notEmpty=false;
+    this.alertMem=false;
 
   }
 
@@ -66,15 +69,33 @@ export class SearchComponent implements OnInit {
         let timeoutId = setTimeout(() => {
           this.alert = false;
         }, 3000);
-        },
+      },
       (err) => alert(err));
   }
 
   viewMore(friend: string) {
+    this.alertMem=false;
     this.searchService.viewFriend(friend).subscribe(
       (data) => {
-        console.log(data);
+        if(data.length===0){
+          this.alertMem =true;
+        }else{
+          this.retrieveDataF(data);
+          this.notEmpty = true;
+        }
       },
       (err) => alert(err));
+  }
+
+  retrieveDataF(responseData: any) {
+    for (let index in responseData) {
+      let memory = new Memory(responseData[index]);
+      this.friendMemories.push(memory);
+    }
+  }
+  changeEmpty(){
+    this.notEmpty=false;
+    this.friendMemories=[];
+
   }
 }
