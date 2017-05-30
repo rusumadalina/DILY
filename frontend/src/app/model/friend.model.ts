@@ -1,4 +1,6 @@
 export class Friend {
+  public friendId: number;
+  public username: string;
   public profilePicture: string;
   public name: string;
   public city: string;
@@ -7,6 +9,8 @@ export class Friend {
 
 
   constructor(object: any) {
+    this.friendId= object.friendId;
+    this.username=object.username;
     this.profilePicture = object.profilePicture;
     this.name = object.name;
     this.city = object.city;

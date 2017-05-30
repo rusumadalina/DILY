@@ -10,9 +10,9 @@ import {Friend} from '../model/friend.model';
 })
 export class FriendComponent implements OnInit {
   friends = [];
-
+  curent_user_id:number;
   constructor(private friendService: FriendService) {
-
+    this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
   }
 
   ngOnInit(): void {
@@ -26,6 +26,14 @@ export class FriendComponent implements OnInit {
     for (let index in responseData) {
       let friend = new Friend(responseData[index]);
       this.friends.push(friend);
+      console.log(friend);
     }
   }
+  deleteFriend(friend: number){
+    this.friendService.deleteFriend(this.curent_user_id,friend).subscribe(
+      (data) => {console.log("ti-ai sters prietenul hahahahha") },
+      (err) => alert(err));
+    window.location.reload();
+  }
+
 }

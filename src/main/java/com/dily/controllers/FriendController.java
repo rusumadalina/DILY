@@ -27,5 +27,11 @@ public class FriendController {
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/friends/delete/{userId}/{friendId}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> delete(@PathVariable int userId, @PathVariable int friendId) throws SQLException {
+        FriendService friendService = new FriendService();
+        friendService.deletePair(userId,friendId);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
 
 }

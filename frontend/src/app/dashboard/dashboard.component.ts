@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
 
       (data) => {console.log(data) },
       (err) => alert(err));
+    window.location.reload();
   }
 }
 

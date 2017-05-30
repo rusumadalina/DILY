@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {SearchService} from "./search.service";
 import {Memory} from "../model/memory.model";
 import {Friend} from "../model/friend.model";
+import {Router} from "@angular/router";
+import {dashCaseToCamelCase} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-search',
@@ -12,7 +14,10 @@ import {Friend} from "../model/friend.model";
 export class SearchComponent implements OnInit {
   searchType: string;
   array=[];
-  constructor(private searchService: SearchService) { }
+  curent_user_id: number;
+  constructor(private searchService: SearchService,private _router:Router) {
+    this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
+  }
 
   ngOnInit() {
   }
@@ -42,5 +47,12 @@ export class SearchComponent implements OnInit {
       }
     }
 
+  }
+
+  addFriend(user: string){
+    this.searchService.addFriend(this.curent_user_id, user ).subscribe(
+      (data) => {console.log("friend added") },
+      (err) => alert(err));
+      this._router.navigate(['friends']);
   }
 }

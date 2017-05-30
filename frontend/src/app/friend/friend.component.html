@@ -1,21 +1,13 @@
-<div class="main-container">
-  <app-left-menu></app-left-menu>
-  <div class="right-container">
-    <app-header></app-header>
-    <div  class="right-inside-container">
-          <div class="tile" *ngFor="let friend of friends" >
-            <img [src]="friend.profilePicture" class="profile-picture">
-            <div class="info-container">
-              <h2>{{friend.name}}</h2>
-              <h3>{{friend.city}} {{friend.country}}</h3>
-              <h5>Friends from: {{friend.dateFriends}}</h5>
-              <div class="action-delete">
-                <i class="glyphicon glyphicon-trash"></i>
-                <h5>Delete</h5>
-              </div>
-            </div>
-
-          </div>
-        </div>
+<div class="tile" *ngFor="let friend of friends" >
+  <img [src]="friend.profilePicture" class="profile-picture">
+  <div class="info-container">
+    <h2>{{friend.name}}</h2>
+    <h3>{{friend.city}} {{friend.country}}</h3>
+    <h5>Friends from: {{friend.dateFriends}}</h5>
+    <div class="action-delete" (click)="deleteFriend(friend.friendId)">
+      <i class="glyphicon glyphicon-trash"></i>
+      <h5>Delete</h5>
+    </div>
   </div>
+
 </div>

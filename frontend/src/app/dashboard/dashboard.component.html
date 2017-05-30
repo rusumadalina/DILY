@@ -1,39 +1,31 @@
-<div class="main-container">
-  <app-left-menu></app-left-menu>
-  <div class="right-container">
-    <app-header></app-header>
-    <div    class="right-inside-container">
-          <div class="memory" *ngFor="let memory of memories">
-            <img [src]="memory.mainPicture" class="memory-header">
-            <div class="memory-body">
-                <ul class="action-list">
-                  <li class="action-edit">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    <h5>Edit</h5>
-                  </li>
-                  <li class="action-delte" (click)="deleteMemory(memory.memoryId)">
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <h5>Delete</h5>
-                  </li>
-                  <li class="action-see">
-                    <i class="glyphicon glyphicon-eye-open"></i>
-                    <h5>See more</h5>
-                  </li>
-                </ul>
-                <div class="memory-title">
-                  <h3>{{memory.title}}</h3>
-                  <h5>{{memory.memoryLocation}}</h5>
-                  <h6>{{memory.date}}</h6>
-                </div>
-              <div  *ngFor="let tag of memory.tags">
-                <h4>{{tag}}</h4>
-              </div>
-                <div class="memory-text">
-                  <span>{{memory.description}}</span>
-                </div>
-            </div>
-          </div>
+<div class="memory" *ngFor="let memory of memories">
+  <img [src]="memory.mainPicture" class="memory-header">
+  <div class="memory-body">
+      <ul class="action-list">
+        <li class="action-edit">
+          <i class="glyphicon glyphicon-pencil"></i>
+          <h5>Edit</h5>
+        </li>
+        <li class="action-delte" (click)="deleteMemory(memory.memoryId)">
+          <i class="glyphicon glyphicon-trash"></i>
+          <h5>Delete</h5>
+        </li>
+        <li class="action-see">
+          <i class="glyphicon glyphicon-eye-open"></i>
+          <h5>See more</h5>
+        </li>
+      </ul>
+      <div class="memory-title">
+        <h3>{{memory.title}}</h3>
+        <h5>{{memory.memoryLocation}}</h5>
+        <h6>{{memory.date}}</h6>
+      </div>
+    <div  *ngFor="let tag of memory.tags">
+      <h4>{{tag}}</h4>
     </div>
+      <div class="memory-text">
+        <span>{{memory.description}}</span>
+      </div>
   </div>
 </div>
 

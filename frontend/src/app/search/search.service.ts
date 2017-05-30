@@ -29,6 +29,16 @@ export class SearchService{
     }
 
   }
+
+  addFriend(userId:number, username:string){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/friends/add/' + userId + '/' + username,
+      {headers: headers})
+      .map(res => res.json());
+  }
 }
 /*
 * /api/search/tag/cuvant

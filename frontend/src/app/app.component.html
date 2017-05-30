@@ -1,2 +1,14 @@
-<router-outlet></router-outlet>
-<script src="../assets/js/timeline.js"></script>
+<div class="main-container"  >
+  <app-left-menu  *ngIf="_router.url != '/' "></app-left-menu>
+  <div class="right-container" [ngClass]="{'first': element===true}">
+    <app-header  *ngIf="_router.url != '/' "></app-header>
+    <div class="right-inside-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!--<div class="main-container"  *ngIf="_router.url === '/' ">-->
+  <!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--"-->

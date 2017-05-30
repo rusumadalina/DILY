@@ -8,15 +8,19 @@ import java.sql.Date;
  */
 public class FriendModel {
 
+    public int friendId;
     public String profilePicture;
     public String name;
+    public String username;
     public String city;
     public String country;
     public Date dateFriends;
 
-    public FriendModel(String profilePicture, String name, String city, String country, Date dateFriends) {
+    public FriendModel(int friendId, String profilePicture, String name, String username, String city, String country, Date dateFriends) {
+        this.friendId = friendId;
         this.profilePicture = profilePicture;
         this.name = name;
+        this.username = username;
         this.city = city;
         this.country = country;
         this.dateFriends = dateFriends;
@@ -69,5 +73,23 @@ public class FriendModel {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    @XmlElement
+    public int getFriendId() {
+        return friendId;
+    }
+
+    public void setFriendId(int friendId) {
+        this.friendId = friendId;
+    }
+
+    @XmlElement
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

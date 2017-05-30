@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface IFriendService {
     public List<FriendModel> getAllFriends (int id) throws SQLException;
+    public void deletePair (int userId, int friendId) throws SQLException;
 }

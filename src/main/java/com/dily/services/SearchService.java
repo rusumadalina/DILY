@@ -68,18 +68,19 @@ public class SearchService implements ISearchService {
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select datefriends, name, profile_picture, city, country from ((select datefriends, name, profile_picture, city, country from (select datefriends, name, profile_picture, city, country from (select r.user2, datefriends from user_table u join relationship r on u.user_id = r.user1) join user_table t on user_id=user2 UNION select datefriends, name, profile_picture, city, country from (select r.user1, datefriends from user_table u join relationship r on u.user_id = r.user2) join user_table t on user_id=user1)) MINUS (select datefriends, name, profile_picture, city, country from (select datefriends, name, profile_picture, city, country from (select r.user2, datefriends from user_table u join relationship r on u.user_id = r.user1 where user_id = " + id + " ) join user_table t on user_id=user2 UNION select datefriends, name, profile_picture, city, country from (select r.user1, datefriends from user_table u join relationship r on u.user_id = r.user2 where user_id = " + id + ") join user_table t on user_id=user1))) where name like '%" + word + "%'");
+        ResultSet rs = stmt.executeQuery("select username, datefriends, name, profile_picture, city, country from ((select username,datefriends, name, profile_picture, city, country from (select username,datefriends, name, profile_picture, city, country from (select r.user2, datefriends from user_table u join relationship r on u.user_id = r.user1) join user_table t on user_id=user2 UNION select username, datefriends, name, profile_picture, city, country from (select r.user1, datefriends from user_table u join relationship r on u.user_id = r.user2) join user_table t on user_id=user1)) MINUS (select username, datefriends, name, profile_picture, city, country from (select username, datefriends, name, profile_picture, city, country from (select r.user2, datefriends from user_table u join relationship r on u.user_id = r.user1 where user_id = " + id + " ) join user_table t on user_id=user2 UNION select username, datefriends, name, profile_picture, city, country from (select r.user1, datefriends from user_table u join relationship r on u.user_id = r.user2 where user_id = " + id + ") join user_table t on user_id=user1))) where name like '%" + word + "%'");
 
         FriendModel friend ;
         List<FriendModel> friends = new LinkedList<>();
 
         while (rs.next()) {
             friend = new FriendModel();
-            friend.setDateFriends(rs.getDate(1));
-            friend.setName(rs.getString(2));
-            friend.setProfilePicture(rs.getString(3));
-            friend.setCity(rs.getString(4));
-            friend.setCountry(rs.getString(5));
+            friend.setUsername(rs.getString(1));
+            friend.setDateFriends(rs.getDate(2));
+            friend.setName(rs.getString(3));
+            friend.setProfilePicture(rs.getString(4));
+            friend.setCity(rs.getString(5));
+            friend.setCountry(rs.getString(6));
 
             friends.add(friend);
         }

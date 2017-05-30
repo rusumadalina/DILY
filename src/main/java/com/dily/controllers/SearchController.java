@@ -54,4 +54,12 @@ public class SearchController {
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "friends/add/{id}/{username}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> addNewFriends(@PathVariable int id, @PathVariable String username) throws SQLException {
+        System.out.println(id);
+        System.out.println(username);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
+
 }

@@ -2,7 +2,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LeftMenuComponent} from './left-menu/left-menu.component';
 import {ModuleWithProviders} from '@angular/core';
-import {ParalaxComponent} from './paralax/paralax.component';
 import {HeaderComponent} from './header/header.component';
 import {SettingsComponent} from './settings/settings.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -12,8 +11,7 @@ import {FriendComponent} from './friend/friend.component';
 import {SearchComponent} from "./search/search.component";
 
 export const appRoutes: Routes = [
-  {path: '', component: ParalaxComponent},
-  {path: 'auth' , component:  AuthenticationComponent},
+  {path: '' , component:  AuthenticationComponent},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'friends', component: FriendComponent, canActivate: [AuthGuard]},
