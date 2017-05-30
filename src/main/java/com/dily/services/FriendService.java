@@ -52,7 +52,7 @@ public class FriendService implements IFriendService {
     }
 
     public List<MemoryModel> findMemoriesInTimeline(int id) throws SQLException {
-        System.out.println(id);
+
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();

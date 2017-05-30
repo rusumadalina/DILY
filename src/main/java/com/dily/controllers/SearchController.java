@@ -2,6 +2,7 @@ package com.dily.controllers;
 
 import com.dily.entities.Memory;
 import com.dily.models.FriendModel;
+import com.dily.models.MemoryModel;
 import com.dily.services.SearchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,5 +67,14 @@ public class SearchController {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "search/newFriends/view/{username}", method = RequestMethod.POST)
+    public ResponseEntity<List<MemoryModel>> viewAllMemories (@PathVariable String username) throws SQLException {
+
+        byte[] decodedBytes = Base64.getDecoder().decode(username);
+        String decodedString = new String(decodedBytes);
+        SearchService searchService = new SearchService();
+        List<MemoryModel> all = searchService.findMemoriesInTimeline(decodedString);
+        return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
+    }
 
 }
