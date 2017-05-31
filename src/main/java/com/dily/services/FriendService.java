@@ -56,7 +56,7 @@ public class FriendService implements IFriendService {
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from memory m join timeline t on m.memoryid=t.memoryid where user_id = " + id +" and (privacy = 'public' or privacy = 'only friends')");
+        ResultSet rs = stmt.executeQuery("select * from memory m join timeline t on m.memoryid=t.memoryid where user_id = " + id +" and (privacy = 'public' or privacy = 'only friends') order by datem asc");
 
         Memory memory;
         MemoryModel memoryModel;
