@@ -17,6 +17,7 @@ import { MemoryComponent } from './memory/memory.component';
 import {FriendComponent} from './friend/friend.component';
 import { SearchComponent } from './search/search.component';
 import { TaggedComponent } from './tagged/tagged.component';
+import { NewMemoryComponent } from './new-memory/new-memory.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TaggedComponent } from './tagged/tagged.component';
     FriendComponent,
     SearchComponent,
     TaggedComponent,
+    NewMemoryComponent,
   ],
   imports: [
     BrowserModule,

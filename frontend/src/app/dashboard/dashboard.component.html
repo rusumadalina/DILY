@@ -1,3 +1,4 @@
+<button routerLink="../new-memory" routerLinkActive="active">Add new memory</button>
 <div class="memory" *ngFor="let memory of memories">
   <img [src]="memory.mainPicture" class="memory-header">
   <div class="memory-body">
@@ -20,9 +21,10 @@
         <h5>{{memory.memoryLocation}}</h5>
         <h6>{{memory.date}}</h6>
       </div>
-    <div  *ngFor="let tag of memory.tags">
-      <h4>{{tag}}</h4>
-    </div>
+
+    <div class="tags-container"><span  *ngFor="let tag of memory.tags">
+       &#35;{{tag}}
+    </span></div>
       <div class="memory-text">
         <span>{{memory.description}}</span>
       </div>

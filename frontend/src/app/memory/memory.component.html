@@ -1,9 +1,29 @@
-<div class="let item of user">
-  <div  *ngFor="let friend of user.taggedFriends">
-    {{friend.username}}
+<div class="memory">
+  <img [src]="user.mainPicture" class="memory-header">
+
+  <div class="memory-body">
+    <div class="tags-container"><span  *ngFor="let friend of user.tags">
+       &#35;{{friend.tagName}}
+    </span></div>
+    <h1>{{user.title}}</h1>
+    <h4>{{user.memoryLocation}}</h4>
+    <h4>{{user.date}}</h4>
+    <p>{{user.description}}</p>
+    <div class="photo-friend">
+    <div *ngFor="let friend of user.taggedFriends" class="photo-item">
+      <img   [src]="friend.profilePicture" class="profile-picture">
+      <h4>{{friend.name}}</h4>
+    </div>
+    </div>
   </div>
 
-  <div  *ngFor="let friend of user.tags">
-    {{friend.tagName}}
+
+
+
+
+  <div class="masonry">
+    <img  *ngFor="let friend of user.media" [src]="friend.mediaPath">
   </div>
+
+
 </div>

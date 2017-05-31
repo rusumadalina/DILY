@@ -11,6 +11,7 @@ import {FriendComponent} from './friend/friend.component';
 import {SearchComponent} from "./search/search.component";
 import {MemoryComponent} from "./memory/memory.component";
 import {TaggedComponent} from "app/tagged/tagged.component";
+import {NewMemoryComponent} from "./new-memory/new-memory.component";
 
 export const appRoutes: Routes = [
   {path: '' , component:  AuthenticationComponent},
@@ -19,7 +20,8 @@ export const appRoutes: Routes = [
   {path: 'friends', component: FriendComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
   {path: 'memory', component: MemoryComponent, canActivate: [AuthGuard]},
-  {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]}
+  {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]},
+  {path: 'new-memory', component: NewMemoryComponent, canActivate: [AuthGuard]}
 
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

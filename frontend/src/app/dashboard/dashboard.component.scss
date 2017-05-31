@@ -150,3 +150,16 @@
 
 }
 }
+.tags-container {
+  background-color: #fafafa;
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  margin: 10px 0;
+  span {
+    font-size: 1.2em;
+  }
+}
