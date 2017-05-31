@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MemoryService} from "./memory.service";
+import {BigMemory} from "../model/bigMemory.model";
 import {Tag} from "../model/tag.model";
 import {User} from "../model/user.model";
 import {Media} from "../model/media.model";
-import {BigMemory} from "../model/bigMemory.model";
 
 @Component({
   selector: 'app-memory',
@@ -13,28 +13,64 @@ import {BigMemory} from "../model/bigMemory.model";
 })
 export class MemoryComponent implements OnInit {
   aux:string;
-  user:BigMemory;
+  users =[];
+  tags=[];
+  medias=[];
+  title: string;
+  location: string;
+  picture: string;
+  description: string;
+  date: string;
+  //user: BigMemory;
   constructor(private memoryService: MemoryService) {
-    this.aux=localStorage.getItem('memory');
-    this.seeMemory(this.aux);
+      this.aux=localStorage.getItem('memory');
+      this.title=localStorage.getItem('memory-title');
+      this.location=localStorage.getItem('memory-location');
+      this.picture=localStorage.getItem('memory-picture');
+      this.description=localStorage.getItem('memory-description');
+      this.date=localStorage.getItem('memory-date');
+
   }
 
   ngOnInit() {
-
+    this.seeMemory(this.aux);
   }
 
   seeMemory( memory: string ){
-    this.memoryService.seeMoreMemory(memory).subscribe(
+    this.memoryService.getMedia(memory).subscribe(
       (data) => {
-            this.retrieveData(data);
+           this.retrieveDataMedia(data);
          },
       (err) => alert(err));
+    this.memoryService.getTagged(memory).subscribe(
+      (data) => {
+        this.retrieveDataUsers(data);
+      },
+      (err) => alert(err));
+    this.memoryService.getTags(memory).subscribe(
+      (data) => {
+        this.retrieveDataTags(data);
+      },
+      (err) => alert(err));
   }
-  retrieveData(responseData: any) {
+  retrieveDataTags(responseData: any) {
     for (let index in responseData) {
-      this.user = new BigMemory(responseData[index]);
-
+      let tag = new Tag(responseData[index]);
+      this.tags.push(tag);
     }
-    console.log(this.user);
+  }
+
+  retrieveDataUsers(responseData: any) {
+    for (let index in responseData) {
+      let user = new User(responseData[index]);
+      this.users.push(user);
+    }
+  }
+
+  retrieveDataMedia(responseData: any) {
+    for (let index in responseData) {
+      let media = new Media(responseData[index]);
+      this.medias.push(media);
+    }
   }
 }

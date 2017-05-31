@@ -60,7 +60,7 @@ app-left-menu /deep/{
     width: 95%;
     background-color: #fafafa;
     .right-inside-container{
-      padding:30px;
+      padding:0 30px 30px 30px;
       height: calc(100% - 60px);
       overflow-y: auto;
       display: flex;

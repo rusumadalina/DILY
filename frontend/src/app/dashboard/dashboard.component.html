@@ -1,7 +1,8 @@
-<button routerLink="../new-memory" routerLinkActive="active">Add new memory</button>
 <div class="memory" *ngFor="let memory of memories">
   <img [src]="memory.mainPicture" class="memory-header">
   <div class="memory-body">
+
+
       <ul class="action-list">
         <li class="action-edit">
           <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -11,20 +12,21 @@
           <i class="fa fa-trash-o" aria-hidden="true"></i>
           <h5>Delete</h5>
         </li>
-        <li class="action-see" (click)="seeMemory(memory.memoryId)">
+        <li class="action-see" (click)="seeMemory(memory.memoryId, memory.title, memory.memoryLocation, memory.mainPicture, memory.description,memory.date)" routerLink="../memories" >
           <i class="fa fa-eye" aria-hidden="true"></i>
           <h5>See more</h5>
         </li>
       </ul>
+    <div class="tags-container" *ngIf="memory.tags.length > 0"><span  *ngFor="let tag of memory.tags">
+       &#35;{{tag}}
+    </span></div>
       <div class="memory-title">
         <h3>{{memory.title}}</h3>
         <h5>{{memory.memoryLocation}}</h5>
         <h6>{{memory.date}}</h6>
       </div>
 
-    <div class="tags-container"><span  *ngFor="let tag of memory.tags">
-       &#35;{{tag}}
-    </span></div>
+
       <div class="memory-text">
         <span>{{memory.description}}</span>
       </div>

@@ -5,21 +5,24 @@
     <h2>{{friend.name}}</h2>
     <h3>{{friend.city}} {{friend.country}}</h3>
     <h5>Friends from: {{friend.dateFriends}}</h5>
-    <div class="action-delete" (click)="deleteFriend(friend.friendId)">
-      <i class="fa fa-trash-o" aria-hidden="true"></i>
-      <h5>Delete</h5>
-    </div>
+    <ul class="action-list">
+      <li class="action-delete" (click)="deleteFriend(friend.friendId)">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <h5>Delete</h5>
+      </li>
 
-    <div class="action-edit" (click)="viewMore(friend.friendId)">
-      <i class="fa fa-eye" aria-hidden="true"></i>
-      <h5>View timeline</h5>
-    </div>
+      <li class="action-edit" (click)="viewMore(friend.friendId)">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        <h5>View timeline</h5>
+      </li>
+    </ul>
+
   </div>
 </div>
 </div>
 
 <div class="result" *ngIf="notEmpty===true">
-  <button (click)="changeEmpty()"></button>
+  <i class="fa fa-angle-left" aria-hidden="true" (click)="notEmpty=false"></i>
   <div class="memory" *ngFor="let memory of friendMemories">
     <img [src]="memory.mainPicture" class="memory-header">
     <div class="memory-body">

@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'friends', component: FriendComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
-  {path: 'memory', component: MemoryComponent, canActivate: [AuthGuard]},
+  {path: 'memories', component: MemoryComponent, canActivate: [AuthGuard]},
   {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]},
   {path: 'new-memory', component: NewMemoryComponent, canActivate: [AuthGuard]}
 

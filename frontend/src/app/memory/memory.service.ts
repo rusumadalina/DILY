@@ -9,14 +9,33 @@ export class MemoryService {
   constructor(private http: Http) {
   }
 
-  seeMoreMemory( id: string ){
+  getTags( id: string ){
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8072/api/memories/view/' + id,
+      'http://localhost:8072/api/memories/tags/' + id,
       {headers: headers})
       .map(res => res.json());
   }
 
+  getMedia(id: string){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/memories/media/' + id,
+      {headers: headers})
+      .map(res => res.json());
+  }
+
+  getTagged(id: string){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(
+      'http://localhost:8072/api/memories/tagged/' + id,
+      {headers: headers})
+      .map(res => res.json());
+  }
 }

@@ -1,6 +1,9 @@
 package com.dily.controllers;
 
+import com.dily.entities.Media;
 import com.dily.entities.Memory;
+import com.dily.entities.Tag;
+import com.dily.entities.User;
 import com.dily.models.LargeMemory;
 import com.dily.models.MemoryModel;
 import com.dily.repositories.IMemoryRepository;
@@ -36,12 +39,13 @@ public class MemoryController {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
+    /*
     @RequestMapping(value = "/memories/view/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<LargeMemory>> allMemoriesDetails(@PathVariable int id) throws SQLException {
         MemoryService memoryService = new MemoryService();
         List<LargeMemory> all = memoryService.viewMemoryDetails(id);
 
-        /*
+
         for (int i=0; i< all.size(); i++){
             System.out.println(all.get(i).getMemoryId());
             System.out.println(all.get(i).getTitle());
@@ -49,7 +53,28 @@ public class MemoryController {
             System.out.println(all.get(i).getTaggedFriends().size());
             System.out.println(all.get(i).getTags().size());
         }
-        */
+
         return new ResponseEntity<List<LargeMemory>>(all, HttpStatus.OK);
+    }*/
+
+    @RequestMapping(value = "/memories/tags/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Tag>> allTags (@PathVariable int id) throws SQLException {
+        MemoryService memoryService = new MemoryService();
+        List<Tag> all = memoryService.getAllTags(id);
+        return new ResponseEntity<List<Tag>>(all,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/memories/tagged/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> allTagged (@PathVariable int id) throws SQLException {
+        MemoryService memoryService = new MemoryService();
+        List<User> all = memoryService.getAllTagged(id);
+        return new ResponseEntity<List<User>>(all,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/memories/media/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Media>> allMedia (@PathVariable int id) throws SQLException {
+        MemoryService memoryService = new MemoryService();
+        List<Media> all = memoryService.getAllMedia(id);
+        return new ResponseEntity<List<Media>>(all,HttpStatus.OK);
     }
 }

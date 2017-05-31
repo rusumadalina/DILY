@@ -45,6 +45,7 @@ export class FriendComponent implements OnInit {
   }
 
   viewMore(friend: number) {
+    this.friendMemories=[];
     this.alert=false;
     this.friendService.viewFriend(friend).subscribe(
       (data) => {
@@ -65,9 +66,5 @@ export class FriendComponent implements OnInit {
       this.friendMemories.push(memory);
     }
   }
-  changeEmpty(){
-    this.notEmpty=false;
-    this.friendMemories=[];
 
-  }
 }

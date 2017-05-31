@@ -10,7 +10,7 @@
   align-items: center;
   top: 0;
   right:0;
-  animation: animate-alert 3s linear;
+  animation: animate-alert .6s linear;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
   i{
     margin-right: 30px;
@@ -43,11 +43,11 @@
 }
 @keyframes animate-alert {
   0%{
-    top:100%;
+    top:0%;
     opacity:0.2;
   }
   50% {
-    top: 50%;
+    top: 5%;
     opacity: 0.6;
   }
   100%{

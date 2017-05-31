@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService, private  _router: Router) {
 
+
   }
 
   ngOnInit(): void {
@@ -40,12 +41,17 @@ export class DashboardComponent implements OnInit {
     window.location.reload();
   }
 
-  seeMemory(id: number){
+  seeMemory(id: number, title: string , location: string, picture: string, description: string, date: string){
     let aux: string;
     aux=id.toString();
     localStorage.setItem('memory',aux);
-    this._router.navigate(['memory']);
-    console.log(aux);
+    localStorage.setItem('memory-title',title);
+    localStorage.setItem('memory-location',location);
+    localStorage.setItem('memory-picture',picture);
+    localStorage.setItem('memory-description',description);
+    localStorage.setItem('memory-date',date);
+   // this._router.navigate(['../memories']);
+
   }
 
 }

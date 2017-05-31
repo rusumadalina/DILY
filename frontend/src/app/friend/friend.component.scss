@@ -8,6 +8,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  position: relative;
+  .fa-angle-left{
+   position: absolute;
+    left:0;
+    font-size: 3.2em;
+    color: $main-blue;
+    z-index: 999999999;
+    &:hover{
+      cursor: pointer;
+      color: $main-green;
+    }
+  }
 }
 :host{
   width:100%;
@@ -41,7 +53,33 @@
     object-fit: cover;
     margin-right: 15px;
   }
+  .action-list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type:none ;
+    margin:30px 30px 0 0;
+    li{
+      display: flex;
+      padding: 10px;
+      border: 1px solid $main-green;
+      border-radius: 4px;
+      color: $dark-grey;
+      &:first-child{
+        margin-right: 20px;
+      }
+      i{
+        margin-right: 10px;
+        font-size: 1.2em;
+      }
+      &:hover{
+        cursor: pointer;
+        color: $main-blue;
+        border-color: $main-blue;
+      }
+    }
+  }
 }
+
 
 @media (max-width: 1200px) {
   .tile{
