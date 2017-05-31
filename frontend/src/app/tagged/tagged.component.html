@@ -1,3 +1,6 @@
-<p>
-  tagged works!
-</p>
+<section class="products gallery">
+  <figure *ngFor="let memory of memories">
+    <img [src]="memory.mainPicture">
+    <figcaption> {{memory.description}} </figcaption>
+  </figure>
+</section>

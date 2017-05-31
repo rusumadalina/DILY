@@ -24,7 +24,7 @@ public class MemoryService implements IMemoryService {
         Connection con = Database.getConnection();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from memory m join timeline t on m.memoryid=t.memoryid where user_id = " + id);
+        ResultSet rs = stmt.executeQuery("select * from memory m join timeline t on m.memoryid=t.memoryid where user_id = " + id + "order by datem asc");
 
         Memory memory;
         MemoryModel memoryModel;

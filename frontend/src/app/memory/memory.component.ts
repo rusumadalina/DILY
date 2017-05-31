@@ -8,7 +8,7 @@ import {BigMemory} from "../model/bigMemory.model";
 @Component({
   selector: 'app-memory',
   templateUrl: './memory.component.html',
-  styleUrls: ['./memory.component.css'],
+  styleUrls: ['./memory.component.scss'],
   providers: [MemoryService]
 })
 export class MemoryComponent implements OnInit {
