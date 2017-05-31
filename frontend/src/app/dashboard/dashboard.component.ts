@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from './dashboard.service';
 import {Memory} from "../model/memory.model";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
   memories = [];
 
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService, private  _router: Router) {
 
   }
 
@@ -38,5 +39,14 @@ export class DashboardComponent implements OnInit {
       (err) => alert(err));
     window.location.reload();
   }
+
+  seeMemory(id: number){
+    let aux: string;
+    aux=id.toString();
+    localStorage.setItem('memory',aux);
+    this._router.navigate(['memory']);
+    console.log(aux);
+  }
+
 }
 

@@ -16,6 +16,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { MemoryComponent } from './memory/memory.component';
 import {FriendComponent} from './friend/friend.component';
 import { SearchComponent } from './search/search.component';
+import { TaggedComponent } from './tagged/tagged.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SearchComponent } from './search/search.component';
     MemoryComponent,
     FriendComponent,
     SearchComponent,
+    TaggedComponent,
   ],
   imports: [
     BrowserModule,

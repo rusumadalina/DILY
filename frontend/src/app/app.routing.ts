@@ -9,6 +9,8 @@ import {AuthGuard} from './guards/auth.guard';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {FriendComponent} from './friend/friend.component';
 import {SearchComponent} from "./search/search.component";
+import {MemoryComponent} from "./memory/memory.component";
+import {TaggedComponent} from "app/tagged/tagged.component";
 
 export const appRoutes: Routes = [
   {path: '' , component:  AuthenticationComponent},
@@ -16,5 +18,8 @@ export const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'friends', component: FriendComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
+  {path: 'memory', component: MemoryComponent, canActivate: [AuthGuard]},
+  {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]}
+
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

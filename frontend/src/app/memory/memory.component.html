@@ -1,3 +1,9 @@
-<p>
-  memory works!
-</p>
+<div class="let item of user">
+  <div  *ngFor="let friend of user.taggedFriends">
+    {{friend.username}}
+  </div>
+
+  <div  *ngFor="let friend of user.tags">
+    {{friend.tagName}}
+  </div>
+</div>

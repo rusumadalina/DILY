@@ -1,12 +1,14 @@
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Aici apesi sa selectezi ce cauti
-    <span class="caret"></span></button>
-  <ul class="dropdown-menu">
+<div class="simple-dropdown">
+  <input type="text" placeholder="Search" class="simple-input" id="dropdown"  name="dropdown" #dropdown="ngModel" [(ngModel)]="searchType" (click)="setToggle($event)" readonly="readonly">
+  <label for="dropdown" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
+  <ul class="dropdown-container" *ngIf="toggle===true" >
     <li (click)="setSearch('tag')"><a>Tag</a></li>
     <li (click)="setSearch('friends')"><a>Your Friends</a></li>
     <li (click)="setSearch('newFriends')"><a>New Friends</a></li>
+    <li *ngFor="let item of dropdownContent" (click)="setText(item.name)">{{item.name}}</li>
   </ul>
 </div>
+
 <br>
 <form #search="ngForm">
   <input type="text" placeholder="word" class="custom-input" id="searchWord" required="required" name="searchWord" #searchWord="ngModel"  ngModel>
@@ -65,8 +67,9 @@
     <img [src]="friend.profilePicture" class="profile-picture">
     <div class="info-container">
       <h2>{{friend.name}}</h2>
-      <h3>{{friend.city}} {{friend.country}}</h3>
-      <h5>Friends from: {{friend.dateFriends}}</h5>
+      <h3>{{friend.city}}</h3>
+      <h3>{{friend.country}}</h3>
+      <h5>Date of birth: {{friend.dateFriends}}</h5>
       <div class="action-add" (click)="addFriend(friend.username)">
         <i class="glyphicon glyphicon-add"></i>
         <h5>Add friend</h5>
@@ -114,11 +117,18 @@
 
 </div>
 
-<div class="alert-friends" *ngIf="alert===true">
-  <i class="glyphicon glyphicon-ok-sign"></i>
-  <h5>Prietenul a fost adaugat</h5>
+<div class="my-alert alert-ok" *ngIf="alert===true" (click)="alert=false">
+  <div class="alert-body">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+    <h4>Prietenul a fost adaugat</h4>
+  </div>
+  <h6>(click to close)</h6>
 </div>
-<div class="alert-friends" *ngIf="alertMem===true">
-  <i class="glyphicon glyphicon-ok-sign"></i>
-  <h5>Userul nu are memorii</h5>
+
+<div class="my-alert alert-error" *ngIf="alertMem===true" (click)="alertMem=false">
+    <div class="alert-body">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      <h4>Userul nu are memorii</h4>
+    </div>
+    <h6>(click to close)</h6>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {SearchService} from "./search.service";
 import {Memory} from "../model/memory.model";
 import {Friend} from "../model/friend.model";
@@ -19,22 +19,21 @@ export class SearchComponent implements OnInit {
   friendMemories = [];
   notEmpty :boolean;
   alertMem: boolean;
-  constructor(private searchService: SearchService, private _router: Router ) {
+  toggle: boolean;
+  text:string;
+
+  constructor(private searchService: SearchService, private _router: Router, private eRef: ElementRef ) {
     this.curent_user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
     this.alert = false;
     this.notEmpty=false;
     this.alertMem=false;
-
+    this.toggle=false;
   }
 
   ngOnInit() {
   }
 
-  setSearch(name: string) {
-    this.searchType = name;
-    this.array = [];
-    console.log(this.searchType);
-  }
+
 
   searchW( search: any ) {
     this.array = [];
@@ -98,4 +97,27 @@ export class SearchComponent implements OnInit {
     this.friendMemories=[];
 
   }
+
+  setSearch(name: string) {
+    this.searchType = name;
+    this.array = [];
+    console.log(this.searchType);
+    this.toggle=false;
+  }
+  setToggle(event) {
+    let clickType: boolean;
+    if (this.eRef.nativeElement.contains(event.target)) {
+      clickType = true;
+    } else {
+      clickType = false;
+    }
+
+    if (clickType === false) {
+      this.toggle = false;
+    }
+    if (clickType === true && this.toggle === false){
+      this.toggle = true;
+    }
+  }
+
 }

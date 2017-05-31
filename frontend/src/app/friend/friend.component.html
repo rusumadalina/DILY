@@ -52,7 +52,12 @@
   </div>
 
 </div>
-<div class="alert-friends" *ngIf="alert===true">
-  <i class="glyphicon glyphicon-ok-sign"></i>
-  <h5>Userul nu are memorii</h5>
+
+
+<div class="my-alert alert-error"*ngIf="alert===true" (click)="alert=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Userul nu are memorii</h4>
+  </div>
+  <h6>(click to close)</h6>
 </div>
