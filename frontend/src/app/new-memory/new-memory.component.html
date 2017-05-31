@@ -1,0 +1,49 @@
+<div class="content-wrapper-signup">
+  <form>
+    <div class="input-row">
+      <div class="input-pair">
+        <label>Choose a main picture for your memory</label>
+        <input  type="file" id="mainPicture" name="mainPicture" class="custom-input" enctype="multipart/form-data" ngModel>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-pair">
+        <label>Title</label>
+        <input type="text" value="Memory title" name="title" class="large-input" required>
+      </div>
+      <div class="input-pair">
+        <label>Location</label>
+        <input type="text" name="location" value="New York, USA" required>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-pair">
+        <label>Date</label>
+        <input type="date" name="date" required>
+      </div>
+      <div class="input-pair">
+        <label>Tags</label>
+        <input type="text" name="tags" value="#seaside #montain" required>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="description-input">
+        <label>Description</label>
+        <textarea>Here you can write your memory description </textarea>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="description-input">
+        <label>Tag friends</label>
+        <input type="text" name="friends" placeholder="Search.." required>
+      </div>
+    </div>
+
+
+  </form>
+  <button class="save-button"> <a href="timeline.html">Add memory </a></button>
+</div>
+
