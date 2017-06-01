@@ -3,10 +3,11 @@
 @import "../friend/friend.component.scss";
 @import "../../assets/alert.scss";
 .results{
-  height: 100%;
+
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  background-color: #fafafa;
 }
 :host{
   width: 100%;

@@ -51,6 +51,21 @@ public class FriendService implements IFriendService {
         }
     }
 
+    @Override
+    public int findUserByUsername(String username) throws SQLException {
+        Connection con = Database.getConnection();
+
+        Statement stmt = con.createStatement();
+        int id = 0;
+        ResultSet rs = stmt.executeQuery("select user_id from user_table where username = '" + username + "'");
+
+        while (rs.next()) {
+           id = rs.getInt(1);
+        }
+        rs.close();
+       return id;
+    }
+
     public List<MemoryModel> findMemoriesInTimeline(int id) throws SQLException {
 
         Connection con = Database.getConnection();

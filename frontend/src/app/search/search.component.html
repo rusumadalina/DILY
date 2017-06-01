@@ -9,7 +9,6 @@
   </ul>
 </div>
 
-<br>
 <form #search="ngForm">
   <input type="text" placeholder="word" class="custom-input" id="searchWord" required="required" name="searchWord" #searchWord="ngModel"  ngModel>
   <button type="button" (click)="searchW(search.value)">Press here to search</button>
@@ -20,15 +19,7 @@
     <img [src]="memory.mainPicture" class="memory-header">
     <div class="memory-body">
       <ul class="action-list">
-        <li class="action-edit">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-          <h5>Edit</h5>
-        </li>
-        <li class="action-delte">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-          <h5>Delete</h5>
-        </li>
-        <li class="action-see">
+        <li class="action-see" (click)="seeMemory(memory.memoryId, memory.title, memory.memoryLocation, memory.mainPicture, memory.description,memory.date)" routerLink="../memories">
           <i class="fa fa-eye" aria-hidden="true"></i>
           <h5>See more</h5>
         </li>
@@ -46,7 +37,7 @@
 </div>
 <!--aici o sa punem rezultatele-->
 
-<div class="results" *ngIf="searchType==='friends'">
+<div class="results" *ngIf="searchType==='friends' && notEmpty===false">
   <div class="tile" *ngFor="let friend of array" >
     <img [src]="friend.profilePicture" class="profile-picture">
     <div class="info-container">
@@ -54,12 +45,11 @@
       <h3>{{friend.city}} {{friend.country}}</h3>
       <h5>Friends from: {{friend.dateFriends}}</h5>
       <ul class="action-list">
-        <li class="action-delete" (click)="deleteFriend(friend.friendId)">
+        <li class="action-delete" (click)="deleteFriend(friend.username)">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
           <h5>Delete</h5>
         </li>
-
-        <li class="action-edit" (click)="viewMore(friend.friendId)">
+        <li class="action-edit" (click)="viewMore(friend.username)">
           <i class="fa fa-eye" aria-hidden="true"></i>
           <h5>View timeline</h5>
         </li>
@@ -93,21 +83,14 @@
   </div>
 </div>
 
-<div class="results" *ngIf="searchType==='newFriends' && notEmpty===true">
-  <button class="custom-button" (click)="changeEmpty()">Back</button>
+
+<div class="results" *ngIf="searchType==='friends' &&notEmpty===true">
+  <i class="fa fa-angle-left" aria-hidden="true" (click)="changeEmpty()"></i>
   <div class="memory" *ngFor="let memory of friendMemories">
     <img [src]="memory.mainPicture" class="memory-header">
     <div class="memory-body">
       <ul class="action-list">
-        <li class="action-edit">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-          <h5>Edit</h5>
-        </li>
-        <li class="action-delte" (click)="deleteMemory(memory.memoryId)">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-          <h5>Delete</h5>
-        </li>
-        <li class="action-see">
+        <li class="action-see" (click)="seeMemory(memory.memoryId, memory.title, memory.memoryLocation, memory.mainPicture, memory.description,memory.date)" routerLink="../memories">
           <i class="fa fa-eye" aria-hidden="true"></i>
           <h5>See more</h5>
         </li>
@@ -142,4 +125,20 @@
       <h4>Userul nu are memorii</h4>
     </div>
     <h6>(click to close)</h6>
+</div>
+
+<div class="my-alert alert-error" *ngIf="alert2===true" (click)="alert2=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Prietenul a fost sters</h4>
+  </div>
+  <h6>(click to close)</h6>
+</div>
+
+<div class="my-alert alert-error" *ngIf="aux===true" (click)="aux=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>There where no results found.</h4>
+  </div>
+  <h6>(click to close)</h6>
 </div>

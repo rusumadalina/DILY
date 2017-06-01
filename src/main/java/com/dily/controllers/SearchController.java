@@ -69,14 +69,14 @@ public class SearchController {
 
     @RequestMapping(value = "search/newFriends/view/{username}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> viewAllMemories (@PathVariable String username) throws SQLException {
-        System.out.println("alooooooooooooooooooooooooo");
         byte[] decodedBytes = Base64.getDecoder().decode(username);
         String decodedString = new String(decodedBytes);
         SearchService searchService = new SearchService();
         List<MemoryModel> all = searchService.findMemoriesInTimeline(decodedString);
+        /*
         for (int i=0; i<all.size();i++){
             System.out.println(all.get(i).getTitle());
-        }
+        }*/
         return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
     }
 

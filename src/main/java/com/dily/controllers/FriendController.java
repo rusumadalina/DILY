@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -34,6 +35,20 @@ public class FriendController {
         friendService.deletePair(userId,friendId);
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/friends/deleteSearch/{username}/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> deleteSearch(@PathVariable String username, @PathVariable int id) throws SQLException {
+        //System.out.println(username+" "+id);
+        byte[] decodedBytes = Base64.getDecoder().decode(username);
+        String decodedString = new String(decodedBytes);
+        //System.out.println(decodedString);
+        FriendService friendService = new FriendService();
+
+        int id2 = friendService.findUserByUsername(decodedString);
+        friendService.deletePair(id,id2);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/friends/view/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> viewAllMemoriers (@PathVariable int id) throws SQLException {

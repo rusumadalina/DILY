@@ -49,6 +49,18 @@ export class SearchService{
       {headers: headers})
       .map(res => res.json());
   }
+
+
+  deleteFriend(username: string) {
+    const headers = new Headers();
+    let curentId = this.currentUser.user_id;
+    console.log(btoa(username));
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(
+      'http://localhost:8072/api/friends/deleteSearch/'  + btoa(username) + '/' + curentId,
+      {headers: headers})
+      .map(res => res.json());
+  }
 }
 /*
 * /api/search/tag/cuvant

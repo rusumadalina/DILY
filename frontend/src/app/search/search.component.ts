@@ -21,25 +21,26 @@ export class SearchComponent implements OnInit {
   alertMem: boolean;
   toggle: boolean;
   text:string;
-
+  alert2: boolean;
+  aux: boolean;
   constructor(private searchService: SearchService, private _router: Router, private eRef: ElementRef ) {
     this.curent_user_id = JSON.parse(localStorage.getItem('user'))['user_id'];
     this.alert = false;
     this.notEmpty=false;
     this.alertMem=false;
     this.toggle=false;
+    this.alert2=false;
+    this.aux=false;
   }
 
   ngOnInit() {
   }
 
-
-
   searchW( search: any ) {
-    this.array = [];
     this.searchService.search(this.searchType, search.searchWord ).subscribe(
 
-      (data) => {
+      (data)=>{
+
         this.retrieveData(data);
         console.log(data) },
       (err) => alert(err));
@@ -47,6 +48,7 @@ export class SearchComponent implements OnInit {
 
   retrieveData( responseData: any ) {
     this.array = [];
+    this.notEmpty=false;
     if( this.searchType === 'tag' ) {
       for (let index in responseData) {
         let memory= new Memory(responseData[index]);
@@ -58,7 +60,9 @@ export class SearchComponent implements OnInit {
         this.array.push(friend);
       }
     }
-
+    if(this.array.length===0){
+      this.aux=true;
+    }
   }
 
   addFriend(user: string) {
@@ -66,14 +70,29 @@ export class SearchComponent implements OnInit {
       (data) => {
         this.alert = true;
         let timeoutId = setTimeout(() => {
-          this.alert = false;
-        }, 3000);
+          window.location.reload();
+        }, 4000);
+      },
+      (err) => alert(err));
+  }
+
+  deleteFriend(user: string){
+    this.searchService.deleteFriend(user ).subscribe(
+      (data) => {
+        if(data===1){
+          this.alert2=true;
+          let timeoutId = setTimeout(() => {
+            window.location.reload();
+          }, 4000);
+        }
       },
       (err) => alert(err));
   }
 
   viewMore(friend: string) {
     this.alertMem=false;
+    this.friendMemories=[];
+    this.array=[];
     this.searchService.viewFriend(friend).subscribe(
       (data) => {
         if(data.length===0){
@@ -90,6 +109,7 @@ export class SearchComponent implements OnInit {
     for (let index in responseData) {
       let memory = new Memory(responseData[index]);
       this.friendMemories.push(memory);
+      console.log(memory)
     }
   }
   changeEmpty(){
@@ -118,6 +138,19 @@ export class SearchComponent implements OnInit {
     if (clickType === true && this.toggle === false){
       this.toggle = true;
     }
+  }
+
+  seeMemory(id: number, title: string , location: string, picture: string, description: string, date: string){
+    let aux: string;
+    aux=id.toString();
+    localStorage.setItem('memory',aux);
+    localStorage.setItem('memory-title',title);
+    localStorage.setItem('memory-location',location);
+    localStorage.setItem('memory-picture',picture);
+    localStorage.setItem('memory-description',description);
+    localStorage.setItem('memory-date',date);
+    // this._router.navigate(['../memories']);
+
   }
 
 }
