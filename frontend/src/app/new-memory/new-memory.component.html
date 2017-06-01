@@ -1,49 +1,72 @@
-<div class="content-wrapper-signup">
-  <form>
-    <div class="input-row">
-      <div class="input-pair">
-        <label>Choose a main picture for your memory</label>
-        <input  type="file" id="mainPicture" name="mainPicture" class="custom-input" enctype="multipart/form-data" ngModel>
-      </div>
-    </div>
+<ul class="process-steps">
+  <!--BASIC MEMORY -->
+  <li (click)="curentStep=1">
+    <span class="step-number">1</span>
+    <h4>Add details</h4>
+  </li>
+  <!--ADD MEDIA-->
+  <li (click)="curentStep=2">
+    <span class="step-number">2</span>
+    <h4>Add media</h4>
+  </li>
+  <!--ADD TAGS-->
+  <li (click)="curentStep=3">
+    <span class="step-number">3</span>
+    <h4>Add tags</h4>
+  </li>
+  <!--ADD TAGGED FRIENDS-->
+  <li (click)="curentStep=4">
+    <span class="step-number">4</span>
+    <h4>Add friends</h4>
+  </li>
+</ul>
 
-    <div class="input-row">
-      <div class="input-pair">
-        <label>Title</label>
-        <input type="text" value="Memory title" name="title" class="large-input" required>
-      </div>
-      <div class="input-pair">
-        <label>Location</label>
-        <input type="text" name="location" value="New York, USA" required>
-      </div>
-    </div>
+<div class="results-container">
+  <form #addMemory="ngForm" *ngIf="curentStep===1">
+    <input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"
+            (change)="onChange($event)" ngModel>
 
-    <div class="input-row">
-      <div class="input-pair">
-        <label>Date</label>
-        <input type="date" name="date" required>
-      </div>
-      <div class="input-pair">
-        <label>Tags</label>
-        <input type="text" name="tags" value="#seaside #montain" required>
-      </div>
-    </div>
-    <div class="input-row">
-      <div class="description-input">
-        <label>Description</label>
-        <textarea>Here you can write your memory description </textarea>
-      </div>
-    </div>
+    <input type="text" placeholder="Title" class="custom-input" id="title" required="required" name="title" #title="ngModel" ngModel  minlength="4" maxlength="30">
+  <textarea type="text" placeholder="Add a description" class="custom-input" id="description" required="required" name="description" #description="ngModel" ngModel  minlength="4"></textarea>
+  <input type="text" placeholder="City, Country" class="custom-input" id="location" required="required" name="location" #location="ngModel" ngModel  minlength="4" maxlength="30">
+  <input type="date" placeholder="Date" class="custom-input" id="date" required="required" name="date" #date="ngModel" ngModel >
+  <div class="simple-dropdown">
+    <input type="text" placeholder="Privacy" class="simple-input" id="privacy"  name="privacy" #privacy="ngModel" [(ngModel)]="text" (click)="setToggle($event)" readonly="readonly">
+    <label for="privacy" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
+    <ul class="dropdown-container" *ngIf="toggle===true" >
+      <li (click)="setSearch('private')"><a>Private</a></li>
+      <li (click)="setSearch('public')"><a>Public</a></li>
+      <li (click)="setSearch('only friends')"><a>Only Friends</a></li>
+    </ul>
+  </div>
 
-    <div class="input-row">
-      <div class="description-input">
-        <label>Tag friends</label>
-        <input type="text" name="friends" placeholder="Search.." required>
-      </div>
-    </div>
-
+    <a class="custom-button" (click)="submitMemory(addMemory.value)" >Next Step</a>
 
   </form>
-  <button class="save-button"> <a href="timeline.html">Add memory </a></button>
-</div>
 
+  <form #addFriends="ngForm" *ngIf="curentStep===4">
+    <div class="simple-dropdown">
+      <input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
+      <label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
+      <ul class="dropdown-container" *ngIf="toggle===true" >
+        <li *ngFor="let friend of friends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>
+      </ul>
+    </div>
+    <button class="custom-button" (click)="submitTagged()">Finish</button>
+  </form>
+
+  <form #addTags="ngForm" *ngIf="curentStep===3">
+    <input type="text" placeholder="tags" class="simple-input" id="tags"  name="tags" #tags="ngModel" ngModel>
+    <button class="custom-button" (click)="submitTags(addTags.value)">Next Step</button>
+  </form>
+
+  <form #addMedia="ngForm" *ngIf="curentStep===2">
+    <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
+            (change)="onChangeMedia($event)" ngModel>
+    <button class="custom-button" (click)="submitMedia()">Next Step</button>
+    <div *ngFor="let image of files2">
+      <img [src]="image" class="profile-picture">
+    </div>
+  </form>
+
+</div>

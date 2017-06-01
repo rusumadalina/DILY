@@ -1,6 +1,7 @@
 <div class="memory">
   <img [src]="picture" class="memory-header">
   <i class="fa fa-angle-left" aria-hidden="true" routerLink="../dashboard"></i>
+
   <div class="memory-body">
     <div class="tags-container" *ngIf="tags.length>0">
       <span  *ngFor="let tag  of tags">
