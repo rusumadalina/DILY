@@ -53,35 +53,46 @@
       <h2>{{friend.name}}</h2>
       <h3>{{friend.city}} {{friend.country}}</h3>
       <h5>Friends from: {{friend.dateFriends}}</h5>
-      <div class="action-delete">
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-        <h5>Delete</h5>
-      </div>
-    </div>
+      <ul class="action-list">
+        <li class="action-delete" (click)="deleteFriend(friend.friendId)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <h5>Delete</h5>
+        </li>
 
+        <li class="action-edit" (click)="viewMore(friend.friendId)">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          <h5>View timeline</h5>
+        </li>
+      </ul>
+
+    </div>
   </div>
 </div>
+
+
 
 <div class="results" *ngIf="searchType==='newFriends' && notEmpty===false">
   <div class="tile" *ngFor="let friend of array" >
     <img [src]="friend.profilePicture" class="profile-picture">
     <div class="info-container">
       <h2>{{friend.name}}</h2>
-      <h3>{{friend.city}}</h3>
-      <h3>{{friend.country}}</h3>
+      <h3>{{friend.city}} {{friend.country}}</h3>
       <h5>Date of birth: {{friend.dateFriends}}</h5>
-      <div class="action-add" (click)="addFriend(friend.username)">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <h5>Add friend</h5>
-      </div>
-      <div class="action-add" (click)="viewMore(friend.username)">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-        <h5>View friend</h5>
-      </div>
-    </div>
+      <ul class="action-list">
+        <li div class="action-add" (click)="addFriend(friend.username)">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          <h5>Add friend</h5>
+        </li>
 
+        <li class="action-edit" (click)="viewMore(friend.username)">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          <h5>View timeline</h5>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
+
 <div class="results" *ngIf="searchType==='newFriends' && notEmpty===true">
   <button class="custom-button" (click)="changeEmpty()">Back</button>
   <div class="memory" *ngFor="let memory of friendMemories">
