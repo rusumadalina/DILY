@@ -11,5 +11,6 @@ public interface IRegistrationService {
     public boolean findByEmail (String email) throws SQLException;
     public boolean findByUsername (String email) throws SQLException;
     public int findIdByEmail (String email) throws SQLException;
-    public void addNewUser(UserModelRegister usermodel) throws SQLException;
+    public int addNewUser(UserModelRegister usermodel) throws SQLException;
+    public void addInFacebookTable (int userId, String facebookId) throws SQLException;
 }

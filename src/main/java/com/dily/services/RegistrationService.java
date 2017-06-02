@@ -1,7 +1,6 @@
 package com.dily.services;
 
 import com.dily.Database;
-import com.dily.models.UserModel;
 import com.dily.models.UserModelRegister;
 
 import java.sql.*;
@@ -69,7 +68,7 @@ public class RegistrationService implements IRegistrationService {
     }
 
     @Override
-    public void addNewUser(UserModelRegister usermodel) throws SQLException {
+    public int addNewUser(UserModelRegister usermodel) throws SQLException {
 
         String name = usermodel.getName();
         String username =usermodel.getUsername();
@@ -83,21 +82,50 @@ public class RegistrationService implements IRegistrationService {
         System.out.println(gender);
 
         Connection con = Database.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select max(user_id) from user_table");
 
-        try (PreparedStatement pstmt = con.prepareStatement("insert into user_table ( name,username,password,email,date_of_birth,country,city,profile_picture,gender) values ( ?,?,?,?,?,?,?,?,?)")) {
+        int id = 0;
+        while (rs.next()) {
+            id = rs.getInt(1);
+        }
+        rs.close();
 
-            pstmt.setString(1, name);
-            pstmt.setString(2,username);
-            pstmt.setString(3,password);
-            pstmt.setString(4,email);
-            pstmt.setDate(5,date);
-            pstmt.setString(6,country);
-            pstmt.setString(7,city);
-            pstmt.setString(8,"assets/images/default.jpg");
-            pstmt.setString(9,gender);
+        id = id + 1;
+
+
+        try (PreparedStatement pstmt = con.prepareStatement("insert into user_table ( user_id, name,username,password,email,date_of_birth,country,city,profile_picture,gender) values ( ?,?,?,?,?,?,?,?,?,?)")) {
+
+            pstmt.setInt(1,id);
+            pstmt.setString(2, name);
+            pstmt.setString(3,username);
+            pstmt.setString(4,password);
+            pstmt.setString(5,email);
+            pstmt.setDate(6,date);
+            pstmt.setString(7,country);
+            pstmt.setString(8,city);
+            pstmt.setString(9,"assets/images/default.jpg");
+            pstmt.setString(10,gender);
 
             pstmt.executeUpdate();
             Database.commit();
         }
+
+        return id;
+    }
+
+    @Override
+    public void addInFacebookTable(int userId, String facebookId) throws SQLException {
+
+        Connection con = Database.getConnection();
+
+        try (PreparedStatement pstmt = con.prepareStatement("insert into facebook_table ( user_id, facebook_id) values (?,?)")) {
+
+            pstmt.setInt(1,userId);
+            pstmt.setString(2, facebookId);
+            pstmt.executeUpdate();
+            Database.commit();
+        }
+
     }
 }

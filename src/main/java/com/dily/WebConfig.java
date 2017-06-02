@@ -21,6 +21,7 @@ public class WebConfig {
                 registry.addMapping("/memories").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
                 registry.addMapping("/editMemory").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
                 registry.addMapping("/addDocuments").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
+                registry.addMapping("/facebook").allowedMethods("GET","POST","PUT","OPTIONS","DELETE").allowedOrigins("http://localhost:4200/", "http://evil.com/" );
 
             }
         };
