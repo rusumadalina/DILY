@@ -28,8 +28,7 @@ export class LeftMenuComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('name');
+    localStorage.clear();
     this._router.navigate(['']);
   }
 

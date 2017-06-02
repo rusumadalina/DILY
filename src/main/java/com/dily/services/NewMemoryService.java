@@ -148,8 +148,13 @@ public class NewMemoryService implements INewMemoryService {
         Connection con = Database.getConnection();
         try (PreparedStatement pstmt2 = con.prepareStatement("insert into media (mediatype,memoryid, mediapath) values (?,?,?)")) {
 
-
-            pstmt2.setString(1,"image");
+            int p=path.lastIndexOf(".");
+            String e=path.substring(p+1);
+           if(e.equals("jpg") || e.equals("JPG")|| e.equals("JPEG") || e.equals("jpeg") ||e.equals("PNG") || e.equals("png") || e.equals("GIF") || e.equals("gif")) {
+               pstmt2.setString(1, "image");
+           }else if(e.equals("mp4") || e.equals("MP4") || e.equals("AVI") || e.equals("avi") || e.equals("MKV")||e.equals("mkv") || e.equals("3GP") ||e.equals("3gp") ||e.equals("FLV") || e.equals("flv") || e.equals("MNG") || e.equals("mng")){
+               pstmt2.setString(1, "video");
+           }
             pstmt2.setInt(2,memId);
             pstmt2.setString(3,path);
 

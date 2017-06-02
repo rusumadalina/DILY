@@ -72,5 +72,6 @@ export class MemoryComponent implements OnInit {
       let media = new Media(responseData[index]);
       this.medias.push(media);
     }
+    console.log(this.medias);
   }
 }

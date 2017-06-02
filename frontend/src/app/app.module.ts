@@ -20,7 +20,8 @@ import { TaggedComponent } from './tagged/tagged.component';
 import { NewMemoryComponent } from './new-memory/new-memory.component';
 import { EditMemoryComponent } from './edit-memory/edit-memory.component';
 import { AddDocumentComponent } from './add-document/add-document.component';
-
+import { FacebookModule } from 'ngx-facebook';
+import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +39,15 @@ import { AddDocumentComponent } from './add-document/add-document.component';
     NewMemoryComponent,
     EditMemoryComponent,
     AddDocumentComponent,
+    FacebookLoginComponent,
+
   ],
   imports: [
     BrowserModule,
     [FormsModule],
     HttpModule,
     routing,
+    FacebookModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

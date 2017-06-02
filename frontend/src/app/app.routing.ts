@@ -14,6 +14,7 @@ import {TaggedComponent} from "app/tagged/tagged.component";
 import {NewMemoryComponent} from "./new-memory/new-memory.component";
 import {EditMemoryComponent} from "./edit-memory/edit-memory.component";
 import {AddDocumentComponent} from "./add-document/add-document.component";
+import {FacebookLoginComponent} from "./facebook-login/facebook-login.component";
 
 export const appRoutes: Routes = [
   {path: '' , component:  AuthenticationComponent},
@@ -25,7 +26,8 @@ export const appRoutes: Routes = [
   {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]},
   {path: 'new-memory', component: NewMemoryComponent, canActivate: [AuthGuard]},
   {path: 'edit-memory', component: EditMemoryComponent, canActivate: [AuthGuard]},
-  {path: 'add-document', component: AddDocumentComponent, canActivate: [AuthGuard]}
+  {path: 'add-document', component: AddDocumentComponent, canActivate: [AuthGuard]},
+  {path: 'facebook', component: FacebookLoginComponent, canActivate: [AuthGuard]}
 
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

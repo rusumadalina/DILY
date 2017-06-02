@@ -78,16 +78,22 @@
 
   <!--</form>-->
   <!--<input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"-->
-          <!--(change)="onChange2($event)" ngModel>-->
-  <!--<div  class="masonry">-->
-    <!--<div *ngFor="let media of medias" >-->
-      <!--<img [src]="media.mediaPath" >-->
-      <!--<i class="fa fa-trash" aria-hidden="true" (click)="deleteMedia(media.mediaId)"></i>-->
-    <!--</div>-->
-    <!--<div *ngFor="let image of files2">-->
-      <!--<img [src]="image">-->
-    <!--</div>-->
-  <!--</div>-->
+          (change)="onChange2($event)" ngModel>
+  <div  class="masonry">
+    <div  *ngFor="let media of medias">
+      <div *ngIf="media.mediaType==='image'">
+        <img  [src]="media.mediaPath">
+      </div>
+      <div *ngIf="media.mediaType==='video'">
+        <video width="400" controls *ngFor="let media of medias">
+          <source [src]="media.mediaPath" >
+        </video>
+      </div>
+    </div>
+    <div *ngFor="let image of files2">
+      <img [src]="image">
+    </div>
+  </div>
   <!--<a class="custom-button" (click)="savePictures()">SALVEAZA AICI DUDE</a>-->
 
   <!--<div class="tags-container">-->

@@ -105,7 +105,10 @@ public class NewMemory {
         NewMemoryService newMemoryService = new NewMemoryService();
         //System.out.println(id);
         for (int i=0; i< mediaModels.size(); i++){
+
             newMemoryService.addMedia(mediaModels.get(i).getPicture(),id);
+
+
         }
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
