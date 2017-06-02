@@ -52,7 +52,7 @@
         <li *ngFor="let friend of friends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>
       </ul>
     </div>
-    <button class="custom-button" (click)="submitTagged()">Finish</button>
+    <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Finish</button>
   </form>
 
   <form #addTags="ngForm" *ngIf="curentStep===3">
@@ -63,10 +63,11 @@
   <form #addMedia="ngForm" *ngIf="curentStep===2">
     <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
             (change)="onChangeMedia($event)" ngModel>
-    <button class="custom-button" (click)="submitMedia()">Next Step</button>
+
     <div *ngFor="let image of files2">
       <img [src]="image" class="profile-picture">
     </div>
+    <button class="custom-button" (click)="submitMedia()">Next Step</button>
   </form>
 
 </div>

@@ -12,6 +12,8 @@ import {SearchComponent} from "./search/search.component";
 import {MemoryComponent} from "./memory/memory.component";
 import {TaggedComponent} from "app/tagged/tagged.component";
 import {NewMemoryComponent} from "./new-memory/new-memory.component";
+import {EditMemoryComponent} from "./edit-memory/edit-memory.component";
+import {AddDocumentComponent} from "./add-document/add-document.component";
 
 export const appRoutes: Routes = [
   {path: '' , component:  AuthenticationComponent},
@@ -21,7 +23,9 @@ export const appRoutes: Routes = [
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
   {path: 'memories', component: MemoryComponent, canActivate: [AuthGuard]},
   {path: 'tagged', component: TaggedComponent, canActivate: [AuthGuard]},
-  {path: 'new-memory', component: NewMemoryComponent, canActivate: [AuthGuard]}
+  {path: 'new-memory', component: NewMemoryComponent, canActivate: [AuthGuard]},
+  {path: 'edit-memory', component: EditMemoryComponent, canActivate: [AuthGuard]},
+  {path: 'add-document', component: AddDocumentComponent, canActivate: [AuthGuard]}
 
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

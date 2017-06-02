@@ -8,10 +8,12 @@ export class NewMemoryService {
   mainMem: string;
   privacy:string;
   medias=[];
+  toggle:boolean;
   constructor(private http: Http) {
     this.curent_user = JSON.parse(localStorage.getItem('user'));
     this.mainMem=localStorage.getItem('memoryMainPhoto');
     this.privacy=localStorage.getItem('privacyMem');
+    this.toggle=false;
 
   }
 

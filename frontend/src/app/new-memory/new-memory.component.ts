@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {NewMemoryService} from "./new-memory.service";
 import {Friend} from "../model/friend.model";
 import {User} from "../model/user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-memory',
@@ -20,11 +21,11 @@ export class NewMemoryComponent implements OnInit {
   files=[];
   files2=[];
   curentStep: number;
-  constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef) {
+  constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef, private _router: Router) {
     this.toggle=false;
     this.curent_user = JSON.parse(localStorage.getItem('user'));
     this.files2=JSON.parse(localStorage.getItem('pictures'));
-    this.memId=localStorage.getItem('memoryId');
+    this.memId=localStorage.getItem('memory');
     this.curentStep=1;
     if(localStorage.getItem('step')===null){
       localStorage.setItem('step','1');
@@ -80,7 +81,7 @@ export class NewMemoryComponent implements OnInit {
       data => {
         this.memId=data.toString();
         let aux=data.toString();
-        localStorage.setItem('memoryId',aux);
+        localStorage.setItem('memory',aux);
         console.log(data);},
       error => {console.log('nu ai postat'); }
     );
@@ -104,7 +105,7 @@ export class NewMemoryComponent implements OnInit {
       this.tagged.push(id);
     }
     console.log(this.tagged);
-    }
+  }
   submitTagged(){
     this.curentStep=parseInt(localStorage.getItem('step'));
       let array=[];
@@ -112,8 +113,13 @@ export class NewMemoryComponent implements OnInit {
         array.push({"friendId": index})
       }
     this.newMemoryService.postTagged(array, this.memId).subscribe(
-      (data) => {console.log(data); },
+      (data) => {
+        localStorage.removeItem('pictures');
+        localStorage.removeItem('memoryId');
+        localStorage.removeItem('step');
+      },
       (err) => alert(err));
+
 
   }
 

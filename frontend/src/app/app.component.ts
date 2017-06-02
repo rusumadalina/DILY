@@ -25,12 +25,7 @@ export class AppComponent {
         this.width = window.innerWidth;
       });
     };
-    localStorage.removeItem('memory');
-    localStorage.removeItem('memory-title');
-    localStorage.removeItem('memory-location');
-    localStorage.removeItem('memory-picture');
-    localStorage.removeItem('memory-description');
-    localStorage.removeItem('memory-date');
+
   }
 
   checkToggle() {

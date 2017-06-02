@@ -18,6 +18,8 @@ import {FriendComponent} from './friend/friend.component';
 import { SearchComponent } from './search/search.component';
 import { TaggedComponent } from './tagged/tagged.component';
 import { NewMemoryComponent } from './new-memory/new-memory.component';
+import { EditMemoryComponent } from './edit-memory/edit-memory.component';
+import { AddDocumentComponent } from './add-document/add-document.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { NewMemoryComponent } from './new-memory/new-memory.component';
     SearchComponent,
     TaggedComponent,
     NewMemoryComponent,
+    EditMemoryComponent,
+    AddDocumentComponent,
   ],
   imports: [
     BrowserModule,

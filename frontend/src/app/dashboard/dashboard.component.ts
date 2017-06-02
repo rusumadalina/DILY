@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
     window.location.reload();
   }
 
-  seeMemory(id: number, title: string , location: string, picture: string, description: string, date: string){
+  seeMemory(id: number, title: string , location: string, picture: string, description: string, date: string, privacy:string){
     let aux: string;
     aux=id.toString();
     localStorage.setItem('memory',aux);
@@ -50,7 +50,8 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('memory-picture',picture);
     localStorage.setItem('memory-description',description);
     localStorage.setItem('memory-date',date);
-   // this._router.navigate(['../memories']);
+    localStorage.setItem('memomory-privacy', privacy);
+    this._router.navigate(['../memories']);
 
   }
 

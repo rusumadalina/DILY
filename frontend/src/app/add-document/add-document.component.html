@@ -1,0 +1,13 @@
+<input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"
+        (change)="onChange($event)" ngModel>
+<div>
+  <a *ngFor="let item of documents" (click)="openDocument(item)">{{item}}</a>
+</div>
+<a class="Save documents" (click)="saveDocuments()">SAVE DOCUMENTS</a>
+
+<ul class="document-list">
+  <li *ngFor="let doc of allDocuments">
+    <h4 (click)="openDocument2(doc.path)">{{doc.path}}</h4>
+    <i class="fa fa-trash" aria-hidden="true" (click)="deleteDoc(doc.documentId)"></i>
+  </li>
+</ul>

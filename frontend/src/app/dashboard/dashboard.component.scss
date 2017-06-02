@@ -55,14 +55,14 @@
     .action-list{
       list-style-type: none;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-top:-40px;
       li{
         display: flex;
         align-items: center;
-        &.action-edit{
-          color:#43cea2;
+        &:not(:last-of-type){
+          margin-right: 15px;
         }
         &.action-delte{
           color:#e53935;

@@ -37,4 +37,29 @@ public class UploadService implements IUploadService {
         }
 
     }
+
+    public void uploadDocument(MultipartHttpServletRequest request, String folder) throws Exception {
+        Iterator<String> itrator = request.getFileNames();
+        MultipartFile multiFile = request.getFile(itrator.next());
+        try {
+
+            String fileName=multiFile.getOriginalFilename();
+            String path=request.getServletContext().getRealPath("/");
+            path = path.replace("src\\main\\webapp","frontend\\src\\assets\\documents");
+            byte[] bytes = multiFile.getBytes();
+            File directory=    new File(path+ folder);
+            directory.mkdirs();
+
+            File file=new File(directory.getAbsolutePath()+System.getProperty("file.separator")+fileName);
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream(file));
+            stream.write(bytes);
+            stream.close();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new Exception("Error while loading the file");
+        }
+
+    }
 }

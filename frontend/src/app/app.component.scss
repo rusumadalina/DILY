@@ -160,7 +160,24 @@ form {
 
 }
 
+.masonry {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
+  img{
+    width: 32%;
+    min-width: 300px;
+    height:300px;
+    object-fit:cover;
+    transition: .8s opacity;
+    margin-bottom:15px;
+    margin-right: 10px;
+  }
+}
 .alert-danger{
   width: 100%;
 }
