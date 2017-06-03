@@ -111,6 +111,33 @@
 
 </div>
 
+<div class="results" *ngIf="searchType==='newFriends' &&notEmpty===true">
+  <i class="fa fa-angle-left" aria-hidden="true" (click)="changeEmpty()"></i>
+  <div class="memory" *ngFor="let memory of friendMemories">
+    <img [src]="memory.mainPicture" class="memory-header">
+    <div class="memory-body">
+      <ul class="action-list">
+        <li class="action-see" (click)="seeMemory(memory.memoryId, memory.title, memory.memoryLocation, memory.mainPicture, memory.description,memory.date)" routerLink="../memories">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          <h5>See more</h5>
+        </li>
+      </ul>
+      <div class="memory-title">
+        <h3>{{memory.title}}</h3>
+        <h5>{{memory.memoryLocation}}</h5>
+        <h6>{{memory.date}}</h6>
+      </div>
+      <div  *ngFor="let tag of memory.tags">
+        <h4>{{tag}}</h4>
+      </div>
+      <div class="memory-text">
+        <span>{{memory.description}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <div class="my-alert alert-ok" *ngIf="alert===true" (click)="alert=false">
   <div class="alert-body">
     <i class="fa fa-check-circle" aria-hidden="true"></i>

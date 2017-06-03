@@ -121,6 +121,7 @@ export class SearchComponent implements OnInit {
   setSearch(name: string) {
     this.searchType = name;
     this.array = [];
+    this.friendMemories = [];
     console.log(this.searchType);
     this.toggle=false;
   }
