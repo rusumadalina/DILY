@@ -9,12 +9,10 @@ import {User} from "../model/user.model";
  */
 @Injectable()
 export class FacebookSignUpService {
-  curent_user: User;
+
   constructor(private http: Http) {
-    this.curent_user = JSON.parse(localStorage.getItem('user'));
+
   }
-
-
 
   sendlogin(id: string, token: string){
     const headers = new Headers();
@@ -46,9 +44,10 @@ export class FacebookSignUpService {
     return this.http.post('http://localhost:8072/api/registerFacebook',  json, { headers: header }).map(res => res.json());
   }
 
-  postJSON(information) {
+  postJSON(information, id) {
     const header =  new Headers();
+
     header.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8072/api/addNewFbMemory/'+this.curent_user.user_id,  information, { headers: header }).map(res => res.json());
+    return this.http.post('http://localhost:8072/api/addNewFbMemory/' + id, JSON.stringify(information), { headers: header }).map(res => res.json());
   }
 }

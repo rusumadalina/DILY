@@ -1,9 +1,11 @@
 package com.dily.controllers;
 
+import com.dily.models.AddMemoryModel;
 import com.dily.models.UserModel;
 import com.dily.models.UserModelRegister;
 import com.dily.models.UserRegisterFacebookModel;
 import com.dily.services.AuthenticationService;
+import com.dily.services.NewMemoryService;
 import com.dily.services.RegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -124,8 +127,8 @@ public class FacebookController {
 //        return new ResponseEntity<Integer>(1, HttpStatus.OK);
 //    }
 
-    @RequestMapping(value = "/registerFacebook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
-    public ResponseEntity<com.dily.entities.User> registerFacebook(@RequestBody UserRegisterFacebookModel user) throws SQLException, ParseException, InterruptedException {
+           @RequestMapping(value = "/registerFacebook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+        public ResponseEntity<com.dily.entities.User> registerFacebook(@RequestBody UserRegisterFacebookModel user) throws SQLException, ParseException, InterruptedException {
 
 //        System.out.println(user.getId());
 //        System.out.println(user.getName());
@@ -155,6 +158,29 @@ public class FacebookController {
 
     }
 
+
+    @RequestMapping(value = "/addNewFbMemory/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    public ResponseEntity<Integer> facebookMemory(@RequestBody List<AddMemoryModel> addMemoryModel, @PathVariable int id) throws SQLException {
+
+
+
+        for (int i=0; i<addMemoryModel.size();i++){
+            if(addMemoryModel.get(i).getPrivacy().equals("EVERYONE")){
+                addMemoryModel.get(i).setPrivacy("public");
+            }else {
+                addMemoryModel.get(i).setPrivacy("only friends");
+            }
+
+        }
+
+
+        NewMemoryService newMemoryService = new NewMemoryService();
+        for (int i=0; i<addMemoryModel.size(); i++){
+            int idMem = newMemoryService.addMemory(addMemoryModel.get(i));
+            newMemoryService.addInTimeline(idMem,id);
+        }
+        return new ResponseEntity<Integer>(1,HttpStatus.OK);
+    }
 
 }
 

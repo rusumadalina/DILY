@@ -25,8 +25,8 @@ export class FacebookLoginComponent implements OnInit {
   profilePicture: string;
   pictures=[];
   items=[];
-  cacat: any;
   send=[];
+  id2:string;
   constructor(private fb: FacebookService, private facebookSign: FacebookSignUpService,private http: Http, private _router: Router) {
 
     let initParams: InitParams = {
@@ -57,12 +57,6 @@ export class FacebookLoginComponent implements OnInit {
   getProfile() {
     this.fb.api('/me?fields=id,name,birthday,hometown,gender,email,picture.height(2048){url}')
       .then((res: any) => {
-        // console.log(res.name);
-        // console.log(res.birthday);
-        // console.log(res.hometown.name);
-        // console.log(res.gender);
-        // console.log(res.email);
-        // console.log(res.id);
         this.id = res.id;
         console.log(res.id);
         this.name=res.name;
@@ -83,12 +77,16 @@ export class FacebookLoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(data));
           localStorage.setItem('loggedIn', 'true');
           localStorage.setItem('fbId', this.id);
+          this.id2=data['user_id'];
+          console.log(this.id2);
+          this.getPhotos();
           this._router.navigate(['dashboard']);
         },
         (error) => console.log(error)
       )
   }
   getPhotos(){
+    console.log("intram pe getPhotos()");
     this.fb.api('me/posts?fields=attachments{title,media},privacy,description,place,created_time&limit=20')
       .then((res: any) => {
         this.retrieveData(res.data);
@@ -103,7 +101,7 @@ export class FacebookLoginComponent implements OnInit {
       let description = 'undefined';
       let memoryLocation = 'undefined';
       let date = 'undefined';
-      let privacy = 'undefined'
+      let privacy = 'undefined';
       let mainPicture = 'undefined';
       if (index['attachments'].data[0].title != null) {
         title = index['attachments'].data[0].title;
@@ -132,13 +130,13 @@ export class FacebookLoginComponent implements OnInit {
         "mainPicture": mainPicture
       });
     }
-    console.log(this.send);
+    this.facebookSign.postJSON(this.send, this.id2).subscribe(
+      (data)=> console.log(data),
+      (error)=>console.log(error)
+    )
   }
     sendFbMemory(){
-        this.facebookSign.postJSON(this.send).subscribe(
-          (data)=> console.log(data),
-          (error)=>console.log(error)
-        )
+
     }
 
   sendInformation(id: string, token:string){
