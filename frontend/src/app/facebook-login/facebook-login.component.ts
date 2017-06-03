@@ -5,6 +5,8 @@ import {error} from "util";
 import {Http} from "@angular/http";
 import {FbMode} from "../model/fb.model";
 import {Router} from "@angular/router";
+import {FbMemory} from "../model/fbMemory.model";
+import {Attachment} from "../model/attachment.model";
 @Component({
   selector: 'app-facebook-login',
   templateUrl: './facebook-login.component.html',
@@ -22,7 +24,9 @@ export class FacebookLoginComponent implements OnInit {
   gender: string;
   profilePicture: string;
   pictures=[];
-
+  items=[];
+  cacat: any;
+  send=[];
   constructor(private fb: FacebookService, private facebookSign: FacebookSignUpService,private http: Http, private _router: Router) {
 
     let initParams: InitParams = {
@@ -85,23 +89,62 @@ export class FacebookLoginComponent implements OnInit {
       )
   }
   getPhotos(){
-    this.fb.api('me/posts?fields=attachments{title,media},description,created_time&limit=50')
+    this.fb.api('me/posts?fields=attachments{title,media},privacy,description,place,created_time&limit=20')
       .then((res: any) => {
-       console.log(res.data);
+        this.retrieveData(res.data);
       })
       .catch((error: any)=> console.error(error));
   }
-  // retrieveData(response:any) {
-  //   for (let index of response) {
-  //     let item=new FbMode(index);
-  //     this.pictures.push(item);
-  //   }
-  //   console.log(this.pictures);
-  // }
-  sendInformation(id: string, token:string){
-    // this.facebookSign.sendlogin(id,token).subscribe(
-    //   (data)=> console.log(data),
-    //   (error)=> alert(error)
-    // );
+  retrieveData(response:any) {
+    for (let index of response) {
+      //let item=new FbMemory(index);
+      //this.items.push(item);
+      let title = 'undefined';
+      let description = 'undefined';
+      let memoryLocation = 'undefined';
+      let date = 'undefined';
+      let privacy = 'undefined'
+      let mainPicture = 'undefined';
+      if (index['attachments'].data[0].title != null) {
+        title = index['attachments'].data[0].title;
+      }
+      if (index.description != null) {
+        description = index.description;
+      }
+      if (index.place != null) {
+        memoryLocation = index.place['name'];
+      }
+      if (index.created_time != null) {
+        date = index.created_time;
+      }
+      if (index.privacy != null) {
+        privacy = index.privacy['value'];
+      }
+      if (index['attachments'].data[0].media != null) {
+        mainPicture = index['attachments'].data[0].media.image.src;
+      }
+      this.send.push({
+        "title": title,
+        "description": description,
+        "memoryLocation": memoryLocation,
+        "date": date,
+        "privacy": privacy,
+        "mainPicture": mainPicture
+      });
+    }
+    console.log(this.send);
   }
+    sendFbMemory(){
+        this.facebookSign.postJSON(this.send).subscribe(
+          (data)=> console.log(data),
+          (error)=>console.log(error)
+        )
+    }
+
+  sendInformation(id: string, token:string){
+    this.facebookSign.sendlogin(id,token).subscribe(
+      (data)=> console.log(data),
+      (error)=> alert(error)
+    );
+ }
 }

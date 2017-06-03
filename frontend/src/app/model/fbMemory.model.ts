@@ -6,4 +6,10 @@ export class FbMemory{
   public description: string;
   public id: string;
   public attachments:  Object;
+  constructor(object: any){
+    this.created_time=object.created_time;
+    this.description=object.description;
+    this.id=object.id;
+    this.attachments=object.attachments;
+  }
 }
