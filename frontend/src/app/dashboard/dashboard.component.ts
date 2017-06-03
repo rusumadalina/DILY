@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {DashboardService} from './dashboard.service';
 import {Memory} from "../model/memory.model";
 import {Router} from '@angular/router';
+import {FacebookService} from "ngx-facebook";
+import {FbMode} from "../model/fb.model";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [DashboardService]
+  providers: [DashboardService, FacebookService]
 })
 export class DashboardComponent implements OnInit {
   memories = [];
-
-
-  constructor(private dashboardService: DashboardService, private  _router: Router) {
-
+  pictures=[];
+  fbId: string;
+  constructor(private fb: FacebookService, private dashboardService: DashboardService, private  _router: Router) {
 
   }
 

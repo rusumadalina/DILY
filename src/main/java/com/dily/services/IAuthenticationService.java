@@ -12,4 +12,5 @@ import java.sql.SQLException;
 public interface IAuthenticationService {
 
     public User findByUsernameAndPassword (String username, String password) throws SQLException;
+    public User findByUserId (int userId) throws SQLException;
 }

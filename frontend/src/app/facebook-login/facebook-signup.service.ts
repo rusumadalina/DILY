@@ -27,7 +27,7 @@ export class FacebookSignUpService {
   facebookSendData(id, name, birthday, hometown, email, profilePicture, gender){
     const hmt= hometown.split(',');
     const city=hmt[0];
-    const country=hmt[1]
+    const country=hmt[1];
     const json = JSON.stringify(
       {
         id: id,

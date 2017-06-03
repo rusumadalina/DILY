@@ -83,4 +83,14 @@ public class EditMemory {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/editMemory/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Integer> editMemory(@PathVariable int id, @RequestBody AddMemoryModel addMemoryModel) throws SQLException {
+
+
+
+        EditMemoryService editMemoryService = new EditMemoryService();
+        editMemoryService.editMemory(id, addMemoryModel);
+        return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
 }

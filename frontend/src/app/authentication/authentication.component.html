@@ -4,10 +4,12 @@
       <ul class="buttons-menu">
          <button  (click)="toggleForm(1)" [ngClass]="{'my-class': toggledForm === 1 }">Log in</button>
          <button (click)="toggleForm(2)" [ngClass]="{'my-class': toggledForm === 2 }">Sign up</button>
+         <button (click)="toggleForm(3)" [ngClass]="{'my-class': toggledForm === 3 }">Connect with facebook</button>
       </ul>
       <div class="forms-container">
           <app-form *ngIf="toggledForm===1"></app-form>
           <app-register *ngIf="toggledForm===2"></app-register>
+          <app-facebook-login *ngIf="toggledForm===3"></app-facebook-login>
       </div>
     </div>
   </div>
