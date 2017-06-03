@@ -83,7 +83,7 @@ export class FacebookLoginComponent implements OnInit {
       )
   }
   getPhotos(){
-    this.fb.api('me/posts?fields=attachments{title,media},privacy,description,place,created_time&limit=20')
+    this.fb.api('me/posts?fields=attachments{title,media},privacy,description,place,created_time&limit=100')
       .then((res: any) => {
         this.retrieveData(res.data);
       })

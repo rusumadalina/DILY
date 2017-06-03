@@ -27,7 +27,6 @@ public class MemoryController {
     @RequestMapping(value = "/memories/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> getAllMemories(@PathVariable int id) throws SQLException {
         MemoryService memoryService = new MemoryService();
-
         List<MemoryModel> all =  memoryService.findMemoriesInTimeline(id);
         return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
     }

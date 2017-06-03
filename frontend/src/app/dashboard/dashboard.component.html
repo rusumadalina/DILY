@@ -1,6 +1,7 @@
-<div class="memory" *ngFor="let memory of memories">
-  <img [src]="memory.mainPicture" class="memory-header">
-  <div class="memory-body">
+<div class="results">
+  <div class="memory" *ngFor="let memory of memories">
+    <img [src]="memory.mainPicture" class="memory-header">
+    <div class="memory-body">
 
 
       <ul class="action-list">
@@ -13,7 +14,7 @@
           <h5>See more</h5>
         </li>
       </ul>
-    <div class="tags-container" *ngIf="memory.tags.length > 0"><span  *ngFor="let tag of memory.tags">
+      <div class="tags-container" *ngIf="memory.tags.length > 0"><span  *ngFor="let tag of memory.tags">
        &#35;{{tag}}
     </span></div>
       <div class="memory-title">
@@ -26,7 +27,9 @@
       <div class="memory-text">
         <span>{{memory.description}}</span>
       </div>
+    </div>
   </div>
 </div>
+
 
 <!--<img *ngFor="let image of pictures" [src]="image.picture" class="image">-->

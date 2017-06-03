@@ -164,4 +164,18 @@ public class NewMemoryService implements INewMemoryService {
 
     }
 
+    @Override
+    public void setFlagFacebookMemory(int id) throws SQLException {
+        Connection con = Database.getConnection();
+
+        try (PreparedStatement pstmt = con.prepareStatement( "UPDATE facebook_table SET  memories_created = ? where user_id = ?")){
+
+            pstmt.setInt(1, 1);
+            pstmt.setInt(2,id);
+            pstmt.executeUpdate();
+            Database.commit();
+
+        }
+    }
+
 }

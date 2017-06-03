@@ -187,14 +187,29 @@ public class RegistrationService implements IRegistrationService {
     }
 
     @Override
+    public int memoriesGenerated(int id) throws SQLException {
+        Connection con = Database.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select memories_created from facebook_table where user_id = "+id);
+
+        int flag = 0;
+        while (rs.next()) {
+            flag = rs.getInt(1);
+        }
+        rs.close();
+        return flag;
+    }
+
+    @Override
     public void addInFacebookTable(int userId, String facebookId) throws SQLException {
 
         Connection con = Database.getConnection();
 
-        try (PreparedStatement pstmt = con.prepareStatement("insert into facebook_table ( user_id, facebook_id) values (?,?)")) {
+        try (PreparedStatement pstmt = con.prepareStatement("insert into facebook_table ( user_id, facebook_id,memories_created ) values (?,?,?)")) {
 
             pstmt.setInt(1,userId);
             pstmt.setString(2, facebookId);
+            pstmt.setInt(3, 0);
             pstmt.executeUpdate();
             Database.commit();
         }

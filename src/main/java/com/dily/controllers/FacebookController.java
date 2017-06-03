@@ -127,7 +127,7 @@ public class FacebookController {
 //        return new ResponseEntity<Integer>(1, HttpStatus.OK);
 //    }
 
-           @RequestMapping(value = "/registerFacebook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+        @RequestMapping(value = "/registerFacebook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
         public ResponseEntity<com.dily.entities.User> registerFacebook(@RequestBody UserRegisterFacebookModel user) throws SQLException, ParseException, InterruptedException {
 
 //        System.out.println(user.getId());
@@ -163,21 +163,23 @@ public class FacebookController {
     public ResponseEntity<Integer> facebookMemory(@RequestBody List<AddMemoryModel> addMemoryModel, @PathVariable int id) throws SQLException {
 
 
-
-        for (int i=0; i<addMemoryModel.size();i++){
-            if(addMemoryModel.get(i).getPrivacy().equals("EVERYONE")){
-                addMemoryModel.get(i).setPrivacy("public");
-            }else {
-                addMemoryModel.get(i).setPrivacy("only friends");
+        RegistrationService registrationService = new RegistrationService();
+        int flag = registrationService.memoriesGenerated(id);
+        System.out.println(flag);
+        if(flag == 0) {
+            for (int i = 0; i < addMemoryModel.size(); i++) {
+                if (addMemoryModel.get(i).getPrivacy().equals("EVERYONE")) {
+                    addMemoryModel.get(i).setPrivacy("public");
+                } else {
+                    addMemoryModel.get(i).setPrivacy("only friends");
+                }
             }
-
-        }
-
-
-        NewMemoryService newMemoryService = new NewMemoryService();
-        for (int i=0; i<addMemoryModel.size(); i++){
-            int idMem = newMemoryService.addMemory(addMemoryModel.get(i));
-            newMemoryService.addInTimeline(idMem,id);
+            NewMemoryService newMemoryService = new NewMemoryService();
+            for (int i = 0; i < addMemoryModel.size(); i++) {
+                int idMem = newMemoryService.addMemory(addMemoryModel.get(i));
+                newMemoryService.addInTimeline(idMem, id);
+            }
+            newMemoryService.setFlagFacebookMemory(id);
         }
         return new ResponseEntity<Integer>(1,HttpStatus.OK);
     }

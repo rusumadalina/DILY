@@ -17,6 +17,5 @@ export class FormService {
     header.append('Content-Type', 'application/json');
     return this._http.post('http://localhost:8072/api/login',  json, { headers: header }).map(res => res.json());
   }
-
 }
-///nu e posibil sa trebuiasca sa ajung in settings tes ceva..nu stiu
+

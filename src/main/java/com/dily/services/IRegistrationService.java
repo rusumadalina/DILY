@@ -17,4 +17,5 @@ public interface IRegistrationService {
     public void addInFacebookTable (int userId, String facebookId) throws SQLException;
     public int addNewFacebookUser (UserRegisterFacebookModel user) throws SQLException, ParseException;
     public int existFacebookUser(String facebookId) throws SQLException;
+    public int memoriesGenerated (int id) throws SQLException;
 }

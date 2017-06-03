@@ -67,11 +67,14 @@
     <div  *ngFor="let media of medias">
       <div *ngIf="media.mediaType==='image'">
         <img  [src]="media.mediaPath">
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteMedia(media.mediaId)"></i>
       </div>
       <div *ngIf="media.mediaType==='video'">
         <video width="400" controls *ngFor="let media of medias">
           <source [src]="media.mediaPath" >
         </video>
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteMedia(media.mediaId)"></i>
+
       </div>
     </div>
     <div *ngFor="let image of files2">

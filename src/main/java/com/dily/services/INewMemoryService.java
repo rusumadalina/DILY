@@ -16,4 +16,5 @@ public interface INewMemoryService {
     public void addTag (int memId, int tagId) throws SQLException;
     public int addNewTag (String tag) throws SQLException;
     public void addMedia (String path, int memId) throws SQLException;
+    public void setFlagFacebookMemory (int id) throws SQLException;
 }
