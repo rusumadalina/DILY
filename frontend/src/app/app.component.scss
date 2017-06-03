@@ -6,12 +6,16 @@ $main-blue: #185a9d;
 $dark-grey: #757575;
 $light-grey: #E0E0E0;
 $white: #ffffff;
+$red: rgb(231,76,60);
 
 *{
   margin:0;
   padding:0;
  // font-family: 'Raleway', sans-serif;
   //color: $dark-grey;
+}
+i:focus, i:active, button:focus , button:active{
+  outline: none;
 }
 .toggle{
   width: 5%;

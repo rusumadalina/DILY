@@ -8,16 +8,19 @@
   border-radius: 5px;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   top: 0;
   right:0;
   animation: animate-alert .6s linear;
+  z-index: 99999999999999999;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
   i{
     margin-right: 30px;
     font-size: 20px;
   }
-  h6{
+  h4{
     text-align: center;
+    font-size: 1em;
   }
   .alert-body{
     width: 100%;

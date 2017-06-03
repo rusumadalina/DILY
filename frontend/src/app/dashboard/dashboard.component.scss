@@ -14,13 +14,17 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.memory-text{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 25px;
+}
 
 .memory{
   display: inline-block;
   position: relative;
   width: 31.3%;
-
   margin: 40px 0;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-radius: 6px;
@@ -160,6 +164,6 @@
   height: 50px;
   margin: 10px 0;
   span {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 }

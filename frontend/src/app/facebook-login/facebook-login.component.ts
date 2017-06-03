@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FacebookService, InitParams, LoginResponse, LoginOptions} from 'ngx-facebook';
 import {FacebookSignUpService} from "./facebook-signup.service";
-import {error} from "util";
 import {Http} from "@angular/http";
-import {FbMode} from "../model/fb.model";
 import {Router} from "@angular/router";
-import {FbMemory} from "../model/fbMemory.model";
-import {Attachment} from "../model/attachment.model";
+
 @Component({
   selector: 'app-facebook-login',
   templateUrl: './facebook-login.component.html',
@@ -86,7 +83,6 @@ export class FacebookLoginComponent implements OnInit {
       )
   }
   getPhotos(){
-    console.log("intram pe getPhotos()");
     this.fb.api('me/posts?fields=attachments{title,media},privacy,description,place,created_time&limit=20')
       .then((res: any) => {
         this.retrieveData(res.data);

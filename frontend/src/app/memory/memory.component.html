@@ -1,15 +1,17 @@
-<a routerLink="../edit-memory">Edit memory </a>
-
+<div class="action-icons"  routerLink="../dashboard">
+  <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <h6>Back</h6>
+</div>
 <div class="memory">
   <img [src]="picture" class="memory-header">
-  <i class="fa fa-angle-left" aria-hidden="true" routerLink="../dashboard"></i>
-
+  <i class="fa fa-pencil" aria-hidden="true"  routerLink="../edit-memory"></i>
   <div class="memory-body">
     <div class="tags-container" *ngIf="tags.length>0">
       <span  *ngFor="let tag  of tags">
        &#35;{{tag.tagName}}
       </span>
     </div>
+
     <h1>{{title}}</h1>
     <h4>{{location}}</h4>
     <h4>{{date}}</h4>
