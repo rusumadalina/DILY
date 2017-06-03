@@ -1,3 +1,50 @@
-@import "../new-memory/new-memory.component.scss";
 @import "../memory/memory.component.scss";
 @import "../app.component.scss";
+:host{
+  width: 100%;
+}
+.acordion-item{
+  width:100%;
+  padding: 10px;
+  border-radius: 5px;
+  background:  rgba(24,90,157,0.6);
+  border: 1px solid #e9e9e9;
+  &:hover{
+    cursor: pointer;
+  }
+  h4{
+    color: $white;
+  }
+}
+.results-container{
+  width:100%;
+  padding: 20px;
+  border: 1px solid #e9e9e9;
+  background-color: $white;
+  border-top:none;
+  input, .simple-dropdown{
+    margin-bottom: 15px;
+  }
+  textarea{
+    min-height:100px;
+    margin-bottom: 15px;
+  }
+  .input-row{
+    width:100% !important;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    input{
+      width: 49%;
+    &:not(:last-child){
+     margin-right: 10px;
+    }
+    }
+  }
+  .custom-button{
+    margin: 0 auto;
+    background-color: $main-green;
+    color: $white;
+  }
+}

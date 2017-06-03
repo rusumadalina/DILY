@@ -26,12 +26,14 @@ export class EditMemoryComponent implements OnInit {
   toggle: boolean;
   localFriends=[];
   tagged=[];
+  step:string;
   constructor(private memoryService: MemoryService,  private eRef: ElementRef, private newMemoryService: NewMemoryService, private editMemoryService: EditMemoryService) {
     this.curentMemory= new AddMemory(localStorage.getItem('memory-title'),localStorage.getItem('memory-description'),localStorage.getItem('memory-location'),localStorage.getItem('memory-date'),localStorage.getItem('memory-privacy'),localStorage.getItem('memory-picture'));
     this.id=localStorage.getItem('memory');
     this.seeMemory(this.id);
     this.toggle=false;
     this.files2=JSON.parse(localStorage.getItem('pictures'));
+    this.step=localStorage.getItem('stepEdit');
   }
 
   ngOnInit() {
@@ -39,7 +41,10 @@ export class EditMemoryComponent implements OnInit {
       (data) => {this.retrieveData4(data) },
       (err) => alert(err));
   }
-
+  setStep(number:string){
+    localStorage.setItem('stepEdit',number);
+    this.step=localStorage.getItem('stepEdit');
+  }
   retrieveData4(responseData: any) {
     for (let index in responseData) {
       let friend = new Friend(responseData[index]);

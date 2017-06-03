@@ -1,83 +1,67 @@
-<ul class="process-steps">
-  <!--BASIC MEMORY -->
-  <li>
-    <span class="step-number">1</span>
-    <h4>Edit memory</h4>
-  </li>
-  <!--ADD MEDIA-->
-  <li>
-    <span class="step-number">2</span>
-    <h4>Edit media</h4>
-  </li>
-  <!--ADD TAGS-->
-  <li>
-    <span class="step-number">3</span>
-    <h4>Edit tags</h4>
-  </li>
-  <!--ADD TAGGED FRIENDS-->
-  <li>
-    <span class="step-number">4</span>
-    <h4>Edit friends</h4>
-  </li>
-</ul>
+<div (click)="setStep('1')" class="acordion-item"><h4>Main Details</h4></div>
+<div class="results-container" *ngIf="step==='1'">
+  <form #addMemory="ngForm" >
+    <input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data" (change)="onChange($event)" ngModel>
 
-<div class="results">
-  <!--<form #addMemory="ngForm" >-->
-    <input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"
-            (change)="onChange($event)" ngModel>
+    <input type="text" placeholder="Title" class="custom-input"
+           id="title"
+           required="required"
+           name="title"
+           #title="ngModel"
+           [(ngModel)]="curentMemory.title"
+           minlength="4"
+           maxlength="30">
+    <textarea type="text"
+              class="custom-input"
+              id="description"
+              required="required"
+              name="description"
+              #description="ngModel"
+              [(ngModel)]="curentMemory.description" > </textarea>
+    <div class="input-row">
+      <input type="text"
+             class="custom-input"
+             id="location"
+             required="required"
+             name="location"
+             #location="ngModel"
+             [(ngModel)]="curentMemory.memoryLocation"
+             minlength="4"
+             maxlength="30">
+      <input type="date"
+             class="custom-input"
+             id="date"
+             required="required"
+             name="date"
+             #date="ngModel"
+             [(ngModel)]="curentMemory.date" >
+    </div>
+    <div class="simple-dropdown">
+      <input type="text"
+             class="simple-input"
+             id="privacy"
+             name="privacy"
+             #privacy="ngModel"
+             [(ngModel)]="curentMemory.privacy"
+             (click)="setToggle($event)"
+             readonly="readonly">
+      <label for="privacy" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
+      <ul class="dropdown-container" *ngIf="toggle===true" >
+        <li (click)="setSearch('private')"><a>Private</a></li>
+        <li (click)="setSearch('public')"><a>Public</a></li>
+        <li (click)="setSearch('only friends')"><a>Only Friends</a></li>
+      </ul>
+    </div>
 
-    <!--<input type="text" placeholder="Title" class="custom-input"-->
-           <!--id="title"-->
-           <!--required="required"-->
-           <!--name="title"-->
-           <!--#title="ngModel"-->
-           <!--[(ngModel)]="curentMemory.title"-->
-           <!--minlength="4"-->
-           <!--maxlength="30">-->
-    <!--<textarea type="text"-->
-              <!--class="custom-input"-->
-              <!--id="description"-->
-              <!--required="required"-->
-              <!--name="description"-->
-              <!--#description="ngModel"-->
-              <!--[(ngModel)]="curentMemory.description" > </textarea>-->
-    <!--<input type="text"-->
-           <!--class="custom-input"-->
-           <!--id="location"-->
-           <!--required="required"-->
-           <!--name="location"-->
-           <!--#location="ngModel"-->
-           <!--[(ngModel)]="curentMemory.memoryLocation"-->
-           <!--minlength="4"-->
-           <!--maxlength="30">-->
-    <!--<input type="date"-->
-           <!--class="custom-input"-->
-           <!--id="date"-->
-           <!--required="required"-->
-           <!--name="date"-->
-           <!--#date="ngModel"-->
-           <!--[(ngModel)]="curentMemory.date" >-->
-    <!--<div class="simple-dropdown">-->
-      <!--<input type="text"-->
-              <!--class="simple-input"-->
-             <!--id="privacy"-->
-             <!--name="privacy"-->
-             <!--#privacy="ngModel"-->
-             <!--[(ngModel)]="curentMemory.privacy"-->
-             <!--(click)="setToggle($event)"-->
-             <!--readonly="readonly">-->
-      <!--<label for="privacy" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>-->
-      <!--<ul class="dropdown-container" *ngIf="toggle===true" >-->
-        <!--<li (click)="setSearch('private')"><a>Private</a></li>-->
-        <!--<li (click)="setSearch('public')"><a>Public</a></li>-->
-        <!--<li (click)="setSearch('only friends')"><a>Only Friends</a></li>-->
-      <!--</ul>-->
-    <!--</div>-->
+    <a class="custom-button" (click)="editMemory(addMemory.value)" >Save changes</a>
 
-    <!--<a class="custom-button" (click)="editMemory(addMemory.value)" >Next Step</a>-->
+  </form>
+</div>
 
-  <!--</form>-->
-  <!--<input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"-->
+<div (click)="setStep('2')" class="acordion-item"><h4>Edit Medias</h4></div>
+<div class="results-container" *ngIf="step==='2'">
+
+  <input  type="file" id="profile2" name="profile" class="custom-input" enctype="multipart/form-data"
           (change)="onChange2($event)" ngModel>
   <div  class="masonry">
     <div  *ngFor="let media of medias">
@@ -94,33 +78,40 @@
       <img [src]="image">
     </div>
   </div>
-  <!--<a class="custom-button" (click)="savePictures()">SALVEAZA AICI DUDE</a>-->
+  <a class="custom-button" (click)="savePictures()">Save changes</a>
+</div>
 
-  <!--<div class="tags-container">-->
-    <!--<div class="tag" *ngFor="let tag of tags">-->
-      <!--<h4>{{tag.tagName}}</h4>-->
-      <!--<i class="fa fa-trash" aria-hidden="true" (click)="removeTag(tag.tagId)"></i>-->
-    <!--</div>-->
+<div (click)="setStep('3')" class="acordion-item"><h4>Edit Tags</h4></div>
+<div class="results-container" *ngIf="step==='3'">
 
-  <!--</div>-->
-  <!--<form #addTags="ngForm" >-->
-    <!--<input type="text" placeholder="tags" class="simple-input" id="tags1"  name="tags1" #tags1="ngModel" ngModel="">-->
-    <!--<button class="custom-button" (click)="addTags2(addTags.value)">Next Step</button>-->
-    <!--<h4>{{localTags}}</h4>-->
-  <!--</form>-->
+  <div class="tags-container">
+    <div class="tag" *ngFor="let tag of tags">
+      <h4>{{tag.tagName}}</h4>
+      <i class="fa fa-trash" aria-hidden="true" (click)="removeTag(tag.tagId)"></i>
+    </div>
 
-  <!--<div class="friends-container">-->
-    <!--<div class="tag" *ngFor="let friend of users">-->
-      <!--<h4>{{friend.name}}</h4>-->
-      <!--<i class="fa fa-trash" aria-hidden="true" (click)="deleteTagged(friend.username)"></i>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="simple-dropdown">-->
-    <!--<input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">-->
-    <!--<label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>-->
-    <!--<ul class="dropdown-container" *ngIf="toggle===true" >-->
-      <!--<li *ngFor="let friend of localFriends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-  <!--<button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Finish</button>-->
+  </div>
+  <form #addTags="ngForm" >
+    <input type="text" placeholder="tags" class="custom-input" id="tags1"  name="tags1" #tags1="ngModel" ngModel>
+    <button class="custom-button" (click)="addTags2(addTags.value)">Save changes</button>
+    <h4>{{localTags}}</h4>
+  </form>
+</div>
+
+<div (click)="setStep('4')" class="acordion-item"><h4>Edit Tagged Friends</h4></div>
+<div class="results-container" *ngIf="step==='4'">
+  <div class="friends-container">
+    <div class="tag" *ngFor="let friend of users">
+      <h4>{{friend.name}}</h4>
+      <i class="fa fa-trash" aria-hidden="true" (click)="deleteTagged(friend.username)"></i>
+    </div>
+  </div>
+  <div class="simple-dropdown">
+    <input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
+    <label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
+    <ul class="dropdown-container" *ngIf="toggle===true" >
+      <li *ngFor="let friend of localFriends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>
+    </ul>
+  </div>
+  <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Save changes</button>
 </div>
