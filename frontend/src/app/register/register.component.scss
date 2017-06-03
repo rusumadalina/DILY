@@ -3,16 +3,6 @@ input:focus {
     background: #eeeeee;
 }
 
-.ng-valid[required],
-.ng-valid.required {
-    border-left: 5px solid #00897B;
-    /* green */
-}
-
-.ng-invalid:not(form) {
-    border-left: 5px solid #a94442;
-    /* red */
-}
 
 .custom-input:hover {
     background: #eeeeee;
@@ -34,23 +24,10 @@ form {
     width: 100%;
 }
 
-.custom-input {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 15px;
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #fafafa;
-  border: 1px solid #eeeeee;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    border-radius: 4px;
-}
+
 
 .custom-button {
+    margin:0 15px;
     width: 50%;
     background-color: #00897B;
     color: #FFFFFF;
@@ -72,9 +49,14 @@ form {
 .input-row{
     display: flex;
     width: 100%;
+  margin-bottom: 15px;
+
 }
 .input-pair{
     width:100%;
+  label{
+    margin-bottom: 15px;
+  }
 }
 .input-pair:not(:last-of-type){
     width: 100%;

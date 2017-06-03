@@ -21,21 +21,17 @@
 </div>
 </div>
 
-<div class="result" *ngIf="notEmpty===true">
-  <i class="fa fa-angle-left" aria-hidden="true" (click)="notEmpty=false"></i>
-  <div class="memory" *ngFor="let memory of friendMemories">
+
+<div class="action-icons"  *ngIf="notEmpty===true" (click)="notEmpty=false">
+  <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <h6>Back</h6>
+</div>
+<div class="results" *ngIf="notEmpty===true">
+    <div class="memory" *ngFor="let memory of friendMemories">
     <img [src]="memory.mainPicture" class="memory-header">
     <div class="memory-body">
       <ul class="action-list">
-        <li class="action-edit">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-          <h5>Edit</h5>
-        </li>
-        <li class="action-delte" (click)="deleteMemory(memory.memoryId)">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-          <h5>Delete</h5>
-        </li>
-        <li class="action-see">
+        <li class="action-see" (click)="seeMemory(memory.memoryId, memory.title , memory.memoryLocation, memory.mainPicture, memory.description, memory.date, memory.privacy)">
           <i class="fa fa-eye" aria-hidden="true"></i>
           <h5>See more</h5>
         </li>

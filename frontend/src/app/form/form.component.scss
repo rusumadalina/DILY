@@ -1,9 +1,22 @@
 @import "../app.component.scss";
-
+@import "../../assets/alert.scss";
+.input-pair{
+  width:100%;
+  margin-bottom: 15px;
+  label{
+    margin-bottom: 15px;
+  }
+}
+.custom-button{
+  background-color: $main-green;
+}
 @media (max-width: 900px){
  label{
       color: #FFFFFF;
  }
+.wrapper{
+  background-color: transparent;
+}
  .custom-button{
    background-color: transparent ;
    border: 2px solid #FFFFFF;

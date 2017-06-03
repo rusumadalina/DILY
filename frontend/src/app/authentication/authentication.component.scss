@@ -41,6 +41,7 @@
         height: 45px;
         background-color: transparent;
         border: none;
+        border-bottom: 3px solid transparent;
         margin-right: 30px;
         font-size: 20px;
         box-sizing: border-box;
@@ -53,17 +54,17 @@
   }
 }
 .my-class {
-    border-bottom: 3px solid #00897B !important;
+    border-bottom: 3px solid $main-green !important;
     pointer-events: none;
 }
 @media (max-width: 900px){
   .icon-container{
-    padding: 40px;
+    padding: 40px !important;
   }
   .wrapper{
-    width:100%;
-    background-color:transparent;
-    box-shadow: none;
+    width:100% !important;
+    background-color:transparent !important;
+    box-shadow: none !important;
   }
   .buttons-menu button{
     color: #FFFFFF;
@@ -71,11 +72,15 @@
   .my-class{
     border-color: #FFFFFF !important;
   }
+  .custom-button{
+    background-color: $white !important;
+    color:$main-blue !important;
+  }
 }
 @media (min-width:900px){
   .buttons-menu button:hover{
-  border-bottom: 3px solid #00897B !important;
-}
+    border-bottom: 3px solid $main-green !important;
+  }
 }
 
 

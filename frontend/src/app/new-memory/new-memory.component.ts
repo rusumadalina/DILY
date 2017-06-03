@@ -20,17 +20,17 @@ export class NewMemoryComponent implements OnInit {
   tags=[];
   files=[];
   files2=[];
-  curentStep: number;
+  step:string;
   constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef, private _router: Router) {
     this.toggle=false;
     this.curent_user = JSON.parse(localStorage.getItem('user'));
     this.files2=JSON.parse(localStorage.getItem('pictures'));
     this.memId=localStorage.getItem('memory');
-    this.curentStep=1;
     if(localStorage.getItem('step')===null){
       localStorage.setItem('step','1');
+      this.step='1';
     }else{
-      this.curentStep = parseInt(localStorage.getItem('step'));
+      this.step=localStorage.getItem('step');
     }
   }
 
@@ -85,15 +85,12 @@ export class NewMemoryComponent implements OnInit {
         console.log(data);},
       error => {console.log('nu ai postat'); }
     );
-    //this.curentStep=parseInt(localStorage.getItem('step'));
+    this.step='2';
     localStorage.setItem('step','2');
-    this.curentStep=parseInt(localStorage.getItem('step'));
-    //this._router.navigate(['dashboard']);
-
   }
+
   selectFriends(id: number){
     let aux=false;
-   // if(this.tagged.filter(tagg => tagg.name === this.tagged.name))
 
     for(let index of this.tagged){
       if(index === id){
@@ -107,7 +104,6 @@ export class NewMemoryComponent implements OnInit {
     console.log(this.tagged);
   }
   submitTagged(){
-    this.curentStep=parseInt(localStorage.getItem('step'));
       let array=[];
       for(let index of this.tagged){
         array.push({"friendId": index})
@@ -116,15 +112,14 @@ export class NewMemoryComponent implements OnInit {
       (data) => {
         localStorage.removeItem('pictures');
         localStorage.removeItem('memoryId');
-        localStorage.removeItem('step');
+
       },
       (err) => alert(err));
 
-
+      localStorage.setItem('step','1');
   }
 
   submitTags(addTags: any){
-    this.curentStep=parseInt(localStorage.getItem('step'));
     let array1= addTags.tags.split(' ');
 
     for (let item of array1){
@@ -136,7 +131,6 @@ export class NewMemoryComponent implements OnInit {
       (data) => {console.log(data); },
       (err) => alert(err));
     localStorage.setItem('step','4');
-    this.curentStep=parseInt(localStorage.getItem('step'));
   }
 
   onChangeMedia(event) {
@@ -164,6 +158,9 @@ export class NewMemoryComponent implements OnInit {
       (data) => {console.log(data); localStorage.removeItem('pictures'); },
       (err) => alert(err));
     localStorage.setItem('step','3');
-    this.curentStep=parseInt(localStorage.getItem('step'));
+  }
+  setStep(number:string){
+    localStorage.setItem('step',number);
+    this.step=localStorage.getItem('step');
   }
 }

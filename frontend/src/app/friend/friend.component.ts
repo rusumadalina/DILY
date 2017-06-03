@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FriendService} from './friend.service';
 import {Friend} from '../model/friend.model';
 import {Memory} from "../model/memory.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-friend',
@@ -16,7 +17,7 @@ export class FriendComponent implements OnInit {
   friend: Friend;
   notEmpty: boolean;
   alert:boolean;
-  constructor(private friendService: FriendService) {
+  constructor(private friendService: FriendService, private  _router: Router) {
     this.curent_user_id=JSON.parse(localStorage.getItem('user'))['user_id'];
     this.notEmpty = false;
     this.alert = false;
@@ -67,4 +68,17 @@ export class FriendComponent implements OnInit {
     }
   }
 
+  seeMemory(id: number, title: string , location: string, picture: string, description: string, date: string, privacy:string){
+    let aux: string;
+    aux=id.toString();
+    localStorage.setItem('memory',aux);
+    localStorage.setItem('memory-title',title);
+    localStorage.setItem('memory-location',location);
+    localStorage.setItem('memory-picture',picture);
+    localStorage.setItem('memory-description',description);
+    localStorage.setItem('memory-date',date);
+    localStorage.setItem('memomory-privacy', privacy);
+    this._router.navigate(['../memories']);
+
+  }
 }

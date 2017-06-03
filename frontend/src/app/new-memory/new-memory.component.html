@@ -1,37 +1,81 @@
-<ul class="process-steps">
-  <!--BASIC MEMORY -->
-  <li (click)="curentStep=1">
-    <span class="step-number">1</span>
-    <h4>Add details</h4>
-  </li>
-  <!--ADD MEDIA-->
-  <li (click)="curentStep=2">
-    <span class="step-number">2</span>
-    <h4>Add media</h4>
-  </li>
-  <!--ADD TAGS-->
-  <li (click)="curentStep=3">
-    <span class="step-number">3</span>
-    <h4>Add tags</h4>
-  </li>
-  <!--ADD TAGGED FRIENDS-->
-  <li (click)="curentStep=4">
-    <span class="step-number">4</span>
-    <h4>Add friends</h4>
-  </li>
-</ul>
+<div  class="acordion-item"><h4>Main Details</h4></div>
+<div class="results-container" *ngIf="step==='1'">
+  <form #addMemory="ngForm">
+    <input  type="file"
+            id="profile"
+            name="profile"
+            class="custom-input"
+            enctype="multipart/form-data"
+            (change)="onChange($event)"
+            ngModel>
+    <input type="text"
+           placeholder="Title"
+           class="custom-input"
+           id="title"
+           required="required"
+           name="title"
+           #title="ngModel"
+           ngModel
+           minlength="4"
+           maxlength="30">
+    <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+      <div [hidden]="!title.errors.required">Title is required</div>
+      <div [hidden]="!title.errors.minlength">Title must be 4 characters long</div>
+      <div [hidden]="!title.errors.maxlength">Title must have maxim 30 characters</div>
+    </div>
+  <textarea
+    type="text"
+    placeholder="Add a description"
+    class="custom-input"
+    id="description"
+    required="required"
+    name="description"
+    #description="ngModel"
+    ngModel
+    minlength="4"></textarea>
+    <div *ngIf="description.errors && (description.dirty || description.touched)" class="alert alert-danger">
+      <div [hidden]="!description.errors.required">Description is required</div>
+      <div [hidden]="!description.errors.minlength">Description must be 4 characters long</div>
+    </div>
+  <input
+    type="text"
+    placeholder="City, Country"
+    class="custom-input"
+    id="location"
+    required="required"
+    name="location"
+    #location="ngModel"
+    ngModel
+    minlength="4"
+    maxlength="30">
+    <div *ngIf="location.errors && (location.dirty || location.touched)" class="alert alert-danger">
+      <div [hidden]="!location.errors.required">Location is required</div>
+      <div [hidden]="!location.errors.minlength">Location must be 4 characters long</div>
+      <div [hidden]="!location.errors.maxlength">Location must have maxim 30 characters</div>
+    </div>
+  <input
+    type="date"
+    placeholder="Date"
+    class="custom-input"
+    id="date"
+    required="required"
+    name="date"
+    #date="ngModel"
+    ngModel >
+    <div *ngIf="date.errors && (date.dirty || date.touched)" class="alert alert-danger">
+      <div [hidden]="!date.errors.required">Location is required</div>
+    </div>
 
-<div class="results-container">
-  <form #addMemory="ngForm" *ngIf="curentStep===1">
-    <input  type="file" id="profile" name="profile" class="custom-input" enctype="multipart/form-data"
-            (change)="onChange($event)" ngModel>
-
-    <input type="text" placeholder="Title" class="custom-input" id="title" required="required" name="title" #title="ngModel" ngModel  minlength="4" maxlength="30">
-  <textarea type="text" placeholder="Add a description" class="custom-input" id="description" required="required" name="description" #description="ngModel" ngModel  minlength="4"></textarea>
-  <input type="text" placeholder="City, Country" class="custom-input" id="location" required="required" name="location" #location="ngModel" ngModel  minlength="4" maxlength="30">
-  <input type="date" placeholder="Date" class="custom-input" id="date" required="required" name="date" #date="ngModel" ngModel >
   <div class="simple-dropdown">
-    <input type="text" placeholder="Privacy" class="simple-input" id="privacy"  name="privacy" #privacy="ngModel" [(ngModel)]="text" (click)="setToggle($event)" readonly="readonly">
+    <input type="text"
+           placeholder="Privacy"
+           class="simple-input"
+           id="privacy"
+           name="privacy"
+           #privacy="ngModel"
+           [(ngModel)]="text"
+           (click)="setToggle($event)"
+           readonly="readonly">
     <label for="privacy" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
     <ul class="dropdown-container" *ngIf="toggle===true" >
       <li (click)="setSearch('private')"><a>Private</a></li>
@@ -40,11 +84,36 @@
     </ul>
   </div>
 
-    <a class="custom-button" (click)="submitMemory(addMemory.value)" >Next Step</a>
+    <button class="custom-button" (click)="submitMemory(addMemory.value)" [disabled]='!addMemory.form.valid'>Next Step</button>
 
   </form>
+</div>
 
-  <form #addFriends="ngForm" *ngIf="curentStep===4">
+
+<div  class="acordion-item"><h4>Add Media</h4></div>
+<div class="results-container" *ngIf="step==='2'">
+  <form #addMedia="ngForm">
+    <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
+            (change)="onChangeMedia($event)" ngModel>
+
+    <div *ngFor="let image of files2">
+      <img [src]="image" class="profile-picture">
+    </div>
+    <button class="custom-button" (click)="submitMedia()">Next Step</button>
+  </form>
+</div>
+
+<div (click)="setStep('3')" class="acordion-item"><h4>Add Tags</h4></div>
+<div class="results-container" *ngIf="step==='3'">
+  <form #addTags="ngForm">
+    <input type="text" placeholder="tags" class="custom-input" id="tags"  name="tags" #tags="ngModel" ngModel>
+    <button class="custom-button" (click)="submitTags(addTags.value)">Next Step</button>
+  </form>
+</div>
+
+<div  class="acordion-item"><h4>Tagged Friends</h4></div>
+<div class="results-container" *ngIf="step==='4'">
+  <form #addFriends="ngForm" >
     <div class="simple-dropdown">
       <input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
       <label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
@@ -54,20 +123,7 @@
     </div>
     <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Finish</button>
   </form>
-
-  <form #addTags="ngForm" *ngIf="curentStep===3">
-    <input type="text" placeholder="tags" class="simple-input" id="tags"  name="tags" #tags="ngModel" ngModel>
-    <button class="custom-button" (click)="submitTags(addTags.value)">Next Step</button>
-  </form>
-
-  <form #addMedia="ngForm" *ngIf="curentStep===2">
-    <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
-            (change)="onChangeMedia($event)" ngModel>
-
-    <div *ngFor="let image of files2">
-      <img [src]="image" class="profile-picture">
-    </div>
-    <button class="custom-button" (click)="submitMedia()">Next Step</button>
-  </form>
-
 </div>
+
+
+

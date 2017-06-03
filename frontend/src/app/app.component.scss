@@ -30,7 +30,10 @@ app-settings , app-tagged{
   -webkit-transition-timing-function: linear,linear,ease;
   transition-timing-function: linear,linear,ease;
 }
-
+.alert{
+  padding: 10px 0;
+  margin-bottom: 15px;
+}
 body{
   width:100vw;
   height: 100vh;
@@ -61,7 +64,7 @@ app-left-menu /deep/{
   display: flex;
 
   .right-container {
-    width: 95%;
+    width: 80%;
     background-color: #fafafa;
     .right-inside-container{
       padding:0 30px 30px 30px;
@@ -203,6 +206,23 @@ form {
     cursor:pointer;
   }
 }
+.action-icons{
+  width: 100%;
+  display: flex;
+  margin: 15px 0;
+  align-items: center;
+  i{
+    margin-right: 15px;
+    color: $main-blue;
+    font-size: 2em;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+  &:active, &:focus{
+    outline: none;
+  }
+}
 .custom-button[disabled] {
   background-color: #fafafa;
   color: #e9e9e9;
@@ -217,9 +237,7 @@ app-form{
 }
 
 
-app-form{
-  width: 100%;
-}
+
 /*test*/
 
 .main-container.resize{
