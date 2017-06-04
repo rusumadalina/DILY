@@ -20,6 +20,7 @@ export class NewMemoryComponent implements OnInit {
   tags=[];
   files=[];
   files2=[];
+  names=[];
   step:string;
   type:string;
   constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef, private _router: Router) {
@@ -94,20 +95,33 @@ export class NewMemoryComponent implements OnInit {
     localStorage.setItem('step','2');
   }
 
-  selectFriends(id: number){
+  selectFriends(id: number, name:string){
     let aux=false;
-
+    // if(this.tagged.filter(tagg => tagg.name === this.tagged.name))
     for(let index of this.tagged){
       if(index === id){
         aux=true;
         this.tagged.splice(this.tagged.indexOf(index),1);
+        for(let friend of this.names){
+          if(friend === name){
+            this.names.splice(this.names.indexOf(friend),1);
+          }
+        }
       }
     }
     if(aux===false){
       this.tagged.push(id);
+      for(let friend of this.friends){
+        if(friend.friendId === id){
+          this.names.push(friend.name)
+        }
+      }
+
     }
     console.log(this.tagged);
+    console.log(this.names)
   }
+
   submitTagged(){
       let array=[];
       for(let index of this.tagged){

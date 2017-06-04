@@ -64,8 +64,8 @@
 
 <div (click)="setStep('2')" class="acordion-item"><h4>Edit Medias</h4></div>
 <div class="results-container" *ngIf="step==='2'">
-  <input  type="file" id="profile2" name="profile" class="custom-input" enctype="multipart/form-data"
-          (change)="onChange2($event)" ngModel>
+
+  <h4 *ngIf="medias.length > 0">Old Media</h4>
   <div class="images">
     <span  *ngFor="let media of medias" class="media">
       <img *ngIf="media.mediaType==='image'" [src]="media.mediaPath">
@@ -78,8 +78,13 @@
     </span>
   </div>
 
+  <input  type="file" id="profile2" name="profile" class="custom-input" enctype="multipart/form-data"
+          (change)="onChange2($event)" ngModel>
+  <h4 *ngIf="files2.length>0">New Media</h4>
   <div class="images">
-    <img [src]="image"*ngFor="let image of files2">
+    <span class="media">
+          <img [src]="image"*ngFor="let image of files2">
+    </span>
   </div>
 
   <a class="custom-button" (click)="savePictures()">Save changes</a>
@@ -104,9 +109,6 @@
 
 <div (click)="setStep('4')" class="acordion-item"><h4>Edit Tagged Friends</h4></div>
 <div class="results-container" *ngIf="step==='4'">
-  <div class="selected-friends">
-    <h5 *ngFor="let friend of localFriends"></h5>
-  </div>
   <div class="friends-container">
     <div class="tag" *ngFor="let friend of users">
       <h4>{{friend.name}}</h4>

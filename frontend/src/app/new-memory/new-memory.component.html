@@ -47,11 +47,13 @@
     #location="ngModel"
     ngModel
     minlength="4"
-    maxlength="30">
+    maxlength="30"
+    pattern="[A-Za-z]{4,}(, )[A-Za-z]{4,}">
     <div *ngIf="location.errors && (location.dirty || location.touched)" class="alert alert-danger">
       <div [hidden]="!location.errors.required">Location is required</div>
       <div [hidden]="!location.errors.minlength">Location must be 4 characters long</div>
       <div [hidden]="!location.errors.maxlength">Location must have maxim 30 characters</div>
+      <div [hidden]="!location.errors.pattern">Location must be the type 'City, Country'</div>
     </div>
   <input
     type="date"
@@ -96,8 +98,13 @@
     <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
             (change)="onChangeMedia($event)" ngModel>
 
-    <div class="images" >
-      <img [src]="image"  *ngFor="let image of files2" class="profile-picture">
+    <div class="images" *ngIf="type==='image'">
+      <span *ngFor="let image of files2" class="media">
+        <img [src]="image"   class="profile-picture"  *ngIf="type==='image'">
+         <video width="400"   *ngIf="type==='video'"  controls>
+            <source [src]="image" >
+          </video>
+      </span>
     </div>
     <button class="custom-button" (click)="submitMedia()">Next Step</button>
   </form>
@@ -106,19 +113,34 @@
 <div (click)="setStep('3')" class="acordion-item"><h4>Add Tags</h4></div>
 <div class="results-container" *ngIf="step==='3'">
   <form #addTags="ngForm">
-    <input type="text" placeholder="tags" class="custom-input" id="tags"  name="tags" #tags="ngModel" ngModel>
-    <button class="custom-button" (click)="submitTags(addTags.value)">Next Step</button>
+    <input type="text"
+           placeholder="tags"
+           class="custom-input"
+           id="tags"
+           name="tags"
+           #tags="ngModel"
+           ngModel
+           pattern="((#){1}[A-Za-z]+)+">
+    <div *ngIf="tags.errors && (tags.dirty || tags.touched)" class="alert alert-danger">
+      <div [hidden]="!tags.errors.pattern">The format must be '#tag1#tag2#tag3...'</div>
+    </div>
+    <button class="custom-button" (click)="submitTags(addTags.value)" [disabled]='!addTags.form.valid'>Next Step</button>
   </form>
 </div>
 
 <div  class="acordion-item"><h4>Tagged Friends</h4></div>
 <div class="results-container" *ngIf="step==='4'">
+  <div class="tags-container">
+    <div class="tag" *ngFor="let friend of names">
+      <h4>{{friend}}</h4>
+    </div>
+  </div>
   <form #addFriends="ngForm" >
     <div class="simple-dropdown">
       <input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
       <label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
       <ul class="dropdown-container" *ngIf="toggle===true" >
-        <li *ngFor="let friend of friends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>
+        <li *ngFor="let friend of friends" (click)="selectFriends(friend.friendId, friend.name)" ><a>{{friend.name}}</a></li>
       </ul>
     </div>
     <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Finish</button>
