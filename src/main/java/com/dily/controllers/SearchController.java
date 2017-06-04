@@ -22,37 +22,28 @@ public class SearchController {
 
     @RequestMapping(value = "search/tag/{word}", method = RequestMethod.GET)
     public ResponseEntity<List<Memory>> getAllMemories(@PathVariable String word) throws SQLException {
-        SearchService searchMemByTag = new SearchService();
 
+        SearchService searchMemByTag = new SearchService();
         List<Memory> all = searchMemByTag.findByTag(word);
-        /*
-        for (int i=0; i<all.size(); i++){
-            System.out.println(all.get(i).getTitle());
-            System.out.println(all.get(i).getDescription());
-            System.out.println(all.get(i).getMainPicture());
-            System.out.println(all.get(i).getDate());
-            System.out.println(all.get(i).getMemoryLocation());
-        }
-        */
+
         return new ResponseEntity<List<Memory>>(all, HttpStatus.OK);
     }
 
     @RequestMapping(value = "search/friends/{word}/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<FriendModel>> getFriends(@PathVariable String word,@PathVariable int id) throws SQLException {
-        SearchService searchService = new SearchService();
 
+        SearchService searchService = new SearchService();
         List<FriendModel> all =searchService.findFriends(word,id);
-        for (int i=0; i<all.size(); i++){
-            System.out.println(all.get(i).getDateFriends());
-        }
+
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 
     @RequestMapping(value = "search/newFriends/{word}/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<FriendModel>> getNewFriends(@PathVariable String word,@PathVariable int id) throws SQLException {
-        SearchService searchService = new SearchService();
 
+        SearchService searchService = new SearchService();
         List<FriendModel> all =searchService.findNewFriends(word,id);
+
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
     }
 
@@ -69,14 +60,13 @@ public class SearchController {
 
     @RequestMapping(value = "search/newFriends/view/{username}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> viewAllMemories (@PathVariable String username) throws SQLException {
+
         byte[] decodedBytes = Base64.getDecoder().decode(username);
         String decodedString = new String(decodedBytes);
+
         SearchService searchService = new SearchService();
         List<MemoryModel> all = searchService.findMemoriesInTimeline(decodedString);
-        /*
-        for (int i=0; i<all.size();i++){
-            System.out.println(all.get(i).getTitle());
-        }*/
+
         return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
     }
 

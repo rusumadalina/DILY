@@ -22,8 +22,8 @@ import java.util.List;
 public class FriendController {
     @RequestMapping(value = "/friends/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<FriendModel>> getAllEarthquakes(@PathVariable int id) throws SQLException {
-        FriendService friendService = new FriendService();
 
+        FriendService friendService = new FriendService();
         List<FriendModel> all =  friendService.getAllFriends(id);
 
         return new ResponseEntity<List<FriendModel>>(all, HttpStatus.OK);
@@ -31,28 +31,30 @@ public class FriendController {
 
     @RequestMapping(value = "/friends/delete/{userId}/{friendId}", method = RequestMethod.GET)
     public ResponseEntity<Integer> delete(@PathVariable int userId, @PathVariable int friendId) throws SQLException {
+
         FriendService friendService = new FriendService();
         friendService.deletePair(userId,friendId);
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/friends/deleteSearch/{username}/{id}", method = RequestMethod.GET)
     public ResponseEntity<Integer> deleteSearch(@PathVariable String username, @PathVariable int id) throws SQLException {
-        //System.out.println(username+" "+id);
+
         byte[] decodedBytes = Base64.getDecoder().decode(username);
         String decodedString = new String(decodedBytes);
-        //System.out.println(decodedString);
+
         FriendService friendService = new FriendService();
 
         int id2 = friendService.findUserByUsername(decodedString);
         friendService.deletePair(id,id2);
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "/friends/view/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> viewAllMemoriers (@PathVariable int id) throws SQLException {
-
 
         FriendService friendService = new FriendService();
 

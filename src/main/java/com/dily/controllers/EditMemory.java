@@ -35,14 +35,6 @@ public class EditMemory {
     @RequestMapping(value = "/addDocument", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     public ResponseEntity<Integer> addFriendsToMemory(@PathVariable int id, @RequestBody AddMemoryModel addMemoryModel) throws SQLException {
 
-//        System.out.println(id);
-//        System.out.println(addMemoryModel.getTitle());
-//        System.out.println(addMemoryModel.getDescription());
-//        System.out.println(addMemoryModel.getMemoryLocation());
-//        System.out.println(addMemoryModel.getDate());
-//        System.out.println(addMemoryModel.getPrivacy());
-//        System.out.println(addMemoryModel.getMainPicture());
-
         EditMemoryService editMemoryService = new EditMemoryService();
         editMemoryService.editMemory(id,addMemoryModel);
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
@@ -51,7 +43,7 @@ public class EditMemory {
     @RequestMapping(value = "/editMemory/deleteMedia/{id}", method = RequestMethod.POST)
     public ResponseEntity<Integer> deleteMedia(@PathVariable int id) throws SQLException {
 
-        System.out.println(id);
+
         EditMemoryService editMemoryService = new EditMemoryService();
         editMemoryService.deleteMedia(id);
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
@@ -59,8 +51,6 @@ public class EditMemory {
 
     @RequestMapping(value = "/editMemory/deleteTags/{idTag}/{idMem}", method = RequestMethod.POST)
     public ResponseEntity<Integer> deleteTag(@PathVariable int idTag, @PathVariable int idMem) throws SQLException {
-
-
 
         EditMemoryService editMemoryService = new EditMemoryService();
         editMemoryService.deleteTag(idTag,idMem);
@@ -85,8 +75,6 @@ public class EditMemory {
 
     @RequestMapping(value = "/editMemory/{id}", method = RequestMethod.POST)
     public ResponseEntity<Integer> editMemory(@PathVariable int id, @RequestBody AddMemoryModel addMemoryModel) throws SQLException {
-
-
 
         EditMemoryService editMemoryService = new EditMemoryService();
         editMemoryService.editMemory(id, addMemoryModel);

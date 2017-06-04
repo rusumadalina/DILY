@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
         error => {alert(error) },
         () => console.log('Finished')
       );
+    window.location.reload();
   }
 
   confirmPassword(register:any){

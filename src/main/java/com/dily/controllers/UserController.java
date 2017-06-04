@@ -54,7 +54,6 @@ public class UserController {
         user = authentication.findByUsernameAndPassword(username, password);
 
         if (user.getUsername() != null && user.getName() != null && user.getEmail() != null && user.getDateOfBirth() != null) {
-
             return new ResponseEntity<User>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
@@ -66,24 +65,21 @@ public class UserController {
     public ResponseEntity<Integer> signup(@RequestBody UserModelRegister usermodel) throws SQLException {
 
         RegistrationService registrationService = new RegistrationService();
-        JSONObject jsonMessage = new JSONObject();
+
 
         String email = usermodel.getEmail();
         String username = usermodel.getUsername();
 
         if (registrationService.findByEmail(email) == true) {
-            //jsonMessage.put("reason","email");
             return new ResponseEntity<Integer>(-1, HttpStatus.NOT_FOUND);
         }
 
         if (registrationService.findByUsername(username) == true) {
-            //jsonMessage.put("reason","username");
             return new ResponseEntity<Integer>(0, HttpStatus.NOT_FOUND);
         }
 
         registrationService.addNewUser(usermodel);
         int id = registrationService.findIdByEmail(email);
-        //jsonMessage.put("id_nou",id);
         return new ResponseEntity<Integer>(id, HttpStatus.OK);
 
     }
@@ -93,7 +89,7 @@ public class UserController {
 
         SettingsService settingsService = new SettingsService();
         settingsService.update(user);
-        //System.out.println("salut");
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
 
 
@@ -104,6 +100,7 @@ public class UserController {
 
         UploadService uploadService = new UploadService();
         uploadService.upload(request, "/profilePictures");
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
@@ -112,6 +109,7 @@ public class UserController {
 
         SettingsService settingsService = new SettingsService();
         settingsService.delete(id);
+
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 }

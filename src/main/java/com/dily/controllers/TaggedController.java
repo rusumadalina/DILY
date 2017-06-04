@@ -19,12 +19,10 @@ public class TaggedController {
 
     @RequestMapping(value = "/tagged/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<MemoryModel>> viewAllMemoriers (@PathVariable int id) throws SQLException {
+
         TaggedService taggedService = new TaggedService();
         List<MemoryModel> all = taggedService.taggedInMemories(id);
-        /*
-        for (int i=0; i<all.size();i++){
-            System.out.println(all.get(i).getTitle());
-        }*/
+
         return new ResponseEntity<List<MemoryModel>>(all, HttpStatus.OK);
     }
 }

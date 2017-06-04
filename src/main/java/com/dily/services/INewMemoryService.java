@@ -1,6 +1,5 @@
 package com.dily.services;
 
-import com.dily.controllers.NewMemory;
 import com.dily.models.AddMemoryModel;
 
 import java.sql.SQLException;

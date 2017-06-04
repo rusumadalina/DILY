@@ -50,7 +50,6 @@ public class AddDocumentController {
         return new ResponseEntity<List<Documents>>(all, HttpStatus.OK);
     }
 
-    //pi/addDocuments/deleteDocuments/' + userId+'/'+id,
 
     @RequestMapping(value = "/addDocuments/deleteDocuments/{userId}/{docId}", method = RequestMethod.GET)
     public ResponseEntity<Integer> delete(@PathVariable int userId, @PathVariable int docId) throws SQLException {
