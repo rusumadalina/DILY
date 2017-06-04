@@ -1,3 +1,7 @@
+<div class="action-icons"  routerLink="../memories">
+  <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <h6>Back</h6>
+</div>
 <div (click)="setStep('1')" class="acordion-item"><h4>Main Details</h4></div>
 <div class="results-container" *ngIf="step==='1'">
   <form #addMemory="ngForm" >
@@ -62,24 +66,22 @@
 <div class="results-container" *ngIf="step==='2'">
   <input  type="file" id="profile2" name="profile" class="custom-input" enctype="multipart/form-data"
           (change)="onChange2($event)" ngModel>
-  <div  class="masonry">
-    <div  *ngFor="let media of medias">
-      <div *ngIf="media.mediaType==='image'">
-        <img  [src]="media.mediaPath">
-        <i class="fa fa-trash" aria-hidden="true" (click)="deleteMedia(media.mediaId)"></i>
+  <div class="images">
+    <span  *ngFor="let media of medias" class="media">
+      <img *ngIf="media.mediaType==='image'" [src]="media.mediaPath">
+      <video width="400" controls *ngIf="media.mediaType==='video'">
+        <source [src]="media.mediaPath" >
+      </video>
+      <div class="remove-container"(click)="deleteMedia(media.mediaId)">
+        <i class="fa fa-trash" aria-hidden="true" ></i>
       </div>
-      <div *ngIf="media.mediaType==='video'">
-        <video width="400" controls *ngFor="let media of medias">
-          <source [src]="media.mediaPath" >
-        </video>
-        <i class="fa fa-trash" aria-hidden="true" (click)="deleteMedia(media.mediaId)"></i>
-
-      </div>
-    </div>
-    <div *ngFor="let image of files2">
-      <img [src]="image">
-    </div>
+    </span>
   </div>
+
+  <div class="images">
+    <img [src]="image"*ngFor="let image of files2">
+  </div>
+
   <a class="custom-button" (click)="savePictures()">Save changes</a>
 </div>
 
@@ -102,17 +104,25 @@
 
 <div (click)="setStep('4')" class="acordion-item"><h4>Edit Tagged Friends</h4></div>
 <div class="results-container" *ngIf="step==='4'">
+  <div class="selected-friends">
+    <h5 *ngFor="let friend of localFriends"></h5>
+  </div>
   <div class="friends-container">
     <div class="tag" *ngFor="let friend of users">
       <h4>{{friend.name}}</h4>
       <i class="fa fa-trash" aria-hidden="true" (click)="deleteTagged(friend.username)"></i>
     </div>
   </div>
+  <div class="friends-container">
+    <div class="tag" *ngFor="let friend of names">
+      <h4>{{friend}}</h4>
+    </div>
+  </div>
   <div class="simple-dropdown">
-    <input type="text" placeholder="Privacy" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
+    <input type="text" placeholder="Select Friends" class="simple-input" id="tagged"  name="tagged" #tagged="ngModel" ngModel (click)="setToggle($event)" readonly="readonly">
     <label for="tagged" class="arrow-down" [ngClass]="{'rotate': toggle }"></label>
     <ul class="dropdown-container" *ngIf="toggle===true" >
-      <li *ngFor="let friend of localFriends" (click)="selectFriends(friend.friendId)" ><a>{{friend.name}}</a></li>
+      <li *ngFor="let friend of localFriends" (click)="selectFriends(friend.friendId, friend.name)" ><a>{{friend.name}}</a></li>
     </ul>
   </div>
   <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Save changes</button>

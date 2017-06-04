@@ -21,6 +21,7 @@ export class NewMemoryComponent implements OnInit {
   files=[];
   files2=[];
   step:string;
+  type:string;
   constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef, private _router: Router) {
     this.toggle=false;
     this.curent_user = JSON.parse(localStorage.getItem('user'));
@@ -32,6 +33,9 @@ export class NewMemoryComponent implements OnInit {
       console.log(this.step);
     }else{
       this.step=localStorage.getItem('step');
+    }
+    if(localStorage.getItem('type')!= null){
+      this.type=localStorage.getItem('type');
     }
   }
 
@@ -139,7 +143,13 @@ export class NewMemoryComponent implements OnInit {
 
   onChangeMedia(event) {
     const files = event.srcElement.files;
-
+    if(files[0].type==='video/mp4'){
+      localStorage.setItem('type','video');
+      this.type='video';
+    }else{
+      localStorage.setItem('type','image');
+      this.type='image';
+    }
     if(JSON.parse(localStorage.getItem('pictures'))!=null){
       const aux=JSON.parse(localStorage.getItem('pictures'));
       aux.push('assets/images/memory/'+files[0].name);

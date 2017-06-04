@@ -26,6 +26,7 @@ export class EditMemoryComponent implements OnInit {
   toggle: boolean;
   localFriends=[];
   tagged=[];
+  names=[];
   step:string;
   constructor(private memoryService: MemoryService,  private eRef: ElementRef, private newMemoryService: NewMemoryService, private editMemoryService: EditMemoryService) {
     this.curentMemory= new AddMemory(localStorage.getItem('memory-title'),localStorage.getItem('memory-description'),localStorage.getItem('memory-location'),localStorage.getItem('memory-date'),localStorage.getItem('memory-privacy'),localStorage.getItem('memory-picture'));
@@ -64,20 +65,31 @@ export class EditMemoryComponent implements OnInit {
 
 
   }
-  selectFriends(id: number){
+  selectFriends(id: number, name:string){
     let aux=false;
     // if(this.tagged.filter(tagg => tagg.name === this.tagged.name))
-
     for(let index of this.tagged){
       if(index === id){
         aux=true;
         this.tagged.splice(this.tagged.indexOf(index),1);
+        for(let friend of this.names){
+          if(friend === name){
+            this.names.splice(this.names.indexOf(friend),1);
+          }
+        }
       }
     }
     if(aux===false){
       this.tagged.push(id);
+      for(let friend of this.localFriends){
+        if(friend.friendId === id){
+          this.names.push(friend.name)
+        }
+      }
+
     }
     console.log(this.tagged);
+    console.log(this.names)
   }
 
 
