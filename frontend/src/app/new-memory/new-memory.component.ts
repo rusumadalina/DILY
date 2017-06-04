@@ -29,6 +29,7 @@ export class NewMemoryComponent implements OnInit {
     if(localStorage.getItem('step')===null){
       localStorage.setItem('step','1');
       this.step='1';
+      console.log(this.step);
     }else{
       this.step=localStorage.getItem('step');
     }
@@ -117,6 +118,7 @@ export class NewMemoryComponent implements OnInit {
       (err) => alert(err));
 
       localStorage.setItem('step','1');
+
   }
 
   submitTags(addTags: any){
@@ -131,6 +133,8 @@ export class NewMemoryComponent implements OnInit {
       (data) => {console.log(data); },
       (err) => alert(err));
     localStorage.setItem('step','4');
+    this.step='4';
+    localStorage.removeItem('pictures');
   }
 
   onChangeMedia(event) {
@@ -158,6 +162,7 @@ export class NewMemoryComponent implements OnInit {
       (data) => {console.log(data); localStorage.removeItem('pictures'); },
       (err) => alert(err));
     localStorage.setItem('step','3');
+    this.step='3';
   }
   setStep(number:string){
     localStorage.setItem('step',number);

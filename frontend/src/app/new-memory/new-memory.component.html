@@ -96,8 +96,8 @@
     <input  type="file" id="pictures" name="pictures" class="custom-input" enctype="multipart/form-data"
             (change)="onChangeMedia($event)" ngModel>
 
-    <div *ngFor="let image of files2">
-      <img [src]="image" class="profile-picture">
+    <div class="images" >
+      <img [src]="image"  *ngFor="let image of files2" class="profile-picture">
     </div>
     <button class="custom-button" (click)="submitMedia()">Next Step</button>
   </form>
