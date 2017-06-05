@@ -26,7 +26,7 @@ export class NewMemoryComponent implements OnInit {
   constructor(private newMemoryService: NewMemoryService, private eRef: ElementRef, private _router: Router) {
     this.toggle=false;
     this.curent_user = JSON.parse(localStorage.getItem('user'));
-    this.files2=JSON.parse(localStorage.getItem('pictures'));
+    this.files2=JSON.parse(localStorage.getItem('pictures2'));
     this.memId=localStorage.getItem('memory');
     if(localStorage.getItem('step')===null){
       localStorage.setItem('step','1');
@@ -129,7 +129,7 @@ export class NewMemoryComponent implements OnInit {
       }
     this.newMemoryService.postTagged(array, this.memId).subscribe(
       (data) => {
-        localStorage.removeItem('pictures');
+        localStorage.removeItem('pictures2');
         localStorage.removeItem('memoryId');
 
       },
@@ -140,10 +140,13 @@ export class NewMemoryComponent implements OnInit {
   }
 
   submitTags(addTags: any){
-    let array1= addTags.tags.split(' ');
+    let array1= addTags.tags.split('#');
 
     for (let item of array1){
-      this.tags.push({"tagName":item.split('#')[1]});
+      if(item!=""){
+        this.tags.push({"tagName":item});
+
+      }
     }
     console.log(this.tags);
     this.newMemoryService.postTags(this.tags, this.memId).subscribe(
@@ -152,7 +155,7 @@ export class NewMemoryComponent implements OnInit {
       (err) => alert(err));
     localStorage.setItem('step','4');
     this.step='4';
-    localStorage.removeItem('pictures');
+    localStorage.removeItem('pictures2');
   }
 
   onChangeMedia(event) {
@@ -164,14 +167,14 @@ export class NewMemoryComponent implements OnInit {
       localStorage.setItem('type','image');
       this.type='image';
     }
-    if(JSON.parse(localStorage.getItem('pictures'))!=null){
-      const aux=JSON.parse(localStorage.getItem('pictures'));
+    if(JSON.parse(localStorage.getItem('pictures2'))!=null){
+      const aux=JSON.parse(localStorage.getItem('pictures2'));
       aux.push('assets/images/memory/'+files[0].name);
-      localStorage.setItem('pictures',JSON.stringify(aux));
+      localStorage.setItem('pictures2',JSON.stringify(aux));
     }else{
       const aux=[];
       aux.push('assets/images/memory/'+files[0].name);
-      localStorage.setItem('pictures',JSON.stringify(aux));
+      localStorage.setItem('pictures2',JSON.stringify(aux));
     }
 
     this.newMemoryService.makeFileRequestPictures('http://localhost:8072/api/newMemory/uploadPictures', [], files).subscribe(() => {
@@ -180,10 +183,10 @@ export class NewMemoryComponent implements OnInit {
     localStorage.setItem('step','2');
   }
   submitMedia(){
-    let aux=JSON.parse(localStorage.getItem('pictures'));
+    let aux=JSON.parse(localStorage.getItem('pictures2'));
     this.newMemoryService.postMedia(aux, this.memId).subscribe(
 
-      (data) => {console.log(data); localStorage.removeItem('pictures'); },
+      (data) => {console.log(data); localStorage.removeItem('pictures2'); },
       (err) => alert(err));
     localStorage.setItem('step','3');
     this.step='3';

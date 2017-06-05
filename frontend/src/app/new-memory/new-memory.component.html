@@ -100,10 +100,15 @@
 
     <div class="images" *ngIf="type==='image'">
       <span *ngFor="let image of files2" class="media">
-        <img [src]="image"   class="profile-picture"  *ngIf="type==='image'">
-         <video width="400"   *ngIf="type==='video'"  controls>
-            <source [src]="image" >
-          </video>
+        <img [src]="image"   class="profile-picture"  >
+         <!--<video width="400"   *ngIf="type==='video'"  controls>-->
+            <!--<source [src]="image" >-->
+          <!--</video>-->
+      </span>
+      <span *ngFor="let image of files2" class="media">
+        <!--<video width="400"   *ngIf="type==='video'"  controls>-->
+        <!--<source [src]="image" >-->
+        <!--</video>-->
       </span>
     </div>
     <button class="custom-button" (click)="submitMedia()">Next Step</button>

@@ -62,6 +62,7 @@ export class AddDocumentComponent implements OnInit {
     },
     (err) => alert(err));
     window.location.reload();
+    localStorage.removeItem('documents')
   }
   deleteDoc(id: number){
     this.addDocumentService.deleteDocument(id, this.curent_user.user_id).subscribe(

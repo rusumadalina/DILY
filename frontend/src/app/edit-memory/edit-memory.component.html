@@ -31,7 +31,8 @@
              #location="ngModel"
              [(ngModel)]="curentMemory.memoryLocation"
              minlength="4"
-             maxlength="30">
+             maxlength="30"
+             pattern="[A-Za-z]{4,}(, )[A-Za-z]{4,}">
       <input type="date"
              class="custom-input"
              id="date"
@@ -65,13 +66,9 @@
 <div (click)="setStep('2')" class="acordion-item"><h4>Edit Medias</h4></div>
 <div class="results-container" *ngIf="step==='2'">
 
-  <h4 *ngIf="medias.length > 0">Old Media</h4>
-  <div class="images">
+  <div class="images2">
     <span  *ngFor="let media of medias" class="media">
-      <img *ngIf="media.mediaType==='image'" [src]="media.mediaPath">
-      <video width="400" controls *ngIf="media.mediaType==='video'">
-        <source [src]="media.mediaPath" >
-      </video>
+      <img  [src]="media.mediaPath">
       <div class="remove-container"(click)="deleteMedia(media.mediaId)">
         <i class="fa fa-trash" aria-hidden="true" ></i>
       </div>
@@ -80,14 +77,13 @@
 
   <input  type="file" id="profile2" name="profile" class="custom-input" enctype="multipart/form-data"
           (change)="onChange2($event)" ngModel>
-  <h4 *ngIf="files2.length>0">New Media</h4>
   <div class="images">
     <span class="media">
-          <img [src]="image"*ngFor="let image of files2">
+          <img [src]="image" *ngFor="let image of files2">
     </span>
   </div>
 
-  <a class="custom-button" (click)="savePictures()">Save changes</a>
+  <button class="custom-button" (click)="savePictures()">Save changes</button>
 </div>
 
 <div (click)="setStep('3')" class="acordion-item"><h4>Edit Tags</h4></div>
@@ -101,7 +97,13 @@
 
   </div>
   <form #addTags="ngForm" >
-    <input type="text" placeholder="tags" class="custom-input" id="tags1"  name="tags1" #tags1="ngModel" ngModel>
+    <input type="text"
+           placeholder="tags"
+           class="custom-input"
+           id="tags1"  name="tags1"
+           #tags1="ngModel"
+           ngModel
+           pattern="((#){1}[A-Za-z]+)+">
     <button class="custom-button" (click)="addTags2(addTags.value)">Save changes</button>
     <h4>{{localTags}}</h4>
   </form>
@@ -109,13 +111,13 @@
 
 <div (click)="setStep('4')" class="acordion-item"><h4>Edit Tagged Friends</h4></div>
 <div class="results-container" *ngIf="step==='4'">
-  <div class="friends-container">
+  <div class="tags-container">
     <div class="tag" *ngFor="let friend of users">
       <h4>{{friend.name}}</h4>
       <i class="fa fa-trash" aria-hidden="true" (click)="deleteTagged(friend.username)"></i>
     </div>
   </div>
-  <div class="friends-container">
+  <div class="tags-container">
     <div class="tag" *ngFor="let friend of names">
       <h4>{{friend}}</h4>
     </div>
@@ -128,4 +130,37 @@
     </ul>
   </div>
   <button class="custom-button" (click)="submitTagged()" routerLink="../dashboard">Save changes</button>
+</div>
+
+
+<div class="my-alert alert-information" *ngIf="aux1===true" (click)="aux1=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Main details where changed.</h4>
+  </div>
+  <h6>(click to close)</h6>
+</div>
+
+<div class="my-alert alert-information" *ngIf="aux2===true" (click)="aux2=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Media was changed.</h4>
+  </div>
+  <h6>(click to close)</h6>
+</div>
+
+<div class="my-alert alert-information" *ngIf="aux3===true" (click)="aux3=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Tags where changed.</h4>
+  </div>
+  <h6>(click to close)</h6>
+</div>
+
+<div class="my-alert alert-information" *ngIf="aux4===true" (click)="aux4=false">
+  <div class="alert-body">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <h4>Tagged Friends changed.</h4>
+  </div>
+  <h6>(click to close)</h6>
 </div>

@@ -18,8 +18,15 @@
     cursor: pointer;
   }
 }
-
-
+.simple-dropdown{
+  margin-bottom: 10px;
+}
+.custom-button{
+  width: 160px;
+  background-color: $main-green;
+  margin:0 auto;
+  margin-top: 10px;
+}
 @keyframes show-dropdown{
   0%{
     opacity:0;

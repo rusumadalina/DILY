@@ -23,15 +23,11 @@
     </div>
     </div>
     <div class="masonry" *ngIf="medias.length>0">
-      <div  *ngFor="let media of medias">
-      <div *ngIf="media.mediaType==='image'">
-        <img  [src]="media.mediaPath">
-      </div>
-      <div *ngIf="media.mediaType==='video'">
-        <video width="400" controls *ngFor="let media of medias">
+      <div  *ngFor="let media of medias" class="media">
+        <img  [src]="media.mediaPath" *ngIf="media.mediaType==='image'">
+        <video width="300" controls *ngIf="media.mediaType==='video'">
           <source [src]="media.mediaPath" >
         </video>
-      </div>
       </div>
     </div>
   </div>

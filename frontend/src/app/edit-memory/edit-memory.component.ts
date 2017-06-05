@@ -28,6 +28,10 @@ export class EditMemoryComponent implements OnInit {
   tagged=[];
   names=[];
   step:string;
+  aux1:boolean;
+  aux2:boolean;
+  aux3:boolean;
+  aux4:boolean;
   constructor(private memoryService: MemoryService,  private eRef: ElementRef, private newMemoryService: NewMemoryService, private editMemoryService: EditMemoryService) {
     this.curentMemory= new AddMemory(localStorage.getItem('memory-title'),localStorage.getItem('memory-description'),localStorage.getItem('memory-location'),localStorage.getItem('memory-date'),localStorage.getItem('memory-privacy'),localStorage.getItem('memory-picture'));
     this.id=localStorage.getItem('memory');
@@ -35,6 +39,10 @@ export class EditMemoryComponent implements OnInit {
     this.toggle=false;
     this.files2=JSON.parse(localStorage.getItem('pictures'));
     this.step=localStorage.getItem('stepEdit');
+    this.aux1=false;
+    this.aux2=false;
+    this.aux3=false;
+    this.aux4=false;
   }
 
   ngOnInit() {
@@ -62,8 +70,7 @@ export class EditMemoryComponent implements OnInit {
             console.log(data);
       },
       (err) => alert(err));
-
-
+    this.aux4=true;
   }
   selectFriends(id: number, name:string){
     let aux=false;
@@ -114,16 +121,19 @@ export class EditMemoryComponent implements OnInit {
     this.memoryService.getMedia(id).subscribe(
       (data) => {
         this.retrieveDataMedia(data);
+        console.log(data);
       },
       (err) => alert(err));
     this.memoryService.getTagged(id).subscribe(
       (data) => {
         this.retrieveDataUsers(data);
+        console.log(data);
       },
       (err) => alert(err));
     this.memoryService.getTags(id).subscribe(
       (data) => {
         this.retrieveDataTags(data);
+        console.log(data);
       },
       (err) => alert(err));
   }
@@ -175,6 +185,7 @@ export class EditMemoryComponent implements OnInit {
           console.log(data);},
         error => {console.log('nu ai postat'); }
       );
+    this.aux1=true;
   }
   deleteMedia(id: number){
     for(let index of this.medias){
@@ -215,6 +226,7 @@ export class EditMemoryComponent implements OnInit {
     this.newMemoryService.postMedia(aux, this.id).subscribe(
       (data) => {console.log(data); localStorage.removeItem('pictures'); },
       (err) => alert(err));
+    this.aux2=true;
   }
   removeTag(id: number){
     for(let index of this.tags){
@@ -243,16 +255,17 @@ export class EditMemoryComponent implements OnInit {
   }
 
   addTags2(addTags: any){
-    let array1= addTags.tags1.split(' ');
-
+    let array1= addTags.tags1.split('#');
     for (let item of array1){
-      this.localTags.push({"tagName":item.split('#')[1]});
+      if(item!=""){
+        this.localTags.push({"tagName":item});
+      }
     }
-    console.log(this.tags);
+
     this.newMemoryService.postTags(this.localTags, this.id).subscribe(
 
       (data) => {console.log(data); },
       (err) => alert(err));
-
+      this.aux3=true;
   }
 }
